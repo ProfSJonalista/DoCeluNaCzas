@@ -2,6 +2,9 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
+div {
+    overflow: auto;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -21,4 +24,114 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#input_from{
+    margin-top: 20%;
+}
+
+#arrival {
+    width: 80%;
+    outline: none;
+}
+
+#departure {
+    width: 80%;
+    outline: none;
+}
+
+#clock {
+    padding: 33px 0px 30px 15px;
+    font-size: 23px;
+    padding: 33px 0px 30px 15px;
+    font-size: 23px;
+    width: 100px;
+    margin-right: 0;
+    display: inline-block;
+}
+
+#train_icon {
+    display: block;
+    max-width: 100%;
+    /*height: auto;*/
+}
+
+
+.check {
+    opacity: 0.5;
+    border-color: rgba(0, 123, 125, 1.00);
+    
+
+}
+
+.active {
+    border-color: rgba(0, 123, 125, 0.45) !important;
+}
+.time-label {
+    float: left;
+}
+.btn {
+    margin-left: 0 !important; 
+}
+.panel {
+    
+    margin-bottom: 20px;
+    /* background-color: #fff; */
+    /* border: 1px solid transparent; */
+    border-radius: 0px;
+    width: 69px;
+    margin-top: 20px;
+    /* -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
+}
+
+.firstImg {
+    margin-left: 15px !important;
+}
+
+.img-thumbnail {
+    border: none;
+}
+
+.panel-default img {
+    
+    height: 50px;
+    padding:6px;
+}
+
+.checkbox{
+
+}
+
+.clock{
+   
+}
+
+.buttonRoute{
+    margin-top: 20px;
+  
+}
+
+.buttonRoute .btn{
+    width: 50% !important;
+}
+
+.btn-img:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 255, 0.0) !important;
+    border-color: #204d74;
+}
+
+.means-of-transport-icon {
+    width: 69px;
+    height: 69px;
+}
+.means-of-transport-icon img {
+    display: inline-block !important;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.means-of-transport-container {
+    overflow: auto;
 }

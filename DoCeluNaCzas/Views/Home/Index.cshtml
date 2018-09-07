@@ -1,12 +1,83 @@
-﻿@{
+﻿ @{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row ">
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <input type="text" id="input_from" name="from" class="form-control" placeholder="Od" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="to" class="form-control" placeholder="Do" />
+            </div>
+          
+            <div>
+                <div class="btn-group btn-group-toggle time-label" data-toggle="buttons">
+                    <label class="btn btn-secondary active" id="arrival">
+                        <input type="radio" name="options" autocomplete="off" checked> Przyjazd
+                    </label>
+                    <label class="btn btn-secondary" id="departure">
+                        <input type="radio" name="options" autocomplete="off"> Odjazd
+                    </label>
+                </div>
+                <div class="">
+                    <!--<input type="date" class="form-control"/>-->
+                    <input type="time" class="form-control clock" id="clock" />
+                </div>
+            </div>
+                
+            
+           
+            <div class="form-group">
+                <a class="" role="button" data-toggle="collapse" href="#optionPanel" aria-expanded="false" aria-controls="optionPanel">
+                    Opcje
+                </a>
+
+
+                <div class="collapse " id="optionPanel">
+                    <div class="means-of-transport-container">
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/309520.svg" id="train_icon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/2027077.svg" id="train_icon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/310470.svg" id="train_icon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/309520.svg" id="train_icon" class="">
+
+                        </div>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="true" name="avoid_change">
+                        <label>Unikaj przesiadek</label>
+                        <div class="buttonRoute" id="buttonPanel">
+                            <button type="button" class="btn btn-primary">Ok</button>
+                        </div>
+                    </div>
+                    </div>
+
+            </div>
+
+               
+               
+           
+        </form>
+    </div>
+
+
+
+    <div class="col-md-6">
+
+    </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-4">

@@ -13,9 +13,9 @@ namespace DoCeluNaCzas.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Timetable()
         {
-            ViewBag.Message = "Your application description page. JUST WOOOOOOOOOOOOOOOORK";
+            ViewBag.Message = "Your timetable page.";
 
             return View();
         }
@@ -23,6 +23,13 @@ namespace DoCeluNaCzas.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Delays()
+        {
+            ViewBag.Message = "Your delays page.";
 
             return View();
         }
