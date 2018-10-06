@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DCNC.Service.PublicTransportService;
+using DoCeluNaCzas.DataAccess;
+using DoCeluNaCzas.Service.Models;
+using Newtonsoft.Json;
 
 namespace DoCeluNaCzas.Controllers
 {
@@ -27,5 +32,23 @@ namespace DoCeluNaCzas.Controllers
 
             return View();
         }
+
+        /* public ActionResult BusStops()
+         {
+             BusStopData busStopData = new BusStopData();
+
+             busStopData = GetBusStops();
+
+             //BusStopData busStop = new BusStopData();
+             ViewBag.Message1 = busStopData + "Worldwide handsome";
+
+             ViewBag.Message2 = "Annyeong~";
+             return View();
+         }*/
+
+
+
+
+
     }
 }
