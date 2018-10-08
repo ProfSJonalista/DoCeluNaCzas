@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@
             var infowindow = new google.maps.InfoWindow;
             var contentMessage = "You're here!";
 
-            
+
 
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
@@ -66,7 +67,7 @@
                         title: "You're here!"
                     });
 
-                    
+
 
                     google.maps.event.addListener(marker, 'click', function () {
                         map.setZoom(12);
@@ -78,9 +79,9 @@
                     google.maps.event.addListener(map, 'click', function (event) {
                         placeMarker(map, event.latLng);
                     });
-                    
 
-                  
+
+
                     //infowindow.setPosition(pos);
                     //infowindow.setContent('Location found.');
                     //infowindow.open(map);
@@ -90,10 +91,10 @@
                 });
             } else {
                 // Browser doesn't support Geolocation
-                  handleLocationError(false, infoWindow, map.getCenter());
+                handleLocationError(false, infoWindow, map.getCenter());
             }
             //}
-            
+
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent(browserHasGeolocation ?
@@ -102,15 +103,82 @@
                 infoWindow.open(map);
             }
 
-
-
-
-
-
-
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHj8Bd4gycuHbJCZ-gH2vQQckyfGIfsF8&callback=initMap"
             async defer></script>
 </body>
 </html>
+
+<div class="row ">
+    <div class="col-md-6 overlap">
+        <form>
+            <div class="form-group">
+                <input type="text" id="input_from" name="from" class="form-control" placeholder="Od" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="to" class="form-control" placeholder="Do" />
+            </div>
+
+            <div>
+                <div class="btn-group btn-group-toggle time-label" data-toggle="buttons">
+                    <label class="btn btn-secondary active" id="arrival">
+                        <input type="radio" name="options" autocomplete="off" checked> Przyjazd
+                    </label>
+                    <label class="btn btn-secondary" id="departure">
+                        <input type="radio" name="options" autocomplete="off"> Odjazd
+                    </label>
+                </div>
+                <div class="">
+                    <!--<input type="date" class="form-control"/>-->
+                    <input type="time" class="form-control clock" id="clock" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <a class="" role="button" data-toggle="collapse" href="#optionPanel" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                    <strong>Opcje</strong>
+                </a>
+
+
+                <div class="collapse " id="optionPanel">
+                    <div class="means-of-transport-container">
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/309520.svg" id="tramIcon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/2027077.svg" id="busIcon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/310470.svg" id="trainIcon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/309520.svg" id="tribusIcon" class="">
+
+                        </div>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="true" name="avoid_change">
+                        <label>Unikaj przesiadek</label>
+                        <div class="buttonRoute" id="buttonPanel">
+                            <button type="button" class="btn btn-primary" id="searchRouteButton">Ok</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+    <div class="col-md-6">
+
+    </div>
+</div>
