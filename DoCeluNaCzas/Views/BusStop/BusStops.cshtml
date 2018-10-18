@@ -1,0 +1,38 @@
+﻿@model DoCeluNaCzas.Service.Models.BusStopData
+
+
+<h2>BusStops</h2>
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message1</h3>
+<h3>@ViewBag.Message2</h3>
+
+<p>Annyeonhaeseyo</p>
+
+<table border="3" cellspacing="5" margin-left="5">
+    <tbody>
+        @foreach (var item in Model.Stops)
+
+        {
+            var id = item.StopId;
+            var desc = item.StopDesc;
+            var lat = item.StopLat;
+            var lon = item.StopLon;
+
+            <tr>
+                <td margin-left="5">
+                    @Html.DisplayFor(modelItem => id)
+                </td>
+                <td margin-left="5">
+                    @Html.DisplayFor(modelItem => desc)
+                </td>
+                <td margin-left="5">
+                    @Html.DisplayFor(modelItem => lat)
+                </td>
+                <td margin-left="5">
+                    @Html.DisplayFor(modelItem => lon)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
