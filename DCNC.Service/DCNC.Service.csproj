@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\BusLineData.cs" />
+    <Compile Include="Models\BusMapMarkers.cs" />
     <Compile Include="Models\BusStopsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicTransportService\PublicTransportService.cs" />
