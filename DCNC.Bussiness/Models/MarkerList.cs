@@ -26,4 +26,6 @@ namespace DoCeluNaCzas.Bussiness.Models
         public double StopLat { get; set; }
         public double StopLon { get; set; }
     }
+
+    //WTF 
 }
