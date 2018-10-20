@@ -27,5 +27,5 @@ namespace DoCeluNaCzas.Bussiness.Models
         public double StopLon { get; set; }
     }
 
-    //WTF 
+    //WTF, fuck you Github
 }
