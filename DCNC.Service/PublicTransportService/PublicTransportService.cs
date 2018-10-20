@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using DoCeluNaCzas.Bussiness.Models;
 using DoCeluNaCzas.DataAccess;
-using DoCeluNaCzas.Service.Models;
+
 using Newtonsoft.Json;
 
 namespace DCNC.Service.PublicTransportService

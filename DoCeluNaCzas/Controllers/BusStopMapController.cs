@@ -1,8 +1,8 @@
-﻿using DCNC.Service.Models;
+﻿
 using DCNC.Service.PublicTransportService;
 using DCNC.Service.PublicTransportService.Map;
 using DoCeluNaCzas.DataAccess;
-using DoCeluNaCzas.Service.Models;
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

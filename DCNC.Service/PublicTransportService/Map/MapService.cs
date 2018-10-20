@@ -1,5 +1,5 @@
-﻿using DCNC.Service.Models;
-using DoCeluNaCzas.Service.Models;
+﻿
+using DoCeluNaCzas.Bussiness.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

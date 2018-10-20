@@ -1,10 +1,7 @@
-﻿using DCNC.Service.PublicTransportService;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
 
-namespace DoCeluNaCzas.Service.Models
+namespace DoCeluNaCzas.Bussiness.Models
 {
     public class BusStopData
     {
