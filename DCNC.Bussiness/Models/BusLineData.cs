@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DoCeluNaCzas.Service.Models
+namespace DoCeluNaCzas.Bussiness.Models
 {
     public class BusLineData
     {

@@ -72,6 +72,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BusLineData.cs" />
+    <Compile Include="Models\BusStopsData.cs" />
+    <Compile Include="Models\MarkerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

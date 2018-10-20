@@ -1,5 +1,6 @@
-﻿using DoCeluNaCzas.DataAccess;
-using DoCeluNaCzas.Service.Models;
+﻿using DoCeluNaCzas.Bussiness.Models;
+using DoCeluNaCzas.DataAccess;
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

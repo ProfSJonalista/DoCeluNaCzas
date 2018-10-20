@@ -1,22 +1,15 @@
-﻿using DCNC.Service.PublicTransportService;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
 
-namespace DoCeluNaCzas.Service.Models
+namespace DoCeluNaCzas.Bussiness.Models
 {
     public class BusStopData
     {
         [JsonProperty("Day")]
         public string Day { get; set; }
         public string LastUpdate { get; set; }
-        public IEnumerable<Stop> Stops { get; set; }
+        public List<Stop> Stops { get; set; }
 
-        public static implicit operator BusStopData(PublicTransportService v)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class Stop

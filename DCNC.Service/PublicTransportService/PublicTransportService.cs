@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
+using DoCeluNaCzas.Bussiness.Models;
 using DoCeluNaCzas.DataAccess;
-using DoCeluNaCzas.Service.Models;
+
 using Newtonsoft.Json;
 
 namespace DCNC.Service.PublicTransportService
@@ -11,14 +13,18 @@ namespace DCNC.Service.PublicTransportService
     public class PublicTransportService
     {
 
-        public BusStopData GetBusStops()
+        public async static Task<BusStopData> GetBusStops()
         {
             //var busStopData = (string)JsonConvert.DeserializeObject(json);
-            var json = PublicTransportRepository.GetBusStops().ToString();
-            BusStopData busStopData = JsonConvert.DeserializeObject<BusStopData>(json);
+            //var json = await PublicTransportRepository.GetBusStops();
+           // BusStopData busStopData = JsonConvert.DeserializeObject<BusStopData>(json);
 
-            return busStopData;
+            var json = await PublicTransportRepository.GetBusStops();
+            var busStopData = (string)JsonConvert.DeserializeObject(json);
+            var data = JsonConvert.DeserializeObject<BusStopData>(busStopData);
 
+
+            return data;
         }
 
 

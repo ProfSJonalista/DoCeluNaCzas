@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using DCNC.Service.PublicTransportService;
 using DoCeluNaCzas.DataAccess;
-using DoCeluNaCzas.Service.Models;
+
 using Newtonsoft.Json;
 
 namespace DoCeluNaCzas.Controllers

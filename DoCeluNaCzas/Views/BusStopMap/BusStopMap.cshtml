@@ -1,10 +1,69 @@
-﻿@model DoCeluNaCzas.Service.Models.BusStopData
+﻿@model DoCeluNaCzas.Bussiness.Models.Marker[]
 
 
-<h2>BusStopsMap</h2>
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message1</h3>
-<h3>@ViewBag.Message2</h3>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Google Maps Multiple Markers</title>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBHj8Bd4gycuHbJCZ-gH2vQQckyfGIfsF8&callback=initMap"
+            type="text/javascript"></script>
 
-<p>BusStopMap</p>
 
+    <style>
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 10px;
+            margin-right: 0px;
+            padding-top: 16px;
+            margin-left: 0px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="map" style="height: 100%;
+            width: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;"></div>
+
+    <script type="text/javascript">
+/**/
+var map, infoWindow;
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: new google.maps.LatLng(54.35, 18.64),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        @foreach(var item in Model) {
+
+            var lat = item.StopLat.ToString().Replace(",", ".");
+            var lon = item.StopLon.ToString().Replace(",", ".");
+            var desc = item.StopDesc;
+
+            <text>
+
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(@lat, @lon),
+                    map: map
+                });
+
+
+
+           </text>
+
+        }
+    </script>
+</body>
+</html>
