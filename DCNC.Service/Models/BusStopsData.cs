@@ -11,12 +11,8 @@ namespace DoCeluNaCzas.Service.Models
         [JsonProperty("Day")]
         public string Day { get; set; }
         public string LastUpdate { get; set; }
-        public IEnumerable<Stop> Stops { get; set; }
+        public List<Stop> Stops { get; set; }
 
-        public static implicit operator BusStopData(PublicTransportService v)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class Stop

@@ -56,20 +56,26 @@
 
                     map = new google.maps.Map(document.getElementById('map'), {
                         center: pos,
-                        zoom: 8
+                        zoom: 12
                     });
+
+                    var image = {
+                        url: 'https://png.icons8.com/nolan/2x/marker.png'
+
+                    };
 
                     var marker = new google.maps.Marker({
                         position: pos,
                         map: map,
                         draggable: false,
-                        title: "You're here!"
+                        title: "You're here!",
+                        icon: image
                     });
 
                     
 
                     google.maps.event.addListener(marker, 'click', function () {
-                        map.setZoom(12);
+                        map.setZoom(18);
                         map.setCenter(marker.getPosition());
                         infowindow.setContent(contentMessage);
                         infowindow.open(map, marker);

@@ -1,4 +1,7 @@
-﻿using DoCeluNaCzas.DataAccess;
+﻿using DCNC.Service.Models;
+using DCNC.Service.PublicTransportService;
+using DCNC.Service.PublicTransportService.Map;
+using DoCeluNaCzas.DataAccess;
 using DoCeluNaCzas.Service.Models;
 using Newtonsoft.Json;
 using System;
@@ -12,26 +15,13 @@ namespace DoCeluNaCzas.Controllers
 {
     public class BusStopMapController : Controller
     {
-        public async Task<BusStopData> GetBusStops()
-        {
-
-            var json = await PublicTransportRepository.GetBusStops();
-            var busStopData = (string)JsonConvert.DeserializeObject(json);
-            var data = JsonConvert.DeserializeObject<BusStopData>(busStopData);
-
-            return data;
-
-        }
+        public object Markers { get; private set; }
 
         public async Task<ActionResult> BusStopMap()
         {
-            var busStopData = await GetBusStops();
+            var markerList = await MapService.GetMarkerList();
 
-            ViewBag.Message1 = busStopData + "YOONSEOK LIVES";
-
-            ViewBag.Message2 = "SOPE SOPE SOPE~";
-
-            return View(busStopData);
+            return View(markerList);
         }
     }
 }
