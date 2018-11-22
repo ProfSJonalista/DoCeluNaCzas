@@ -1,6 +1,5 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@{ViewBag.Title = "Home Page";}
+@model DoCeluNaCzas.Bussiness.Models.Marker[]
 
 
 <!DOCTYPE html>
@@ -35,7 +34,7 @@
 <body>
     <div id="map"></div>
     <script>
-        var map, infoWindow;
+        var map, infoWindow, mgr;
 
 
         function initMap() {
@@ -43,8 +42,7 @@
             // var y = 18.64663840000003;
             var myLatLng = { lat: -34.397, lng: 150.644 };
             var infowindow = new google.maps.InfoWindow;
-            var contentMessage = "You're here!";
-
+            var contentMessage = "Annyeong";
 
 
             // Try HTML5 geolocation.
@@ -57,7 +55,7 @@
 
                     map = new google.maps.Map(document.getElementById('map'), {
                         center: pos,
-                        zoom: 12
+                        zoom: 17
                     });
 
                     var image = {
@@ -73,18 +71,41 @@
                         icon: image
                     });
 
+                    function addInfoWindow(marker, contentMessage) {
+
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: "Annyeong"
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infoWindow.open(map, marker);
+                        });
+
+                    }
+
+                    addInfoWindow(marker);
+
+                     @foreach(var item in Model) {
+
+                    var lat = item.StopLat.ToString().Replace(",", ".");
+                    var lon = item.StopLon.ToString().Replace(",", ".");
+                    var desc = item.StopDesc;
+
+                    <text>
+
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(@lat, @lon),
+                            map: map,
+                            title: "@desc"
+                        });
 
 
-                    google.maps.event.addListener(marker, 'click', function () {
-                        map.setZoom(18);
-                        map.setCenter(marker.getPosition());
-                        infowindow.setContent(contentMessage);
-                        infowindow.open(map, marker);
-                    });
 
-                    google.maps.event.addListener(map, 'click', function (event) {
-                        placeMarker(map, event.latLng);
-                    });
+
+
+                     </text>
+
+                      }
 
 
 
