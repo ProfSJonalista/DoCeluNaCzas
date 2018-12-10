@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DCNC.Service.PublicTransportService;
+using DCNC.Service.PublicTransportService.Map;
 using DoCeluNaCzas.DataAccess;
 
 using Newtonsoft.Json;
@@ -13,9 +14,14 @@ namespace DoCeluNaCzas.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public object Markers { get; private set; }
+
+        
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var markerList = await MapService.GetMarkerList();
+
+            return View(markerList);
         }
 
         public ActionResult About()
