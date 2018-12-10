@@ -1,6 +1,24 @@
 ﻿@{ViewBag.Title = "Home Page";}
 @model DoCeluNaCzas.Bussiness.Models.Marker[]
 
+@{ 
+
+    if (IsPost)
+    {
+        string input_from = Request.Form["input_from"];
+        string input_to = Request.Form["input_to"];
+
+        <text>
+
+            Input From : @input_from <br/>
+            Input To : @input_to  <br/>
+
+        </text>
+    }
+
+}
+
+
 
 <!DOCTYPE html>
 <html>
@@ -139,12 +157,12 @@
 
 <div class="row ">
     <div class="col-md-6 overlap">
-        <form>
+        <form method="post" >
             <div class="form-group">
-                <input type="text" id="input_from" name="from" class="form-control" placeholder="Od" />
+                <input type="text" id="input_from" name="input_from" class="form-control" placeholder="Od" />
             </div>
             <div class="form-group">
-                <input type="text" name="to" class="form-control" placeholder="Do" />
+                <input type="text" id="input_to" name="input_to" class="form-control" placeholder="Do" />
             </div>
 
             <div>

@@ -16,6 +16,7 @@ namespace DoCeluNaCzas.Controllers
     {
         public object Markers { get; private set; }
 
+        
         public async Task<ActionResult> Index()
         {
             var markerList = await MapService.GetMarkerList();
