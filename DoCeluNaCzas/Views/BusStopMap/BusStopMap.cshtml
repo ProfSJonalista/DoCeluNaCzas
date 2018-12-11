@@ -1,16 +1,22 @@
-﻿@model DoCeluNaCzas.Bussiness.Models.Marker[]
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>Google Maps Multiple Markers</title>
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBHj8Bd4gycuHbJCZ-gH2vQQckyfGIfsF8&callback=initMap"
-            type="text/javascript"></script>
-
-
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
     <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            /*height: 600px;
+             width: 1300px;*/
+            padding-left: -50px;
+            margin-left: -190px;
+            height: 750px;
+            width: 1520px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
         /* Optional: Makes the sample page fill the window. */
         html, body {
             height: 100%;
@@ -23,109 +29,19 @@
             padding-bottom: 0px;
         }
     </style>
-
 </head>
 <body>
-    <div id="map" style="height: 100%;
-            width: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;"></div>
-
-    <script type="text/javascript">
-/**/
-var map, infoWindow;
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 17,
-            center: new google.maps.LatLng(54.35, 18.64),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-
-        var infowindow = new google.maps.InfoWindow();
-
-        var marker, i;
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: pos,
-                    zoom: 17
-                });
-
-                var image = {
-                    url: 'https://png.icons8.com/nolan/2x/marker.png'
-
-                };
-
-                var marker = new google.maps.Marker({
-                    position: pos,
-                    map: map,
-                    draggable: false,
-                    title: "You're here!",
-                    icon: image
-                });
-
-
-                google.maps.event.addListener(marker, 'click', function () {
-                    map.setZoom(18);
-                    map.setCenter(marker.getPosition());
-                    infowindow.setContent(contentMessage);
-                    infowindow.open(map, marker);
-                }); 
-
-                google.maps.event.addListener(map, 'click', function (event) {
-                    placeMarker(map, event.latLng);
-                });
-
-            @foreach(var item in Model) {
-
-            var lat = item.StopLat.ToString().Replace(",", ".");
-            var lon = item.StopLon.ToString().Replace(",", ".");
-            var desc = item.StopDesc;
-
-            <text>
-
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(@lat, @lon),
-                    map: map,
-                    title: "@desc"
-                });
-
-
-
-             </text>
-
-                }
-
-
-                //infowindow.setPosition(pos);
-                //infowindow.setContent('Location found.');
-                //infowindow.open(map);
-                map.setCenter(pos);
-            }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
+    <div id="map"></div>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 54.35202520000001, lng: 18.64663840000003 },
+                zoom: 8
             });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
         }
-        //}
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
-
-        
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHj8Bd4gycuHbJCZ-gH2vQQckyfGIfsF8&callback=initMap"
+            async defer></script>
 </body>
 </html>
