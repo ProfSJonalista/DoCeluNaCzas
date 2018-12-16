@@ -7,7 +7,8 @@ using System.Web.Mvc;
 using DCNC.Service.PublicTransportService;
 using DCNC.Service.PublicTransportService.Map;
 using DoCeluNaCzas.DataAccess;
-
+using DoCeluNaCzas.Models.Index;
+using DoCeluNaCzas.Service;
 using Newtonsoft.Json;
 
 namespace DoCeluNaCzas.Controllers
@@ -19,9 +20,15 @@ namespace DoCeluNaCzas.Controllers
         
         public async Task<ActionResult> Index()
         {
-            var markerList = await MapService.GetMarkerList();
+            var markerArray = await IndexService.GetMarkerList();
 
-            return View(markerList);
+            var indexModel = new IndexModel()
+            {
+                MainPageFormIndex = new MainPageForm(),
+                MarkerArrayIndex = markerArray
+            };
+
+            return View(indexModel);
         }
 
         public ActionResult About()

@@ -4,28 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DoCeluNaCzas.Bussiness.Models
+namespace DoCeluNaCzas.Models.Index
 {
-    public class MarkerList
+    public class MarkerListModel
     {
-        public List<Marker> Markers { get; set; }
+        public List<MarkerModel> Markers { get; set; }
 
-        public MarkerList()
+        public MarkerListModel()
         {
-            Markers = new List<Marker>();
+            Markers = new List<MarkerModel>();
         }
-
-       
 
     }
 
-    public class Marker
+    public class MarkerModel
     {
         public int StopId { get; set; }
         public string StopDesc { get; set; }
         public double StopLat { get; set; }
         public double StopLon { get; set; }
+
     }
 
-    //WTF, fuck you Github
+
 }
