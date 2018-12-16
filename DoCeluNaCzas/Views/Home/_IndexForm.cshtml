@@ -1,0 +1,86 @@
+﻿@model DoCeluNaCzas.Models.Index.MainPageForm
+
+<div class="row ">
+    <div class="col-md-6 overlap">
+        @using (Html.BeginForm("MainFormSearchRoute", "MainPageForm", FormMethod.Post))
+        {
+            //<form method="post" action="@Url.Action("MainFormSearchRoute","MainPageForm")">
+
+
+            <div class="form-group">
+                <label>Od</label>
+                @Html.TextBoxFor(m => m.InputFrom)
+
+
+                <!-- <input type="text" id="input_from" name="input_from" class="form-control" placeholder="Od" /> -->
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="input_to" name="input_to" class="form-control" placeholder="Do" />
+            </div>
+
+
+
+            <div>
+                <div class="btn-group btn-group-toggle time-label" data-toggle="buttons">
+                    <label class="btn btn-secondary active" id="arrival">
+                        <input type="radio" name="options" autocomplete="off" checked> Przyjazd
+                    </label>
+                    <label class="btn btn-secondary" id="departure">
+                        <input type="radio" name="options" autocomplete="off"> Odjazd
+                    </label>
+                </div>
+                <div class="">
+                    <!--<input type="date" class="form-control"/>-->
+                    <input type="time" class="form-control clock" id="clock" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <a class="" role="button" data-toggle="collapse" href="#optionPanel" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                    <strong>Opcje</strong>
+                </a>
+
+
+                <div class="collapse " id="optionPanel">
+                    <div class="means-of-transport-container">
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/309520.svg" id="tramIcon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/2027077.svg" id="busIcon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/310470.svg" id="trainIcon" class="">
+
+                        </div>
+                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <img src="https://svgsilh.com/svg/309520.svg" id="tribusIcon" class="">
+
+                        </div>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="true" name="avoid_change">
+                        <label>Unikaj przesiadek</label>
+                        <div class="buttonRoute" id="buttonPanel">
+                            <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            // </form>
+        }
+    </div>
+
+
+
+    <div class="col-md-6">
+
+    </div>
+</div>
