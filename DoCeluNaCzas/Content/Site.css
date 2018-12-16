@@ -155,7 +155,7 @@ textarea {
     z-index: 2;
     background: rgba(255,255,255, 0.65);
     width: 308px;
-    margin-top: 2%;
+    margin-top:2%;
     border-radius: 4px;
 }
 
@@ -165,9 +165,31 @@ textarea {
     outline:0px;
 }
 
-    #searchRouteButton:hover {
+#searchRouteButton:hover {
         background-color: #046669 !important;
         border-color: #035557 !important;
         outline: 0px;
-    }
+
+}
+
+.navbar-inverse .navbar-brand {
+    color: white !important;
+}
+
+.nav.navbar-nav li a {
+    color: white;
+}
+
+.tram-btn-color:focus {
+    background-color: #45afb1 !important;
+}
+
+.container navbar-header {
+
+    margin-bottom:2%;
+}
+
+#searchTimetable{
+    margin: 15px 0px;
+}
 

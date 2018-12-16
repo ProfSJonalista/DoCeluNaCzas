@@ -39,6 +39,18 @@ namespace DoCeluNaCzas.Controllers
             return View();
         }
 
+        public ActionResult Timetable()
+        {
+            
+            return View();
+        }
+
+        public ActionResult Delays()
+        {
+            ViewBag.Message = "Your delays page.";
+            return View();
+        }
+
         /* public ActionResult BusStops()
          {
              BusStopData busStopData = new BusStopData();
