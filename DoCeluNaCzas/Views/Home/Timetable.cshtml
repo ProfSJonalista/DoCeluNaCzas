@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Rozkład jazdy";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="row ">
+    <div class="col-md-6 overlap">
+        <div class="form-group">
+
+            <input type="text" placeholder="Search" class="form-control" id="searchTimetable">
+
+            <!-- COLLAPSE TRAMWAJ-->
+            <div class="form-group">
+                <a class="collapse-transport" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                    <strong>Tramwaj</strong>
+                </a>
+
+                <div class="collapse" id="optionPanelTram">
+                    <div class="means-of-transport-container">
+                        <div class="btn-group" data-toggle="buttons">
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-two">
+                                <span>2</span>
+                            </label>
+
+                            <label class="btn tram-btn-color">
+                                <input type="radio" autocomplete="off" id="tram-three">
+                                <span>3</span>
+                            </label>
+
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-four">
+                                <span>4</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-five">
+                                <span>5</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-six">
+                                <span>6</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-seven">
+                                <span>7</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-eight">
+                                <span>8</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-nine">
+                                <span>9</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-ten">
+                                <span>10</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-eleven">
+                                <span>11</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-twelve">
+                                <span>12</span>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLLAPSE AUTOBUS-->
+            <div class="form-group">
+                <a class="collapse-transport" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                    <strong>Autobus</strong>
+                </a>
+
+
+                <div class="collapse" id="optionPanelBus">
+                    <div class="means-of-transport-container">
+                        <div class="btn-group" data-toggle="buttons">
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off">
+                                <span>T8</span>
+                            </label>
+
+
+                            <label class="btn tram-btn-color">
+                                <input type="radio" autocomplete="off">
+                                <span>100</span>
+                            </label>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- COLLAPSE TROLEYBUS -->
+            <div class="form-group">
+                <a class="collapse-transport" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                    <strong>Trolejbus</strong>
+                </a>
+
+                <div class="collapse" id="optionPanelTroley">
+                    <div class="means-of-transport-container">
+                        <div class="btn-group" data-toggle="buttons">
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-two">
+                                <span>2</span>
+                            </label>
+
+                            <label class="btn tram-btn-color">
+                                <input type="radio" autocomplete="off" id="tram-three">
+                                <span>3</span>
+                            </label>
+
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-four">
+                                <span>4</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-five">
+                                <span>5</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-six">
+                                <span>6</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-seven">
+                                <span>7</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-eight">
+                                <span>8</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-nine">
+                                <span>9</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-ten">
+                                <span>10</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-eleven">
+                                <span>11</span>
+                            </label>
+
+                            <label class="btn">
+                                <input type="radio" autocomplete="off" id="tram-twelve">
+                                <span>12</span>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="buttonRoute" id="buttonPanel">
+                <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
+            </div>
+
+        </div>
+        </div>
+    </div>
