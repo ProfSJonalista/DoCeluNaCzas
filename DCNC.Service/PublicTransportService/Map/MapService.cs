@@ -10,28 +10,28 @@ namespace DCNC.Service.PublicTransportService.Map
 {
     public class MapService
     {
-        public async static Task<Marker[]> GetMarkerList()
-        {
-            var markerList = new MarkerList();
+        //public async static Task<MarkerModel[]> GetMarkerList()
+        //{
+        //    var markerList = new MarkerListModel();
 
-            var busStops = await PublicTransportService.GetBusStops();
+        //    var busStops = await PublicTransportService.GetBusStops();
 
-            busStops.Stops.ForEach(stop => markerList.Markers.Add(MarkerMapper(stop)));
+        //    busStops.Stops.ForEach(stop => markerList.Markers.Add(MarkerMapper(stop)));
 
-            Marker[] markersArray = markerList.Markers.ToArray();
+        //    MarkerModel[] markersArray = markerList.Markers.ToArray();
 
-            return markersArray;
-        }
+        //    return markersArray;
+        //}
 
-        private static Marker MarkerMapper(Stop stop)
-        {
-            return new Marker()
-            {
-                StopId = stop.StopId,
-                StopDesc = stop.StopDesc,
-                StopLat = stop.StopLat,
-                StopLon = stop.StopLon
-            };
-        }
+        //private static MarkerModel MarkerMapper(Stop stop)
+        //{
+        //    return new MarkerModel()
+        //    {
+        //        StopId = stop.StopId,
+        //        StopDesc = stop.StopDesc,
+        //        StopLat = stop.StopLat,
+        //        StopLon = stop.StopLon
+        //    };
+        //}
     }
 }
