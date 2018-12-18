@@ -8,11 +8,11 @@
 
 
                   <div class="form-group">
-                      <label>Od</label>
-                      @Html.TextBoxFor(m => m.InputFrom)
-                      <div>
-                          <label>Do</label>
-                          @Html.TextBoxFor(m => m.InputTo)
+                      
+                      @Html.TextBoxFor(m => m.InputFrom, new { @class = "form-control", placeholder = "Od" } )
+                      <div style="margin-top: 5px;">
+                         
+                          @Html.TextBoxFor(m => m.InputTo, new { @class = "form-control", placeholder = "Do" })
                       </div>
                       <!-- <input type="text" id="input_from" name="input_from" class="form-control" placeholder="Od" /> -->
                   </div>
@@ -28,11 +28,11 @@
                         Odjazd @Html.RadioButton("Option", "Departure")
                     </label>
                 </div>
-                <div id="clock"  >
+                <div class="clock">
                     <!--<input type="date" class="form-control"/>-->
                     <!--<input type="time" class="form-control clock" id="clock" />-->
                     
-                    @Html.EditorFor(model => model.DateClock)
+                    @Html.EditorFor(model => model.DateClock, new {@class = "clockProperties" })
                 </div>
             </div>
 
@@ -46,26 +46,35 @@
 
                 <div class="collapse " id="optionPanel">
                     <div class="means-of-transport-container">
-                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                            <!--<img src="https://svgsilh.com/svg/309520.svg" id="tramIcon" class="">-->
-                            @Html.CheckBoxFor(m => m.TramCheckBox, false)
 
+                        @using (Html.BeginForm()){
+                        <div class="form-group">
+                            <div data-toggle="buttons">
+
+                                <label class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                                    @Html.CheckBoxFor(m => m.TramCheckBox)
+                                    <img src="https://svgsilh.com/svg/309520.svg" id="tramIcon">
+                                </label>
+
+                                <label class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                                    @Html.CheckBoxFor(m => m.BusCheckBox)
+                                    <img src="https://svgsilh.com/svg/2027077.svg" id="busIcon">
+                                </label>
+
+                                <label class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                                    @Html.CheckBoxFor(m => m.TrainCheckBox)
+                                    <img src="https://svgsilh.com/svg/310470.svg" id="trainIcon">
+                                </label>
+
+                                <label class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                                    @Html.CheckBoxFor(m => m.TribusCheckBox)
+                                    <img src="https://svgsilh.com/svg/309520.svg" id="tribusIcon">
+                                </label>
+
+                            </div>
                         </div>
-                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                           <!-- <img src="https://svgsilh.com/svg/2027077.svg" id="busIcon" class="">-->
-                           @Html.CheckBoxFor(m => m.BusCheckBox, false)
-                       </div>
-                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                           <!--<img src="https://svgsilh.com/svg/310470.svg" id="trainIcon" class="">-->
-                           @Html.CheckBoxFor(m => m.TrainCheckBox, false)
-
-                       </div>
-                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                           <!--<img src="https://svgsilh.com/svg/309520.svg" id="tribusIcon" class="">-->
-                           @Html.CheckBoxFor(m => m.TribusCheckBox, false)
-
-                       </div>
-                    </div>
+                            }
+                        </div>
                     <div>
                         @Html.CheckBoxFor(m => m.AvoidChange, false)
                         
