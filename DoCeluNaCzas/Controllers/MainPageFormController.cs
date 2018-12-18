@@ -15,7 +15,14 @@ namespace DoCeluNaCzas.Controllers
         {
 
             string inputFrom = model.InputFrom;
+            string inputTo = model.InputTo;
+            ViewBag.TramCheckBox = model.TramCheckBox;
+            ViewBag.BusCheckBox = model.BusCheckBox;
+            ViewBag.TrainCheckBox = model.TrainCheckBox;
+            ViewBag.TribusCheckBox = model.TribusCheckBox;
+            ViewBag.AvoidChange = model.AvoidChange;
 
+            DateTime DateClock = model.DateClock;
             return View(model);
         }
     }

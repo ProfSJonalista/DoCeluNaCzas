@@ -7,32 +7,32 @@
             //<form method="post" action="@Url.Action("MainFormSearchRoute","MainPageForm")">
 
 
-            <div class="form-group">
-                <label>Od</label>
-                @Html.TextBoxFor(m => m.InputFrom)
-
-
-                <!-- <input type="text" id="input_from" name="input_from" class="form-control" placeholder="Od" /> -->
-            </div>
-
-            <div class="form-group">
-                <input type="text" id="input_to" name="input_to" class="form-control" placeholder="Do" />
-            </div>
-
+                  <div class="form-group">
+                      <label>Od</label>
+                      @Html.TextBoxFor(m => m.InputFrom)
+                      <div>
+                          <label>Do</label>
+                          @Html.TextBoxFor(m => m.InputTo)
+                      </div>
+                      <!-- <input type="text" id="input_from" name="input_from" class="form-control" placeholder="Od" /> -->
+                  </div>
 
 
             <div>
                 <div class="btn-group btn-group-toggle time-label" data-toggle="buttons">
                     <label class="btn btn-secondary active" id="arrival">
-                        <input type="radio" name="options" autocomplete="off" checked> Przyjazd
+                        Przyjazd @Html.RadioButton("Option", "Arrival")
+                        <!-- <input type="radio" name="options" autocomplete="off" checked> Przyjazd-->
                     </label>
                     <label class="btn btn-secondary" id="departure">
-                        <input type="radio" name="options" autocomplete="off"> Odjazd
+                        Odjazd @Html.RadioButton("Option", "Departure")
                     </label>
                 </div>
-                <div class="">
+                <div id="clock"  >
                     <!--<input type="date" class="form-control"/>-->
-                    <input type="time" class="form-control clock" id="clock" />
+                    <!--<input type="time" class="form-control clock" id="clock" />-->
+                    
+                    @Html.EditorFor(model => model.DateClock)
                 </div>
             </div>
 
@@ -46,32 +46,36 @@
 
                 <div class="collapse " id="optionPanel">
                     <div class="means-of-transport-container">
-                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                            <img src="https://svgsilh.com/svg/309520.svg" id="tramIcon" class="">
+                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                            <!--<img src="https://svgsilh.com/svg/309520.svg" id="tramIcon" class="">-->
+                            @Html.CheckBoxFor(m => m.TramCheckBox, false)
 
                         </div>
-                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                            <img src="https://svgsilh.com/svg/2027077.svg" id="busIcon" class="">
+                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                           <!-- <img src="https://svgsilh.com/svg/2027077.svg" id="busIcon" class="">-->
+                           @Html.CheckBoxFor(m => m.BusCheckBox, false)
+                       </div>
+                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                           <!--<img src="https://svgsilh.com/svg/310470.svg" id="trainIcon" class="">-->
+                           @Html.CheckBoxFor(m => m.TrainCheckBox, false)
 
-                        </div>
-                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                            <img src="https://svgsilh.com/svg/310470.svg" id="trainIcon" class="">
+                       </div>
+                       <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
+                           <!--<img src="https://svgsilh.com/svg/309520.svg" id="tribusIcon" class="">-->
+                           @Html.CheckBoxFor(m => m.TribusCheckBox, false)
 
-                        </div>
-                        <div class="btn btn-img panel panel-default col-md-3 col-sm-6 means-of-transport-icon">
-                            <img src="https://svgsilh.com/svg/309520.svg" id="tribusIcon" class="">
-
-                        </div>
+                       </div>
                     </div>
                     <div>
-                        <input type="checkbox" value="true" name="avoid_change">
+                        @Html.CheckBoxFor(m => m.AvoidChange, false)
+                        
                         <label>Unikaj przesiadek</label>
-                        <div class="buttonRoute" id="buttonPanel">
-                            <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
-                        </div>
+
                     </div>
                 </div>
-
+                <div class="buttonRoute" id="buttonPanel">
+                    <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
+                </div>
             </div>
 
             // </form>
