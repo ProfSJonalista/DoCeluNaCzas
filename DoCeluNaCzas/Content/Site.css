@@ -55,15 +55,13 @@ textarea {
 }
 
 .clock {
-    /*padding: 33px 0px 30px 15px;*/
-    padding: 0px 0px 28px 5px;
     font-size: 23px;
-    font-size: 23px;
-    width: 44%;
     margin-right: 0;
     display: inline-block;
     margin-bottom: 15px;
-    margin-left: 1px;
+    border-radius: 4px;
+    height: 68px;
+    width: 120px !important;
 }
 
 .clockProperties{

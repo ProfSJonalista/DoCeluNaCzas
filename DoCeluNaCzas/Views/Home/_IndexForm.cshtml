@@ -30,9 +30,9 @@
                 </div>
                 <div class="clock">
                     <!--<input type="date" class="form-control"/>-->
-                    <!--<input type="time" class="form-control clock" id="clock" />-->
-                    
-                    @Html.EditorFor(model => model.DateClock, new {@class = "clockProperties" })
+                    <!--<input type="time" class="form-control clock" id="clock" />
+                    @Html.EditorFor(model => model.DateClock, new {@class = "clock" })-->
+                    @Html.EditorFor(model => model.DateClock, new { htmlAttributes = new { @class = "clock" } })
                 </div>
             </div>
 
