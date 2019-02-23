@@ -1,10 +1,6 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace DoCeluNaCzas.Models.Index
+namespace DoCeluNaCzas.Models.ViewModels.Index
 {
     public class MarkerListModel
     {
@@ -25,6 +21,4 @@ namespace DoCeluNaCzas.Models.Index
         public double StopLon { get; set; }
 
     }
-
-
 }

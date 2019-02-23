@@ -1,13 +1,13 @@
-﻿@model DoCeluNaCzas.Models.Index.IndexModel
+﻿@model DoCeluNaCzas.Models.ViewModels.Index.IndexModel
 
 @{ViewBag.Title = "Home Page";}
 
 @{
-    Html.RenderPartial("_IndexMap", Model.MarkerArrayIndex);
+    Html.RenderPartial("Partials/_IndexMap", Model.MarkerArrayIndex);
 }
 
 @{
-    Html.RenderPartial("_IndexForm", Model.MainPageFormIndex);
+    Html.RenderPartial("Partials/_IndexForm", Model.MainPageFormIndex);
 }
 
 

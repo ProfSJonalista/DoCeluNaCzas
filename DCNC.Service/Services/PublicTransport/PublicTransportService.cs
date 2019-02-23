@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using DoCeluNaCzas.Bussiness.Models;
+﻿using DoCeluNaCzas.Bussiness.Models;
 using DoCeluNaCzas.DataAccess;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
-namespace DCNC.Service.PublicTransportService
+namespace DCNC.Service.Services.PublicTransport
 {
     public class PublicTransportService
     {
 
-        public async static Task<BusStopData> GetBusStops()
+        PublicTransportRepository _publicTransportRepository;
+
+        public PublicTransportService()
+        {
+            _publicTransportRepository = new PublicTransportRepository();
+        }
+
+        public async Task<BusStopData> GetBusStops()
         {
             //var message = await TestHubsAsync();
 
-            var json = await PublicTransportRepository.GetBusStops();
+            var json = await _publicTransportRepository.GetBusStops();
             
             var data = JsonConvert.DeserializeObject<BusStopData>(json);
 

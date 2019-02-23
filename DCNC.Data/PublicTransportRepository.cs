@@ -9,20 +9,19 @@ namespace DoCeluNaCzas.DataAccess
 {
     public class PublicTransportRepository
     {
-        public static async Task<string> GetBusStops()
+        public async Task<string> GetBusStops()
         {
             var json = await DownloadData(Constants.BUS_STOPS);
-            
 
             return json;
         }
 
-        public static async Task<string> GetBusLines()
+        public async Task<string> GetBusLines()
         {
             return await DownloadData(Constants.BUS_LINES);
         }
 
-        private static async Task<string> DownloadData(string url)
+        private async Task<string> DownloadData(string url)
         {
             var data = "";
 

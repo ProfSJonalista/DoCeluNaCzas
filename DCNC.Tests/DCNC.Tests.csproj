@@ -42,11 +42,16 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -64,18 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DCNC.Bussiness\DCNC.Bussiness.csproj">
-      <Project>{d0c6c565-6081-4dcd-8e7f-0b317ea84456}</Project>
-      <Name>DCNC.Bussiness</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DCNC.Data\DCNC.Data.csproj">
-      <Project>{15cefa02-8fdf-476a-a477-148ae2a46e09}</Project>
-      <Name>DCNC.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DCNC.Service\DCNC.Service.csproj">
-      <Project>{C8C99449-C061-4AFE-82AC-F6AD98D9478E}</Project>
-      <Name>DCNC.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DoCeluNaCzas\DoCeluNaCzas.csproj">
       <Project>{14d8415e-0bcd-4385-a814-c47ce95fb8b6}</Project>
       <Name>DoCeluNaCzas</Name>

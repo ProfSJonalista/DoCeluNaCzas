@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DoCeluNaCzas.Models
+namespace DoCeluNaCzas.Models.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

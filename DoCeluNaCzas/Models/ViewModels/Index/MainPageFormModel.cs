@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace DoCeluNaCzas.Models.Index
+namespace DoCeluNaCzas.Models.ViewModels.Index
 {
     public class MainPageForm
     {

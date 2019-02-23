@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(DoCeluNaCzas.Startup))]
+[assembly: OwinStartup(typeof(DoCeluNaCzas.Startup))]
 namespace DoCeluNaCzas
 {
     public partial class Startup

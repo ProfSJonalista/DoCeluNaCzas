@@ -1,28 +1,18 @@
-﻿using DoCeluNaCzas.Bussiness.Models;
-using DoCeluNaCzas.DataAccess;
-
+﻿using DoCeluNaCzas.Models.Bussiness;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
+using DoCeluNaCzas.Service.Repository;
 
 namespace DoCeluNaCzas.Controllers
 {
     public class BusStopController : Controller
     {
-        // GET: BusStop
-        public async Task<BusStopData> GetBusStops()
+        private readonly PublicTransportRepository _publicTransportRepository;
+
+        public BusStopController()
         {
-
-            var json = await PublicTransportRepository.GetBusStops();
-            var busStopData = (string)JsonConvert.DeserializeObject(json);
-            var data = JsonConvert.DeserializeObject<BusStopData>(busStopData);
-
-            return data;
-
+            _publicTransportRepository = new PublicTransportRepository();
         }
 
         public async Task<ActionResult> BusStops()
@@ -34,6 +24,17 @@ namespace DoCeluNaCzas.Controllers
             ViewBag.Message2 = "Annyeong~";
 
             return View(busStopData);
+        }
+
+        public async Task<BusStopDataModel> GetBusStops()
+        {
+
+            var json = await _publicTransportRepository.GetBusStops();
+            var busStopData = (string)JsonConvert.DeserializeObject(json);
+            var data = JsonConvert.DeserializeObject<BusStopDataModel>(busStopData);
+
+            return data;
+
         }
     }
 }
