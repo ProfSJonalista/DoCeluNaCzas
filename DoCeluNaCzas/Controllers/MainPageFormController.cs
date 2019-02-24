@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DoCeluNaCzas.Models.Index;
+using DoCeluNaCzas.Models.ViewModels.Index;
 
 namespace DoCeluNaCzas.Controllers
 {
