@@ -6,6 +6,8 @@ namespace DoCeluNaCzas.Service.Repository
 {
     public class PublicTransportRepository
     {
+        
+
         public async Task<string> GetBusStops()
         {
             var json = await DownloadData(Constants.BUS_STOPS);

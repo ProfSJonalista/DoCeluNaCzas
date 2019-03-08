@@ -1,9 +1,15 @@
-﻿@model DoCeluNaCzas.Models.ViewModels.Index.MainPageForm
+﻿@model DoCeluNaCzas.Models.ViewModels.Index.IndexModel
+
 @{
     ViewBag.Title = "MainFormSearchRoute";
 }
 
-<h2>MainFormSearchRoute</h2>
+@{
+    Html.RenderPartial("Partials/_MainFormSearchRouteRoutes", Model.SpotsArrayIndex);
+}
 
-@Html.DisplayFor(model => model.InputFrom)
-@Html.DisplayFor(model => model.InputTo)
+@{
+    Html.RenderPartial("Partials/_MainFormSearchRouteAdditionalInfo", Model.MainPageFormIndex);
+}
+
+

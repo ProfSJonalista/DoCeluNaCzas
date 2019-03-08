@@ -19,13 +19,16 @@ namespace DoCeluNaCzas.Controllers
         {
             var markerArray = await _indexService.GetMarkerList();
 
+            var spotsArray = await _indexService.GetSpotsList();
+
             var indexModel = new IndexModel()
             {
                 MainPageFormIndex = new MainPageForm(),
-                MarkerArrayIndex = markerArray
+                MarkerArrayIndex = markerArray,
+                SpotsArrayIndex = spotsArray
             };
 
-            return View(indexModel);
+            return View(indexModel);      
         }
 
         public ActionResult About()

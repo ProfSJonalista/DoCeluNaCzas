@@ -4,5 +4,6 @@
     {
         public MarkerModel[] MarkerArrayIndex { get; set; }
         public MainPageForm MainPageFormIndex { get; set; }
+        public SearchRouteFieldsModel[] SpotsArrayIndex { get; set; }
     }
 }

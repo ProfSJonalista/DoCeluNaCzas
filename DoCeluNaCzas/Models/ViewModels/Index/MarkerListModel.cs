@@ -13,6 +13,8 @@ namespace DoCeluNaCzas.Models.ViewModels.Index
 
     }
 
+  
+
     public class MarkerModel
     {
         public int StopId { get; set; }
