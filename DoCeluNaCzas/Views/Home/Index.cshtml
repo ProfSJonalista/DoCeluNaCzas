@@ -6,34 +6,11 @@
     Html.RenderPartial("Partials/_IndexMap", Model.MarkerArrayIndex);
 }
 
-<div class="row ">
-    <div class="col-md-6 overlap">
 
+@{
+    Html.RenderPartial("Partials/_IndexFormResfOfView", Model.SpotsListIndex);
+}
 
-        @using (Html.BeginForm("MainFormSearchRouteSpots", "MainPageForm", FormMethod.Post))
-        {
-
-            Html.RenderPartial("Partials/_IndexFormSpots", Model.SpotsArrayIndex);
-
-        }
-
-        @using (Html.BeginForm("MainFormSearchRoute", "MainPageForm", FormMethod.Post))
-        {
-            //<form method="post" action="@Url.Action("MainFormSearchRoute","MainPageForm")">
-
-
-            Html.RenderPartial("Partials/_IndexFormResfOfView", Model.MainPageFormIndex);
-
-            // </form>
-        }
-    </div>
-
-
-
-    <div class="col-md-6">
-
-    </div>
-</div>
 
 
 

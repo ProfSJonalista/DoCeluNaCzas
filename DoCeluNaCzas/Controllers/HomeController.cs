@@ -25,7 +25,8 @@ namespace DoCeluNaCzas.Controllers
             {
                 MainPageFormIndex = new MainPageForm(),
                 MarkerArrayIndex = markerArray,
-                SpotsArrayIndex = spotsArray
+                SpotsListIndex = spotsArray
+
             };
 
             return View(indexModel);      

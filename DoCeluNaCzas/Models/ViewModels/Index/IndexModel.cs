@@ -1,9 +1,14 @@
-﻿namespace DoCeluNaCzas.Models.ViewModels.Index
+﻿using DoCeluNaCzas.Models.Bussiness;
+using System.Collections.Generic;
+
+namespace DoCeluNaCzas.Models.ViewModels.Index
 {
     public class IndexModel
     {
         public MarkerModel[] MarkerArrayIndex { get; set; }
         public MainPageForm MainPageFormIndex { get; set; }
-        public SearchRouteFieldsModel[] SpotsArrayIndex { get; set; }
+        public List<StopModel> SpotsListIndex { get; set; }
+
+
     }
-}
+}//TODO - wsadzic te modele do jednej klasy - tej

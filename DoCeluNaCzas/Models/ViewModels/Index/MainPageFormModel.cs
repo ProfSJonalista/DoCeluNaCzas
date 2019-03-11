@@ -5,7 +5,7 @@ namespace DoCeluNaCzas.Models.ViewModels.Index
 {
     public class MainPageForm
     {
-        public string InputFrom { get; set; }
+       /* public string InputFrom { get; set; }
         public string InputTo { get; set; }
         public bool TramCheckBox { get; set; }
         public bool BusCheckBox { get; set; }
@@ -15,7 +15,7 @@ namespace DoCeluNaCzas.Models.ViewModels.Index
 
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime DateClock{ get; set; }
+        public DateTime DateClock{ get; set; } */
         
     }
 

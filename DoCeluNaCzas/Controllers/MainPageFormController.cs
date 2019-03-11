@@ -11,32 +11,26 @@ namespace DoCeluNaCzas.Controllers
 {
     public class MainPageFormController : Controller
     {
-        // GET: MainPageForm
-         [HttpPost]
-          public PartialViewResult MainFormSearchRoute(MainPageForm model, string returnUrl)
-          {
-
-              string inputFrom = model.InputFrom;
-              string inputTo = model.InputTo;
-              var TramCheckBox = model.TramCheckBox;
-              ViewBag.BusCheckBox = model.BusCheckBox;
-              ViewBag.TrainCheckBox = model.TrainCheckBox;
-              ViewBag.TribusCheckBox = model.TribusCheckBox;
-              ViewBag.AvoidChange = model.AvoidChange;
-
-              DateTime DateClock = model.DateClock;
-              return PartialView("_MainFormSearchRouteAdditionalInfo", model);
-          }
-
         // GET: MainPageFormSpots
         [HttpPost]
-        public PartialViewResult MainFormSearchRouteSpots(SpotsListModel model, string returnUrl)
+        public PartialViewResult MainFormSearchRouteSpots(int StopIdFrom, int StopIdTo)
         {
 
-            var spots = model.Spots;
-            return PartialView("_MainFormSearchRouteRoutes", model);
+
+            /* var stopIdFrom = int.Parse(data["SelectFrom"]);
+             var stopIdTo = int.Parse(data["SelectTo"]);
+             var stopDescFrom = data["SelectFrom"];
+             var stopDescTo = data["SelectTo"];
+
+             model.StopIdFrom = stopIdFrom;
+             model.StopIdTo = stopIdTo;
+             model.StopDescFrom = stopDescFrom;
+             model.StopDescTo = stopDescTo; */
+
+            ViewData["StopIdFrom"] = StopIdFrom;
+            ViewData["StopIdTo"] = StopIdTo;
+
+            return PartialView("_MainFormSearchRouteRoutes");
         }
-
-
     }
-}
+}//TODO - zmienić partial view na view

@@ -3,6 +3,7 @@ using DoCeluNaCzas.Models.Bussiness;
 using DoCeluNaCzas.Service.Repository;
 using System.Runtime.Caching;
 using Newtonsoft.Json;
+using DCNC.Bussiness.Models;
 
 namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 {
@@ -25,6 +26,19 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 
             return data;
         }
+
+        public async Task<JoinedTripsViewModel> GetJoinedTrips()
+        {
+            //var message = await TestHubsAsync();
+
+            var json = await _publicTransportRepository.GetJoinedTrips();
+
+            var data = JsonConvert.DeserializeObject<JoinedTripsViewModel>(json);
+
+            return data;
+        }
+
+
         //DO NOT REMOVE - FOR LATER
         //private static async Task<string> TestHubsAsync()
         //{
