@@ -1,41 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DoCeluNaCzas.Service;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using DCNC.Service.PublicTransportService;
-using DCNC.Service.PublicTransportService.Map;
-using DoCeluNaCzas.DataAccess;
-using DoCeluNaCzas.Models.Index;
-using DoCeluNaCzas.Service;
-using Newtonsoft.Json;
+using DoCeluNaCzas.Models.ViewModels.Index;
+using DoCeluNaCzas.Service.ViewModel;
 
 namespace DoCeluNaCzas.Controllers
 {
     public class HomeController : Controller
     {
-        public object Markers { get; private set; }
+        IndexService _indexService;
 
+        public HomeController()
+        {
+            _indexService = new IndexService();
+        }
         
         public async Task<ActionResult> Index()
         {
-            var markerArray = await IndexService.GetMarkerList();
+            var markerArray = await _indexService.GetMarkerList();
+
+            var spotsArray = await _indexService.GetSpotsList();
 
             var indexModel = new IndexModel()
             {
                 MainPageFormIndex = new MainPageForm(),
-                MarkerArrayIndex = markerArray
+                MarkerArrayIndex = markerArray,
+                SpotsArrayIndex = spotsArray
             };
 
-            return View(indexModel);
+            return View(indexModel);      
         }
 
         public ActionResult About()
         {
-            
-         
             ViewBag.Message = "Your application description page. JUST WOOOOOOOOOOOOOOOORK";
+
             return View();
         }
 
@@ -55,6 +54,7 @@ namespace DoCeluNaCzas.Controllers
         public ActionResult Delays()
         {
             ViewBag.Message = "Your delays page.";
+
             return View();
         }
 
@@ -70,10 +70,5 @@ namespace DoCeluNaCzas.Controllers
              ViewBag.Message2 = "Annyeong~";
              return View();
          }*/
-
-
-
-
-
     }
 }
