@@ -1,38 +1,41 @@
 ﻿@{
     ViewBag.Title = "Rozkład jazdy";
 }
-<h2>@ViewBag.Title.</h2>
+<!--<h2>@ViewBag.Title.</h2>-->
 <h3>@ViewBag.Message</h3>
 
-<div class="row ">
-    <div class="col-md-6 overlap">
+<div class="row">
+    <div class="col-md-3  ">
+
+
+
+        <input type="text" placeholder="Search" class="form-control" id="searchTimetable">
+
+        @using (Html.BeginForm()){
         <div class="form-group">
 
-            <input type="text" placeholder="Search" class="form-control" id="searchTimetable">
+            <div class="btn-group btn-group-mean-of-transport" data-toggle="buttons">
+                <!-- COLLAPSE TRAMWAJ-->
+                <div class="form-group">
+                    <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                        <strong style="margin-top:10px" class="collapse-header">Tramwaj</strong>
+                    </a>
 
-            <!-- COLLAPSE TRAMWAJ-->
-            <div class="form-group">
-                <a class="collapse-transport" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
-                    <strong>Tramwaj</strong>
-                </a>
-
-                <div class="collapse" id="optionPanelTram">
-                    <div class="means-of-transport-container">
-                        <div class="btn-group" data-toggle="buttons">
+                    <div class="collapse" id="optionPanelTram">
+                        <div class="means-of-transport-container">
 
                             <label class="btn">
-                                <input type="radio" autocomplete="off" id="tram-two">
+                                <input type="radio" autocomplete="off" id="tram-two" name="trans" value="t2">
                                 <span>2</span>
                             </label>
 
                             <label class="btn tram-btn-color">
-                                <input type="radio" autocomplete="off" id="tram-three">
+                                <input type="radio" autocomplete="off" id="tram-three" name="trans" value="t3">
                                 <span>3</span>
                             </label>
 
-
                             <label class="btn">
-                                <input type="radio" autocomplete="off" id="tram-four">
+                                <input type="radio" autocomplete="off" id="tram-four" name="trans" value="t4">
                                 <span>4</span>
                             </label>
 
@@ -80,18 +83,16 @@
                     </div>
                 </div>
 
-            </div>
 
-            <!-- COLLAPSE AUTOBUS-->
-            <div class="form-group">
-                <a class="collapse-transport" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
-                    <strong>Autobus</strong>
-                </a>
+                <!-- COLLAPSE AUTOBUS-->
+                <div class="form-group">
+                    <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                        <strong class="collapse-header">Autobus</strong>
+                    </a>
 
 
-                <div class="collapse" id="optionPanelBus">
-                    <div class="means-of-transport-container">
-                        <div class="btn-group" data-toggle="buttons">
+                    <div class="collapse" id="optionPanelBus">
+                        <div class="means-of-transport-container">
 
                             <label class="btn">
                                 <input type="radio" autocomplete="off">
@@ -106,20 +107,19 @@
 
 
                         </div>
+
                     </div>
-
                 </div>
-            </div>
 
-            <!-- COLLAPSE TROLEYBUS -->
-            <div class="form-group">
-                <a class="collapse-transport" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
-                    <strong>Trolejbus</strong>
-                </a>
+                <!-- COLLAPSE TROLEYBUS -->
+                <div class="form-group">
+                    <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapse">
+                        <strong class="collapse-header">Trolejbus</strong>
+                    </a>
 
-                <div class="collapse" id="optionPanelTroley">
-                    <div class="means-of-transport-container">
-                        <div class="btn-group" data-toggle="buttons">
+                    <div class="collapse" id="optionPanelTroley">
+                        <div class="means-of-transport-container">
+
 
                             <label class="btn">
                                 <input type="radio" autocomplete="off" id="tram-two">
@@ -177,16 +177,141 @@
                                 <span>12</span>
                             </label>
 
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>}
+
+
+        <div class="buttonRoute text-center" id="buttonPanel">
+            <input type="submit" class="btn btn-primary" id="searchTimetableButton" value="Ok" />
+        </div>
+
+    </div>
+
+    <!-- MAIN SECOND COLUMN -->
+    <div class="col-md-8 custom-col">
+        
+            <h1 style="padding-left: 25px;">2 TRAMWAJ</h1>
+
+            <!-- COLUMN WITH LIST OF STOPS -->
+            <div class="col-md-6 custom-col">
+                <div class="panel panel-timetable panel-custom" id="panelDirection">
+                    <div class="panel-heading ">Kierunek: Oliwa</div>
+                </div>
+                <div class="container container-stops">
+
+                    <label class="container-stops-list">
+                        Łostowice Świętokrzyska
+                        <input type="radio" checked="checked" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+
+
+                    <label class="container-stops-list">
+                        Płocka
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container-stops-list">
+                        Przemyska
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container-stops-list">
+                        Wilanowska
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- COLUMN WITH TABS -->
+            <div class="col-md-6 custom-col">
+
+                <div class="panel panel-timetable panel-custom" id="panelTimetable">
+                    <div class="panel-heading panel-tab ">
+
+                        <div class="tab">
+                            <button class="tablinks" onclick="openTab(event, 'Timetable')">Rozkład jazdy</button>
+                            <button class="tablinks" onclick="openTab(event, 'Delays')">Opóźnienia</button>
                         </div>
                     </div>
                 </div>
+                <div id="Timetable" class="tabcontent">
+
+                    <table id="timetableTable">
+                        <tr class="row-content">
+                            <td class="hours">7</td>
+                            <td class="minutes">12</td>
+                            <td class="minutes">32</td>
+                        </tr>
+                        <tr class="row-content">
+                            <td class="hours">8</td>
+                            <td class="minutes">01</td>
+                            <td class="minutes">33</td>
+                            <td class="minutes">36</td>
+                            <td class="minutes">43</td>
+                        </tr>
+                        <tr class="row-content">
+                            <td class="hours">9</td>
+                            <td class="minutes">13</td>
+                            <td class="minutes">23</td>
+                            <td class="minutes">23</td>
+                            <td class="minutes">23</td>
+                            <td class="minutes">23</td>
+                        </tr>
+                    </table>
+
+
+
+                </div>
+
+                <div id="Delays" class="tabcontent">
+                    <table id="delaysTable">
+                        <tr class="headers">
+                            <th class="header" style="width:50px;">Linia</th>
+                            <th class="header" style="width:200px;">Kierunek</th>
+                            <th class="header" style="width:80px;">Odjazd</th>
+                        </tr>
+                        <tr class="row-content">
+                            <td class="delays-row">2</td>
+                            <td class="delays-row">Oliwa</td>
+                            <td class="delays-row">za 3 min</td>
+                        </tr>
+                        <tr class="row-content">
+                            <td class="delays-row">6</td>
+                            <td class="delays-row">Jelitkowo</td>
+                            <td class="delays-row">za 11 min</td>
+                        </tr>
+                    </table>
+
+                </div>
 
             </div>
+      
 
-            <div class="buttonRoute" id="buttonPanel">
-                <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
-            </div>
-
-        </div>
-        </div>
     </div>
+    </div>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+    </script>
+
