@@ -13,24 +13,26 @@ namespace DoCeluNaCzas.Controllers
     {
         // GET: MainPageFormSpots
         [HttpPost]
-        public PartialViewResult MainFormSearchRouteSpots(int StopIdFrom, int StopIdTo)
+        public ViewResult MainFormSearchRoute(string SpotFrom, string SpotTo, string Option, TimeSpan Time)
         {
 
 
-            /* var stopIdFrom = int.Parse(data["SelectFrom"]);
-             var stopIdTo = int.Parse(data["SelectTo"]);
-             var stopDescFrom = data["SelectFrom"];
-             var stopDescTo = data["SelectTo"];
+            Option = Request["Option"].ToString();
+            SpotFrom = Request["SpotFrom"].ToString();
+            SpotTo = Request["SpotTo"].ToString();
+            Time = TimeSpan.Parse( Request["Time"]);
 
-             model.StopIdFrom = stopIdFrom;
-             model.StopIdTo = stopIdTo;
-             model.StopDescFrom = stopDescFrom;
-             model.StopDescTo = stopDescTo; */
 
-            ViewData["StopIdFrom"] = StopIdFrom;
-            ViewData["StopIdTo"] = StopIdTo;
+            ViewBag.Options = Option;
+            ViewBag.SpotFrom = SpotFrom;
+            ViewBag.SpotTo = SpotTo;
+            ViewBag.Time = Time.ToString();
 
-            return PartialView("_MainFormSearchRouteRoutes");
+
+
+
+
+            return View();
         }
     }
-}//TODO - zmienić partial view na view
+}

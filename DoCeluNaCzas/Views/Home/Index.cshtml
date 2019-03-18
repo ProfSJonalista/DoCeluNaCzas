@@ -7,9 +7,74 @@
 }
 
 
-@{
+<!--{
     Html.RenderPartial("Partials/_IndexFormResfOfView", Model.SpotsListIndex);
-}
+} -->
+
+
+@{var spot = Model; }
+
+<div class="row ">
+    <div class="col-md-6 overlap">
+
+
+        @using (Html.BeginForm("MainFormSearchRoute", "MainPageForm", FormMethod.Post)) {
+
+
+            <div class="row ">
+                <div class="col-md-6 overlap">
+
+                    <div class="form-group">
+
+                        @Html.DropDownList("SpotFrom", (SelectList)ViewBag.SpotsListIndex)
+
+                        <!--Html.DropDownListFor(x => x.SpotsListIndex, new SelectList(ViewBag.SpotsListIndexFrom, "Value", "Text")) -->
+                        @Html.DropDownList("SpotTo", (SelectList)ViewBag.SpotsListIndex)
+
+                        <!-- Html.DropDownListFor(x => x.SpotsListIndex, new SelectList(ViewBag.SpotsListIndexTo, "Value", "Text")) -->
+
+
+
+                    </div>
+
+                    <div>
+                        <div class="btn-group btn-group-toggle time-label" data-toggle="buttons">
+                            <label class="btn btn-secondary active" id="arrival">
+
+                                Przyjazd
+                                <input type="radio" name="Option" value="Odjazd" />
+                                <!--   Html.RadioButton("Option", "Arrival") -->
+
+                            </label>
+                            <label class="btn btn-secondary" id="departure">
+                                Odjazd
+                                <input type="radio" name="Option" value="Przyjazd" />
+                                <!--  Html.RadioButton("Option", ViewData["Departure"], "Departure") -->
+                            </label>
+                        </div>
+                        <div class="clock">
+
+                            <input type="time" name="Time">
+                        </div>
+                    </div>
+
+                    <div class="buttonRoute" id="buttonPanel">
+                         <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            }
+
+
+    </div>
+
+
+</div>
 
 
 
