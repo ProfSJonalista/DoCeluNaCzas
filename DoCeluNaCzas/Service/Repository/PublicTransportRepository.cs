@@ -15,6 +15,13 @@ namespace DoCeluNaCzas.Service.Repository
             return json;
         }
 
+        public async Task<string> GetJoinedTrips()
+        {
+            var json = await DownloadData(Constants.JOINED_TRIPS);
+
+            return json;
+        }
+
         private async Task<string> DownloadData(string url)
         {
             var data = "";

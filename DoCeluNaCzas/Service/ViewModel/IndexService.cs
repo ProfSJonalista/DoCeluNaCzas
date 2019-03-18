@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DoCeluNaCzas.Models.Bussiness;
 using DoCeluNaCzas.Models.ViewModels.Index;
 using DoCeluNaCzas.Service.Bussiness.PublicTransport;
@@ -32,21 +33,19 @@ namespace DoCeluNaCzas.Service.ViewModel
 
             var markersArray = markerList.Markers.ToArray();
 
-            _cacheService.CacheData(markersArray, CacheKeys.MARKERS_BUS_STOP_DATA);
+           // _cacheService.CacheData(markersArray, CacheKeys.MARKERS_BUS_STOP_DATA);
 
             return markersArray;
         }
 
-        public async Task<SearchRouteFieldsModel[]> GetSpotsList()
+        public async Task<List<StopModel>> GetSpotsList()
         {
-            var stopsList = new SpotsListModel();
             var busStops = await _publicTransportService.GetBusStops();
-            busStops.Stops.ForEach(stop => stopsList.Spots.Add(StopsMapper(stop)));
 
-            var stopsArray = stopsList.Spots.ToArray();
-
-            return stopsArray;
+            return busStops.Stops;
         }
+
+
 
         private MarkerModel MarkerMapper(StopModel stopModel)
         {
@@ -59,14 +58,6 @@ namespace DoCeluNaCzas.Service.ViewModel
             };
         }
 
-        private SearchRouteFieldsModel StopsMapper(StopModel stopModel)
-        {
-            return new SearchRouteFieldsModel()
-            {
-                StopId = stopModel.StopId,
-                StopDesc = stopModel.StopDesc
-            };
-        }
 
     }
 }

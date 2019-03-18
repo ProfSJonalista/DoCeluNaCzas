@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using DoCeluNaCzas.Models.ViewModels.Index;
 using DoCeluNaCzas.Service.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace DoCeluNaCzas.Controllers
 {
@@ -21,11 +24,20 @@ namespace DoCeluNaCzas.Controllers
 
             var spotsArray = await _indexService.GetSpotsList();
 
+            List<SelectListItem> listStopsFrom = new List<SelectListItem>(from e in spotsArray select new SelectListItem { Selected = true, Text = Convert.ToString(e.StopDesc), Value = Convert.ToString(e.StopId) });
+
+            var sortedListFrom = listStopsFrom.OrderBy(x => x.Text).ToList();
+
+            ViewBag.SpotsListIndex = new SelectList(sortedListFrom, "Value", "Text");
+ 
+
             var indexModel = new IndexModel()
             {
                 MainPageFormIndex = new MainPageForm(),
                 MarkerArrayIndex = markerArray,
-                SpotsArrayIndex = spotsArray
+                SpotsListIndex = spotsArray,
+
+
             };
 
             return View(indexModel);      
