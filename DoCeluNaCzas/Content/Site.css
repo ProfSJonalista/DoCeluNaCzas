@@ -1,295 +1,307 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-#input_from {
-    margin-top: 10%;
-}
-
-#optionCollapse {
-    text-decoration: none;
-    color: #007b7d;
-    
-}
-.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
-    border-radius: 5px;
-}
-
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-    border-radius: 5px;
-}
-
-#arrival, #departure {
-    width: 80%;
-    outline: none;
-    padding-bottom: 4px;
-    border-width: 1px;
-    background-color: rgba(255,255,255, 0.5);
-    border: 1px solid #ccc;
-}
-
-.active {
-    border-width: 2px !important;
-    border-color: rgba(0, 123, 125, 0.55) !important;
-}
-
-.clock {
-    font-size: 23px;
-    margin-right: 0;
-    display: inline-block;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    height: 68px;
-    width: 120px !important;
-    border: 0.5px solid #ccc;
-}
-
-.clockProperties{
-    height: 200px;
-}
-#busIcon {
-    display: block;
-    max-width: 100%;
-    /*height: auto;*/
-}
-
-.container {
-    width: auto;
-    margin-left: 5%;
-}
-
-.container-nav {
-    
-    margin-right: 5%;
-}
-.check {
-    opacity: 0.5;
-    border-color: rgba(0, 123, 125, 1.00);
-}
-
-.time-label {
-    float: left;
-}
-
-.btn {
-    margin-left: 0 !important;
-}
-
-.panel {
-    margin-bottom: 20px;
-    background-color: rgba(255,255,255, 0.5);
-    font-size: 15px !important;
-    /* border: 1px solid transparent; */
-    border-radius: 0px;
-    width: 69px;
-    margin-top: 15px;
-    /* -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
-    /* box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
-}
-
-.firstImg {
-    margin-left: 15px !important;
-}
-
-.img-thumbnail {
-    border: none;
-}
-
-.panel-default img {
-    height: 50px;
-    padding: 6px;
-}
-
-
-.buttonRoute {
-    margin-top: 20px;
-    
-}
-
-    .buttonRoute .btn {
-        width: 100% !important;
-    }
-
-.btn-img:hover {
-    color: #fff;
-    background-color: rgba(0, 0, 255, 0.0) !important;
-    border-color: #204d74;
-}
-
-.means-of-transport-icon {
-    width: 69px;
-    height: 69px;
-}
-
-    .means-of-transport-icon img {
-        display: inline-block !important;
-        vertical-align: middle;
-        height: 100%;
-    }
-
-.means-of-transport-container {
-    overflow: auto;
-}
-
-.overlap {
+﻿.search-route-container {
+    top: 20%;
     position: relative;
-    z-index: 2;
-    background: rgba(255,255,255, 0.65);
-    width: 308px;
-    margin-top:2%;
-    border-radius: 4px;
-    padding-top: 15px;
+    background: white;
+    box-shadow: 2px 2px 5px #ccc;
+    border: 1px solid #ccc;
+    /*margin-top: 2%;*/
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
 }
 
-#searchRouteButton, #searchTimetableButton {
-    background-color: #007b7d !important;
-    border-color: #007b7d !important;
-    outline:0px;
+.form-control:focus,
+.form-control:active:focus,
+.form-control.active:focus,
+.form-control.focus,
+.form-control:active.focus,
+.form-control.active.focus,
+.form-control:focus,
+.form-control:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-    #searchRouteButton:hover, #searchTimetableButton:hover {
-        background-color: #046669 !important;
-        border-color: #035557 !important;
-        outline: 0px;
+
+@media (min-width: 1900px) {
+    .container {
+        max-width: 1800px !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
     }
 
-.navbar-inverse .navbar-brand {
-    color: white !important;
+    .search-route-container {
+        width: 100%;
+    }
 }
 
-.nav.navbar-nav li a {
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.btn-radio {
+    color: #007b7d;
+    background-color: white;
+    background-image: none;
+    border-color: #007b7d;
+}
+
+.radio-buttons .btn-radio {
+    width: 49%;
+}
+
+.btn-radio:hover, .btn-radio:active, .btn-radio:focus, .btn-radio.active {
+    background-color: #007b7d;
     color: white;
 }
 
-.tram-btn-color:focus {
-    background-color: #45afb1 !important;
+.btn-radio.active {
+    font-weight: bold;
 }
 
-.container navbar-header {
-
-    margin-bottom:2%;
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus,
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-#searchTimetable {
-    margin: 25px 0px 40px 0px;
+.btn-turquoise {
+    background-color: #007b7d;
+    color: white;
+    width: 100%;
 }
 
-.btn.active{
-    outline:0 !important;
+#searchRouteBtn {
+    margin-top: 10px;
+    color: white;
 }
 
-    .btn:focus,
-    .btn:active:focus,
-    .btn.active:focus,
-    .btn.focus,
-    .btn:active.focus,
-    .btn.active.focus {
-        outline: 0px auto -webkit-focus-ring-color !important;
-        outline-offset: -2px;
+    #searchRouteBtn:hover {
+        color: white;
+        background-color: #046669;
     }
 
+.col-border {
+    border-right: 1px solid #ccc;
+}
 
-.btn {
-    border-radius: 4px !important;
-    border-width: 2px;
+.timetable-container {
+    padding: 20px;
+    top: 20%;
+    /*text-align:center;*/
+}
+
+.search-timetable {
+    margin: 10px 0 20px;
+}
+
+.collapse-header {
+    color: #007b7d;
+}
+
+a:hover,
+a:active,
+ar:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.transport-pick {
+    padding: 5px 10px;
+}
+
+.means-of-transport-collapse-container {
+    margin: 10px 0;
+}
+
+.btn-radio-timetable {
+    background-color: white;
+    background-image: none;
 }
 
 
+    .btn-radio-timetable:hover, .btn-radio-timetable:active, .btn-radio-timetable:focus, .btn-radio-timetable.active {
+        background-color: #007b7d;
+        color: white;
+    }
 
-.timetable-col1 {
-    background-color: #ffeaab;
-    border-right: #656464 thin solid;
+    .btn-radio-timetable.active {
+        font-weight: bold;
+    }
+
+.chosen-transport-title {
+    margin: 2% 5% 20px;
 }
 
-.bckg-color2 {
-    background-color: #9fea6a;
-}
 
-.col-md-8.custom-col {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
-
-.panel.panel-timetable{
-    width: 100%;
-
-}
-
-.col-md-6.custom-col{
-    padding:0px;
-}
-
-.panel-custom {
+.panel-timetable {
     background-color: #007b7d !important;
     color: white;
     width: 100% !important;
+    padding: 11px;
+}
+
+.panel-heading-direction {
+    margin-left: 2%;
+}
+
+.no-padding-col {
+    padding:0;
+}
+
+.checkmark {
+    left: 0;
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 2px solid #046669;
+    margin: 6px 10px 0;
+}
+
+.container-stops {
+    margin-top: 5%;
+}
+
+.container-stops-list {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .container-stops-list input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .container-stops-list:hover input ~ .checkmark {
+        background-color: #bcced1;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container-stops-list input:checked ~ .checkmark {
+        background-color: #007b7d;
+    }
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-stops-list input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.btn.btn-radio-stop {
+    text-align: left !important;
+}
+
+.stop-name {
+    margin-left: 10px;
+}
+
+.stop-name {
+    margin-left: 30px;
+}
+
+.panel.panel-timetable {
+    width: 100%;
 }
 
 .tab {
     overflow: hidden;
 }
 
-    /* Style the buttons inside the tab */
-    .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        transition: 0.3s;
-        font-size: 15px;
-        padding: 10px 15px;
-        width:50%;
-    }
+.tab input[type="button"] {
+    background-color: inherit;
+    float: left;
+    left: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 15px;
+    padding: 12px 15px;
+    width: 50%;
+    color:white;
+}
 
-        /* Change background color of buttons on hover */
-        .tab button:hover {
-            background-color: #046669;
-        }
+/* Change background color of buttons on hover */
+.tab input[type="button"]:hover {
+    background-color: #046669;
+}
 
-        /* Create an active/current tablink class */
-        .tab button.active {
-            background-color: #046669;
-        }
+/* Create an active/current tablink class */
+.tab input[type="button"].active {
+    background-color: #046669;
+}
 
-/* Style the tab content */
+.panel-timetable#panelTimetable {
+    padding: 0 !important;
+}
+
+.panel-tabs .panel-heading {
+    margin-left: 0 !important;
+}
+
 .tabcontent {
     display: none;
     padding: 6px 12px;
     border-top: none;
 }
 
-.panel-heading.panel-tab {
-    padding: 0px;
+.delays-table, .timetable-table {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
 }
 
-.timetable-col-border {
-    border-right: #ccc thin solid;
+td .delays-row {
+    border-bottom: 1px solid #000;
+    margin-top: 10px;
 }
 
-.panel-timetable #dateType{
-    background-color: rgba(255,255,255, 0.5);
+#delaysTable .row-content, #timetableTable .row-content {
+    border-bottom: 1px solid black;
+    font-size: 17px;
+}
+
+.delays-row {
+    padding: 4px 2px 1px;
 }
 
 .hours {
@@ -308,176 +320,20 @@ textarea {
 
 .minutes {
     float: left;
-    display: inline-block;
-    /*font-size: 17px;*/
-    /*border-bottom: 1px solid #000;*/
+    display: flex;
+    margin-left: 3px;
     width: 35px;
-    /*padding-left: 8px;
-    padding-right: 8px;*/
-    padding:2px;
+    padding: 2px;
 }
 
-.timetable-container{
-    width:100%;
+.headers .header:first-child {
+    width: 15%;
 }
 
-#dateType{
-    margin-bottom:10px;
+.headers .header:nth-child(2) {
+    width: 60%;
 }
 
-.panel-delays{
-    float:left;
-}
-
-#delays-title span{
-    padding:5px;
-    text-align: center;
-    background-color:coral;
-}
-
-.tablinks:active {
-    background-color: #046669;
-}
-
-.header {
-    font-size: 15px;
-    padding-bottom: 10px;
-    text-align: center;
-    
-}
-
-#delaysTable, #timetableTable {
-    width: 90%;
-    text-align: center;
-    margin: auto;
-    margin-top: 10px;
-}
-
-td .delays-row{
-    border-bottom: 1px solid #000;
-    margin-top: 10px;
-}
-
-#delaysTable .row-content, #timetableTable .row-content {
-    border-bottom: 1px solid black;
-    font-size: 17px;
-}
-
-.delays-row {
-    padding: 4px 2px 1px;
-}
-
-.headers{
-    min-width:330px;
-}
-
-.circle {
-    border: 2px solid #046669;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    /*margin-bottom: 20px;
-    margin-right: 10px;*/
-    display: inline-block;
-}
-
-.circle-filled {
-    background-color: #007b7d;
-    
-}
-
-.stops{
-    margin-left: 10px;
-}
-
-.container-stops {
-    margin-top: 50px;
-}
-
-.means-of-transport-container input[type="radio"] {
-    display: none;
-}
-
-.container-stops-list {
-    display: block;
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-    .container-stops-list input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-.checkmark {
-    position: absolute;
-    top: 3px;
-    left: 0;
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    border: 2px solid #046669;
-}
-
-.container-stops-list:hover input ~ .checkmark {
-    background-color: #bcced1;
-}
-
-/* When the radio button is checked, add a blue background */
-.container-stops-list input:checked ~ .checkmark {
-    background-color: #007b7d;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container-stops-list input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.accordion-toggle:after {
-    /* symbol for "opening" panels */
-    font-family: 'Glyphicons Halflings'; /* essential for enabling glyphicon */
-    content: "\e114"; /* adjust as needed, taken from bootstrap.css */
-    color: #046669; /* adjust as needed */
-    margin-left: 15px;
-    padding-top:12px;
-}
-
-.accordion-toggle.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\e080"; /* adjust as needed, taken from bootstrap.css */
-}
-
-.collapse-header {
-    margin-bottom: 10px;
-}
-
-.account-menu div {
-    list-style-type: none;
-}
-#myDIV {
-    width: 100%;
-    padding: 50px 0;
-    text-align: center;
-    background-color: lightblue;
-    margin-top: 20px;
-    display: none;
-}
-
-
-.account-menu .btn {
-    width: 100%;
+.headers .header:nth-child(3) {
+    width: 20%;
 }

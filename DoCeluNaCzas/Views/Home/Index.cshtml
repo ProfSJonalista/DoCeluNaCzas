@@ -2,6 +2,7 @@
 
 @{ViewBag.Title = "Home Page";}
 
+<!--Prawdopodobnie mapa przysłania pasek nawigacji dlatego nie jest on widoczny-->
 @{
     Html.RenderPartial("Partials/_IndexMap", Model.MarkerArrayIndex);
 }
@@ -10,72 +11,60 @@
 <!--{
     Html.RenderPartial("Partials/_IndexFormResfOfView", Model.SpotsListIndex);
 } -->
-
-
 @{var spot = Model; }
 
 <div class="row ">
-    <div class="col-md-6 overlap">
+    <div class="col-md-4 col-lg-4 col-xl-2">
+        <div class="search-route-container">
+            @using (Html.BeginForm("MainFormSearchRoute", "MainPageForm", FormMethod.Post)) {
 
+            <form>
+                <div class="form-group">
+                    @Html.DropDownList("SpotFrom", (SelectList)ViewBag.SpotsListIndex, "Od", new { @class = "form-control", id = "dropdownFrom"})
+                </div>
 
-        @using (Html.BeginForm("MainFormSearchRoute", "MainPageForm", FormMethod.Post)) {
-
-
-            <div class="row ">
-                <div class="col-md-6 overlap">
-
-                    <div class="form-group">
-
-                        @Html.DropDownList("SpotFrom", (SelectList)ViewBag.SpotsListIndex)
-
-                        <!--Html.DropDownListFor(x => x.SpotsListIndex, new SelectList(ViewBag.SpotsListIndexFrom, "Value", "Text")) -->
-                        @Html.DropDownList("SpotTo", (SelectList)ViewBag.SpotsListIndex)
-
-                        <!-- Html.DropDownListFor(x => x.SpotsListIndex, new SelectList(ViewBag.SpotsListIndexTo, "Value", "Text")) -->
-
-
-
-                    </div>
-
-                    <div>
-                        <div class="btn-group btn-group-toggle time-label" data-toggle="buttons">
-                            <label class="btn btn-secondary active" id="arrival">
-
-                                Przyjazd
-                                <input type="radio" name="Option" value="Odjazd" />
-                                <!--   Html.RadioButton("Option", "Arrival") -->
-
-                            </label>
-                            <label class="btn btn-secondary" id="departure">
-                                Odjazd
-                                <input type="radio" name="Option" value="Przyjazd" />
-                                <!--  Html.RadioButton("Option", ViewData["Departure"], "Departure") -->
-                            </label>
-                        </div>
-                        <div class="clock">
-
-                            <input type="time" name="Time">
-                        </div>
-                    </div>
-
-                    <div class="buttonRoute" id="buttonPanel">
-                         <input type="submit" class="btn btn-primary" id="searchRouteButton" value="Ok" />
-
-                    </div>
+                <div class="form-group">
+                    @Html.DropDownList("SpotTo", (SelectList)ViewBag.SpotsListIndex, "Do", new { @class = "form-control", id="dropdownTo" })
 
                 </div>
 
-            </div>
+                <div class="form-group">
+
+                    <input type="datetime-local" name="Time" class="form-control" id="datetime">
+
+                </div>
+
+                <div class="form-group">
+                    <div class="btn-group-toggle radio-buttons" data-toggle="buttons">
+                        <div class="btn btn-radio">
+                            Przyjazd @Html.RadioButton("Option", "Arrival", new { id="arrivalRadioButton"})
+
+                        </div>
+                        <div class="btn btn-radio">
+                            Odjazd @Html.RadioButton("Option", "Departure", new { id="departureRadioButton"})
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <input type="button" name="button" class="btn btn-turquoise" id="searchRouteBtn" value="Szukaj" />
+
+
+
+                <!--Html.DropDownListFor(x => x.SpotsListIndex, new SelectList(ViewBag.SpotsListIndexFrom, "Value", "Text")) -->
+                <!-- Html.DropDownListFor(x => x.SpotsListIndex, new SelectList(ViewBag.SpotsListIndexTo, "Value", "Text")) -->
+
+
+
+
+            </form>
 
 
             }
-
-
+        </div>
     </div>
-
-
 </div>
-
 
 
 
