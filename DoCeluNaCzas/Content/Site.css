@@ -16,9 +16,364 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.margin-top-bottom {
+    margin: 5% 0;
+}
+
+.search-route-container {
+    top: 20%;
+    position: relative;
+    background: white;
+    box-shadow: 2px 2px 5px #ccc;
+    border: 1px solid #ccc;
+    /*margin-top: 2%;*/
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.form-control:focus,
+.form-control:active:focus,
+.form-control.active:focus,
+.form-control.focus,
+.form-control:active.focus,
+.form-control.active.focus,
+.form-control:focus,
+.form-control:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+@media (min-width: 1900px) {
+    .container {
+        max-width: 1800px !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .search-route-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.btn-radio {
+    color: #007b7d;
+    background-color: white;
+    background-image: none;
+    border-color: #007b7d;
+}
+
+.radio-buttons .btn-radio {
+    width: 49%;
+}
+
+.btn-radio:hover, .btn-radio:active, .btn-radio:focus, .btn-radio.active {
+    background-color: #007b7d;
+    color: white;
+}
+
+.btn-radio.active {
+    font-weight: bold;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus,
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-turquoise {
+    background-color: #007b7d;
+    color: white;
+    width: 100%;
+}
+
+
+#searchRouteBtn {
+    margin-top: 10px;
+    color: white;
+}
+
+#searchRouteBtn:hover {
+    color: white;
+    background-color: #046669;
+}
+
+.col-border {
+    border-left: 1px solid #ccc;
+}
+
+.timetable-container {
+    padding: 20px;
+    top: 20%;
+    /*text-align:center;*/
+}
+
+.search-timetable {
+    margin: 10px 0 20px;
+}
+
+.collapse-header {
+    color: #007b7d;
+}
+
+a:hover,
+a:active,
+ar:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.transport-pick {
+    padding: 5px 10px;
+}
+
+.means-of-transport-collapse-container {
+    margin: 10px 0;
+}
+
+.btn-radio-timetable {
+    background-color: white;
+    background-image: none;
+}
+
+.btn-radio-timetable:hover, .btn-radio-timetable:active, .btn-radio-timetable:focus, .btn-radio-timetable.active {
+    background-color: #007b7d;
+    color: white;
+}
+
+.btn-radio-timetable.active {
+    font-weight: bold;
+}
+
+.chosen-transport-title {
+    margin: 2% 5% 20px;
+}
+
+.panel-timetable {
+    background-color: #007b7d !important;
+    color: white;
+    width: 100% !important;
+    padding: 2px;
+    border-radius:0;
+}
+
+.panel-heading-direction {
+    margin-left: 2%;
+}
+
+.no-padding-col {
+    padding: 0;
+}
+
+.checkmark {
+    left: 0;
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 2px solid #046669;
+    margin: 4px 10px 0;
+}
+
+.container-stops {
+    margin-top: 5%;
+}
+
+.container-stops-list {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .container-stops-list input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .container-stops-list:hover input ~ .checkmark {
+        background-color: #bcced1;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container-stops-list input:checked ~ .checkmark {
+        background-color: #007b7d;
+    }
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-stops-list input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.btn.btn-radio-stop {
+    text-align: left !important;
+}
+
+.stop-name {
+    margin-left: 10px;
+}
+
+.stop-name {
+    margin-left: 30px;
+}
+
+.panel.panel-timetable {
+    width: 100%;
+}
+
+.tab {
+    overflow: hidden;
+}
+
+.tab input[type="button"] {
+    background-color: inherit;
+    float: left;
+    left: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 12px 15px;
+    width: 50%;
+    color: white;
+}
+
+        /* Change background color of buttons on hover */
+        .tab input[type="button"]:hover {
+            background-color: #046669;
+        }
+
+        /* Create an active/current tablink class */
+        .tab input[type="button"].active {
+            background-color: #046669;
+        }
+
+.panel-timetable#panelTimetable {
+    padding: 0 !important;
+}
+
+.panel-tabs .panel-heading {
+    margin-left: 0 !important;
+    padding:0;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.delays-table, .timetable-table {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+}
+
+td .delays-row {
+    border-bottom: 1px solid #000;
+    margin-top: 10px;
+}
+
+#delaysTable .row-content, #timetableTable .row-content {
+    border-bottom: 1px solid black;
+    font-size: 17px;
+}
+
+.delays-row {
+    padding: 4px 2px 1px;
+}
+
+.hours {
+    float: left;
+    width: 30px;
+    /*font-size: 17px;*/
+    border-right: 2px dotted #000;
+    line-height: 22px;
+    text-align: center;
+    /*border-bottom: 1px solid #000;*/
+    clear: both;
+    /*margin-bottom: 2px;*/
+    padding: 2px;
+    font-weight: bold;
+}
+
+.minutes {
+    float: left;
+    display: flex;
+    margin-left: 3px;
+    width: 35px;
+    padding: 2px;
+}
+
+.headers .header:first-child {
+    width: 15%;
+    text-align:center;
+    padding: 4px 2px 1px;
+}
+
+.headers .header:nth-child(2) {
+    width: 60%;
+    text-align: center;
+    padding: 4px 2px 1px;
+}
+
+.headers .header:nth-child(3) {
+    width: 20%;
+    text-align: center;
+    padding: 4px 2px 1px;
+}
+
+.container-stops .btn.active,
+.container-stops .btn:active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
