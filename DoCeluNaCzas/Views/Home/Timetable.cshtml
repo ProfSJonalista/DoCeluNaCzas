@@ -6,7 +6,7 @@
 <h3>@ViewBag.Message</h3>
 
 <div class="row">
-    <div class="col-md-4 col-lg-4 col-xl-2 col-border">
+    <div class="col-md-3 col-lg-3 col-xl-2">
         @using (Html.BeginForm()){
         @Html.TextBox("SearchString","Szukaj", new { @class = "form-control search-timetable", id = "searchTimetable" })
         <div class="btn-group-toggle" data-toggle="buttons">
@@ -110,7 +110,7 @@
 </div><!-- col-md-3-->
 <!-- MAIN SECOND COLUMN -->
 
-<div class="col-md-8 col-lg-8 col-xl-10 ">
+<div class="col-md-9 col-lg-9 col-xl-10 col-border">
 
     <div class="row">
         <div class="col-md-12 col-sm-12">
@@ -124,35 +124,35 @@
                 <div class="panel-heading panel-heading-direction">Kierunek: Oliwa</div>
             </div>
             <div class="container container-stops">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Łostowice Świętokrzyska</span>
+                        @Html.RadioButton("Option", "Łostowice Świętokrzyska", new { id="lostowice"})
+                        <span class="checkmark"></span>
+                    </div>
 
-                <div class="btn btn-radio-stop container-stops-list">
-                    <span class="stop-name">Łostowice Świętokrzyska</span>
-                    @Html.RadioButton("Option", "Łostowice Świętokrzyska", new { id="lostowice"})
-                    <span class="checkmark"></span>
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Płocka</span>
+                        @Html.RadioButton("Option", "Płocka", new { id="Płocka"})
+                        <span class="checkmark"></span>
+                    </div>
+
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Przemyska</span>
+                        @Html.RadioButton("Option", "Przemyska", new { id="Przemyska"})
+                        <span class="checkmark"></span>
+                    </div>
+
+
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Wilanowska</span>
+                        @Html.RadioButton("Option", "Wilanowska", new { id="Wilanowska"})
+                        <span class="checkmark"></span>
+                    </div>
+
                 </div>
-
-                <div class="btn btn-radio-stop container-stops-list">
-                    <span class="stop-name">Płocka</span>
-                    @Html.RadioButton("Option", "Płocka", new { id="Płocka"})
-                    <span class="checkmark"></span>
                 </div>
-
-                <div class="btn btn-radio-stop container-stops-list">
-                    <span class="stop-name">Przemyska</span>
-                    @Html.RadioButton("Option", "Przemyska", new { id="Przemyska"})
-                    <span class="checkmark"></span>
-                </div>
-
-
-                <div class="btn btn-radio-stop container-stops-list">
-                    <span class="stop-name">Wilanowska</span>
-                    @Html.RadioButton("Option", "Wilanowska", new { id="Wilanowska"})
-                    <span class="checkmark"></span>
-                </div>
-
-
-            </div>
-        </div> <!--list of stops column-->
+            </div> <!--list of stops column-->
         <!-- COLUMN WITH TABS -->
         <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
 
