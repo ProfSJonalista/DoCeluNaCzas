@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using DCNC.Bussiness.Models;
 using DoCeluNaCzas.Models.Bussiness;
 using DoCeluNaCzas.Models.ViewModels.Index;
-using DoCeluNaCzas.Models.ViewModels.TimeTable;
 using DoCeluNaCzas.Service.Bussiness.PublicTransport;
 using DoCeluNaCzas.Service.Cashing;
 using DoCeluNaCzas.Service.Cashing.Helpers;

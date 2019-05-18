@@ -7,9 +7,9 @@ using DCNC.Bussiness.Models;
 using DoCeluNaCzas.Service.ViewModel;
 using DoCeluNaCzas.Service.Cashing;
 using DoCeluNaCzas.Models.ViewModels.Index;
-using DoCeluNaCzas.Models.ViewModels.TimeTable;
 using System.Linq;
 using System.Data;
+using System.Collections.Generic;
 
 namespace DoCeluNaCzas.Controllers.TimeTable
 {
@@ -17,6 +17,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
     {
         IndexService _indexService;
         private readonly PublicTransportRepository _publicTransportRepository;
+        public List<GroupedJoinedModel> joinedTripsArray = null;
 
         public TimeTableController()
         {
@@ -29,17 +30,19 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         // GET: TimeTable
         public async Task<ActionResult> Index()
         {
-            var joinedTripsArray = await _indexService.GetJoinedTrips();
+            joinedTripsArray = await _indexService.GetJoinedTrips();
             
             return View(joinedTripsArray.ToArray());
         }
 
         [HttpPost]
-        public ActionResult ChosenLine(string Option)
+        public async Task<ActionResult> Index(string Option)
         {
-            string line = Option;
+            Option = Request["Option"].ToString();
+            ViewBag.Options = Option;
+            await Index();
 
-            return(null);
+            return View();
            
         }
 
