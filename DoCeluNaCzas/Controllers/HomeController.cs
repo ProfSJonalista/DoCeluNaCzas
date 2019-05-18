@@ -1,11 +1,11 @@
-﻿using DoCeluNaCzas.Service;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using DoCeluNaCzas.Models.ViewModels.Index;
+﻿using DoCeluNaCzas.Models.ViewModels.Index;
+using DoCeluNaCzas.Service.Cashing;
 using DoCeluNaCzas.Service.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DoCeluNaCzas.Controllers
 {
@@ -15,7 +15,7 @@ namespace DoCeluNaCzas.Controllers
 
         public HomeController()
         {
-            _indexService = new IndexService();
+            _indexService = new IndexService(new CacheService());
         }
         
         public async Task<ActionResult> Index()
