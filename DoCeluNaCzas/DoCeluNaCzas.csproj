@@ -266,7 +266,7 @@
     <Content Include="Views\MainPageForm\MainFormSearchRoute.cshtml" />
     <Content Include="Views\Home\Partials\_IndexMap.cshtml" />
     <Content Include="Views\TimeTable\Index.cshtml" />
-    <Content Include="Views\Home\_IndexForm.cshtml" />
+    <Content Include="Views\Home\Partials\_IndexForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

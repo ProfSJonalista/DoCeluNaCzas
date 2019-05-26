@@ -13,22 +13,21 @@ namespace DoCeluNaCzas.Controllers
     {
         // GET: MainPageFormSpots
         [HttpPost]
-        public ViewResult MainFormSearchRoute(string SpotFrom, string SpotTo, string Option, TimeSpan Time)
+        public ViewResult MainFormSearchRoute(string SpotFrom, string SpotTo, string Option, IndexModel indexModel)
         {
 
 
             Option = Request["Option"].ToString();
             SpotFrom = Request["SpotFrom"].ToString();
             SpotTo = Request["SpotTo"].ToString();
-            Time = TimeSpan.Parse( Request["Time"]);
-
+            DateTime DateTime = indexModel.FromDate;
+            DateTime Time = indexModel.DateClock;
 
             ViewBag.Options = Option;
             ViewBag.SpotFrom = SpotFrom;
             ViewBag.SpotTo = SpotTo;
-            ViewBag.Time = Time.ToString();
-
-
+            ViewBag.Date = DateTime.ToString().Substring(0,10);
+            ViewBag.Time = Time.ToString().Substring(11,8);
 
 
 

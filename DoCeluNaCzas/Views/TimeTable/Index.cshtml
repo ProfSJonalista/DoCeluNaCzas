@@ -34,8 +34,14 @@
                                 var tramName = el.BusLineName;
                                 <text>
                                     <div class="btn btn-radio-timetable transport-pick">
-                                        @tramName @Html.RadioButton("Option", tramName)
+
+
+                                        @tramName @Html.RadioButton("Option", tramName + "," + item.Group)
+
+
+
                                     </div>
+
                                 </text>
                             }
                         }
@@ -63,9 +69,11 @@
                                 foreach (var el in Group)
                                 {
                                     var busName = el.BusLineName;
+                                    
                                     <text>
                                         <div class="btn btn-radio-timetable transport-pick">
-                                            @busName @Html.RadioButton("Option", busName)
+
+                                            @busName @Html.RadioButton("Option", busName + "," + item.Group)
                                         </div>
                                     </text>
                                 }
@@ -97,7 +105,8 @@
                                     var troysName = el.BusLineName;
                                     <text>
                                         <div class="btn btn-radio-timetable transport-pick">
-                                            @troysName @Html.RadioButton("Option", troysName)
+
+                                            @troysName @Html.RadioButton("Option", troysName + "," + item.Group)
                                         </div>
                                     </text>
                                 }
@@ -111,124 +120,178 @@
 
             <!--<div class="buttonRoute" id="buttonPanel">-->
             <!--<input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Ok" />-->
-            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Create" />
+            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" />
             <!--</div>-->
             <!--</div>--><!-- col-md-3-->
         }
         <!-- MAIN SECOND COLUMN -->
+        @using (Html.BeginForm("Index", "TimeTable", FormMethod.Post))
+        {
+            <div class="col-md-8 col-lg-8 col-xl-10 ">
 
-        <div class="col-md-8 col-lg-8 col-xl-10 ">
-
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <h1 class="chosen-transport-title">@ViewBag.Options TRAMWAJ</h1>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <h1 class="chosen-transport-title">@ViewBag.Options @ViewBag.Types</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <!-- COLUMN WITH LIST OF STOPS -->
-                <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
-                    <div class="panel panel-timetable" id="panelDirection">
+                <div class="row">
+                    <!-- COLUMN WITH LIST OF STOPS -->
+                    <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
+                        <!--<div class="panel panel-timetable" id="panelDirection">
                         <div class="panel-heading panel-heading-direction">Kierunek: Oliwa</div>
-                    </div>
-                    <div class="container container-stops">
+                    </div>-->
+                        <div class="container container-stops">
 
-                        <div class="btn btn-radio-stop container-stops-list">
-                            <span class="stop-name">Łostowice Świętokrzyska</span>
-                            @Html.RadioButton("Option", "Łostowice Świętokrzyska", new { id = "lostowice" })
-                            <span class="checkmark"></span>
+
+
+
+                            @foreach (var item in Model)
+                            {
+                                var Group = item.JoinedTripModels.Where(t => t.BusLineName.ToString() == ViewBag.Options).ToArray();
+
+                                foreach (var el in Group)
+                                {
+                                    var lineName = el.BusLineName;
+
+                                    var trip = el.JoinedTrips.Where(x => x.BusLineName.ToString() == ViewBag.Options).ToArray();
+
+                                    foreach (var lines in trip)
+                                    {
+                                        var line = lines.Stops.ToArray();
+                                        var destination = lines.DestinationStopName;
+
+                                        <text>
+                                            <div class="panel panel-timetable" id="panelDirection">
+                                                <div class="panel-heading panel-heading-direction">Kierunek: @destination</div>
+                                            </div>
+                                        </text>
+
+                                        foreach (var stops in line)
+                                        {
+
+                                            var stop = stops.Name;
+                                            var stopId = stops.StopId;
+                                            var routId = stops.RouteId;
+
+
+                                            <text>
+                                                <div class="btn btn-radio-stop container-stops-list">
+                                                    <span class="stop-name">@stop</span>
+
+                                                    @Html.RadioButton("Stop", lineName + "," + stopId + "," + routId + "," + destination)
+                                                </div>
+                                            </text>
+
+                                        }
+
+
+                                    }
+
+
+                                }
+
+                            }
+
+                            @ViewBag.lineName @ViewBag.stopId @ViewBag.routId @ViewBag.destination
+
+                            <!--<div class="btn btn-radio-stop container-stops-list">
+        <span class="stop-name">Łostowice Świętokrzyska</span>
+        Html.RadioButton("Option", "Łostowice Świętokrzyska", new { id = "lostowice" })
+        <span class="checkmark"></span>
+    </div>
+
+    <div class="btn btn-radio-stop container-stops-list">
+        <span class="stop-name">Płocka</span>
+        Html.RadioButton("Option", "Płocka", new { id = "Płocka" })
+        <span class="checkmark"></span>
+    </div>
+
+    <div class="btn btn-radio-stop container-stops-list">
+        <span class="stop-name">Przemyska</span>
+        Html.RadioButton("Option", "Przemyska", new { id = "Przemyska" })
+        <span class="checkmark"></span>
+    </div>
+
+
+    <div class="btn btn-radio-stop container-stops-list">
+        <span class="stop-name">Wilanowska</span>
+        Html.RadioButton("Option", "Wilanowska", new { id = "Wilanowska" })
+        <span class="checkmark"></span>
+    </div>-->
+
+
                         </div>
+                    </div> <!--list of stops column-->
+                    <!-- COLUMN WITH TABS -->
+                    <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
 
-                        <div class="btn btn-radio-stop container-stops-list">
-                            <span class="stop-name">Płocka</span>
-                            @Html.RadioButton("Option", "Płocka", new { id = "Płocka" })
-                            <span class="checkmark"></span>
-                        </div>
+                        <div class="panel panel-timetable panel-tabs panel-custom" id="panelTimetable">
+                            <div class="panel-heading panel-tab ">
 
-                        <div class="btn btn-radio-stop container-stops-list">
-                            <span class="stop-name">Przemyska</span>
-                            @Html.RadioButton("Option", "Przemyska", new { id = "Przemyska" })
-                            <span class="checkmark"></span>
-                        </div>
-
-
-                        <div class="btn btn-radio-stop container-stops-list">
-                            <span class="stop-name">Wilanowska</span>
-                            @Html.RadioButton("Option", "Wilanowska", new { id = "Wilanowska" })
-                            <span class="checkmark"></span>
-                        </div>
-
-
-                    </div>
-                </div> <!--list of stops column-->
-                <!-- COLUMN WITH TABS -->
-                <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
-
-                    <div class="panel panel-timetable panel-tabs panel-custom" id="panelTimetable">
-                        <div class="panel-heading panel-tab ">
-
-                            <div class="tab">
-                                <input type="button" name="button" class="tablinks" id="timetableTab" value="Rozkład jazdy" onclick="openTab(event, 'Timetable')" />
-                                <input type="button" name="button2" class="tablinks" id="delaysTab" value="Opóźnienia" onclick="openTab(event, 'Delays')" />
-                                <!--<button class="tablinks" onclick="openTab(event, 'Timetable')">Rozkład jazdy</button>-->
-                                <!--<button class="tablinks" onclick="openTab(event, 'Delays')">Opóźnienia</button>-->
+                                <div class="tab">
+                                    <input type="button" name="button" class="tablinks" id="timetableTab" value="Rozkład jazdy" onclick="openTab(event, 'Timetable')" />
+                                    <input type="button" name="button2" class="tablinks" id="delaysTab" value="Opóźnienia" onclick="openTab(event, 'Delays')" />
+                                    <!--<button class="tablinks" onclick="openTab(event, 'Timetable')">Rozkład jazdy</button>-->
+                                    <!--<button class="tablinks" onclick="openTab(event, 'Delays')">Opóźnienia</button>-->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="Timetable" class="tabcontent">
+                        <div id="Timetable" class="tabcontent">
 
-                        <table class="timetable-table" id="timetableTable">
-                            <tr class="row-content">
-                                <td class="hours">7</td>
-                                <td class="minutes">12</td>
-                                <td class="minutes">32</td>
-                            </tr>
-                            <tr class="row-content">
-                                <td class="hours">8</td>
-                                <td class="minutes">01</td>
-                                <td class="minutes">33</td>
-                                <td class="minutes">36</td>
-                                <td class="minutes">43</td>
-                            </tr>
-                            <tr class="row-content">
-                                <td class="hours">9</td>
-                                <td class="minutes">13</td>
-                                <td class="minutes">23</td>
-                                <td class="minutes">23</td>
-                                <td class="minutes">23</td>
-                                <td class="minutes">23</td>
-                            </tr>
-                        </table>
-
+                            <table class="timetable-table" id="timetableTable">
+                                <tr class="row-content">
+                                    <td class="hours">7</td>
+                                    <td class="minutes">12</td>
+                                    <td class="minutes">32</td>
+                                </tr>
+                                <tr class="row-content">
+                                    <td class="hours">8</td>
+                                    <td class="minutes">01</td>
+                                    <td class="minutes">33</td>
+                                    <td class="minutes">36</td>
+                                    <td class="minutes">43</td>
+                                </tr>
+                                <tr class="row-content">
+                                    <td class="hours">9</td>
+                                    <td class="minutes">13</td>
+                                    <td class="minutes">23</td>
+                                    <td class="minutes">23</td>
+                                    <td class="minutes">23</td>
+                                    <td class="minutes">23</td>
+                                </tr>
+                            </table>
 
 
-                    </div>
 
-                    <div id="Delays" class="tabcontent">
-                        <table class="delays-table" id="delaysTable">
-                            <tr class="headers">
-                                <th class="header">Linia</th>
-                                <th class="header">Kierunek</th>
-                                <th class="header">Odjazd</th>
-                            </tr>
-                            <tr class="row-content">
-                                <td class="delays-row">2</td>
-                                <td class="delays-row">Oliwa</td>
-                                <td class="delays-row">za 3 min</td>
-                            </tr>
-                            <tr class="row-content">
-                                <td class="delays-row">6</td>
-                                <td class="delays-row">Jelitkowo</td>
-                                <td class="delays-row">za 11 min</td>
-                            </tr>
-                        </table>
+                        </div>
 
-                    </div>
-                </div> <!--column with tabs-->
-            </div> <!--row-->
-        </div> <!--main second column-->
+                        <div id="Delays" class="tabcontent">
+                            <table class="delays-table" id="delaysTable">
+                                <tr class="headers">
+                                    <th class="header">Linia</th>
+                                    <th class="header">Kierunek</th>
+                                    <th class="header">Odjazd</th>
+                                </tr>
+                                <tr class="row-content">
+                                    <td class="delays-row">2</td>
+                                    <td class="delays-row">Oliwa</td>
+                                    <td class="delays-row">za 3 min</td>
+                                </tr>
+                                <tr class="row-content">
+                                    <td class="delays-row">6</td>
+                                    <td class="delays-row">Jelitkowo</td>
+                                    <td class="delays-row">za 11 min</td>
+                                </tr>
+                            </table>
 
+                        </div>
+                    </div> <!--column with tabs-->
+                </div> <!--row-->
+            </div> <!--main second column-->
+            <input type="submit" class="btn btn-turquoise" id="searchTimeTableButton" value="Szukaj" />
+        }
     </div> <!--row-->
-</div>  
+</div>
 <script>
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
