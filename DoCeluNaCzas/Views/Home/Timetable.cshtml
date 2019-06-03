@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "Rozkład jazdy";
+}
+
+<!--<h2>@ViewBag.Title.</h2>-->
+<h3>@ViewBag.Message</h3>
+
+<div class="row">
+    <div class="col-md-3 col-lg-3 col-xl-2">
+        @using (Html.BeginForm()){
+        @Html.TextBox("SearchString","Szukaj", new { @class = "form-control search-timetable", id = "searchTimetable" })
+        <div class="btn-group-toggle" data-toggle="buttons">
+            <!-- COLLAPSE TRAMWAJ-->
+            <div class="form-group">
+                <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTram">
+                    <strong class="collapse-header">Tramwaj</strong>
+                </a>
+
+                <div class="collapse" id="optionPanelTram">
+                    <div class="means-of-transport-collapse-container">
+                        <div class="btn btn-radio-timetable transport-pick">
+                            2 @Html.RadioButton("Option", "2", new { id="t2"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            3 @Html.RadioButton("Option", "3", new { id="t3"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            4 @Html.RadioButton("Option", "4", new { id="t4"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            5 @Html.RadioButton("Option", "5", new { id="t5"})
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- COLLAPSE AUTOBUS-->
+            <div class="form-group">
+                <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseBus">
+                    <strong class="collapse-header">Autobus</strong>
+                </a>
+
+                <div class="collapse" id="optionPanelBus">
+                    <div class="means-of-transport-collapse-container">
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            100 @Html.RadioButton("Option", "100", new { id="a100"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            106 @Html.RadioButton("Option", "106", new { id="a106"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            107 @Html.RadioButton("Option", "107", new { id="a107"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            108 @Html.RadioButton("Option", "108", new { id="a108"})
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- COLLAPSE TROLEYBUS -->
+            <div class="form-group">
+                <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTBus">
+                    <strong class="collapse-header">Trolejbus</strong>
+                </a>
+                <div class="collapse" id="optionPanelTroley">
+                    <div class="means-of-transport-collapse-container">
+                        <div class="btn btn-radio-timetable transport-pick">
+                            100 @Html.RadioButton("Option", "100", new { id="t100"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            106 @Html.RadioButton("Option", "106", new { id="t106"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            107 @Html.RadioButton("Option", "107", new { id="t107"})
+                        </div>
+
+                        <div class="btn btn-radio-timetable transport-pick">
+                            108 @Html.RadioButton("Option", "108", new { id="t108"})
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        }
+        <input type="button" class="btn btn-turquoise" id="searchRouteBtn" value="Ok" />
+</div><!-- col-md-3-->
+<!-- MAIN SECOND COLUMN -->
+
+<div class="col-md-9 col-lg-9 col-xl-10 col-border">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1 class="chosen-transport-title">2 TRAMWAJ</h1>
+        </div>
+    </div>
+    <div class="row">
+        <!-- COLUMN WITH LIST OF STOPS -->
+        <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
+            <div class="panel panel-timetable" id="panelDirection">
+                <div class="panel-heading panel-heading-direction">Kierunek: Oliwa</div>
+            </div>
+            <div class="container container-stops">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Łostowice Świętokrzyska</span>
+                        @Html.RadioButton("Option", "Łostowice Świętokrzyska", new { id="lostowice"})
+                        <span class="checkmark"></span>
+                    </div>
+
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Płocka</span>
+                        @Html.RadioButton("Option", "Płocka", new { id="Płocka"})
+                        <span class="checkmark"></span>
+                    </div>
+
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Przemyska</span>
+                        @Html.RadioButton("Option", "Przemyska", new { id="Przemyska"})
+                        <span class="checkmark"></span>
+                    </div>
+
+
+                    <div class="btn btn-radio-stop container-stops-list">
+                        <span class="stop-name">Wilanowska</span>
+                        @Html.RadioButton("Option", "Wilanowska", new { id="Wilanowska"})
+                        <span class="checkmark"></span>
+                    </div>
+
+                </div>
+                </div>
+            </div> <!--list of stops column-->
+        <!-- COLUMN WITH TABS -->
+        <div class="col-md-6 col-lg-6 col-xl-6 no-padding-col">
+
+            <div class="panel panel-timetable panel-tabs panel-custom" id="panelTimetable">
+                <div class="panel-heading panel-tab ">
+
+                    <div class="tab">
+                        <input type="button" name="button" class="tablinks" id="timetableTab" value="Rozkład jazdy" onclick="openTab(event, 'Timetable')" />
+                        <input type="button" name="button2" class="tablinks" id="delaysTab" value="Opóźnienia" onclick="openTab(event, 'Delays')" />
+                        <!--<button class="tablinks" onclick="openTab(event, 'Timetable')">Rozkład jazdy</button>-->
+                        <!--<button class="tablinks" onclick="openTab(event, 'Delays')">Opóźnienia</button>-->
+                    </div>
+                </div>
+            </div>
+            <div id="Timetable" class="tabcontent">
+
+                <table class="timetable-table" id="timetableTable">
+                    <tr class="row-content">
+                        <td class="hours">7</td>
+                        <td class="minutes">12</td>
+                        <td class="minutes">32</td>
+                    </tr>
+                    <tr class="row-content">
+                        <td class="hours">8</td>
+                        <td class="minutes">01</td>
+                        <td class="minutes">33</td>
+                        <td class="minutes">36</td>
+                        <td class="minutes">43</td>
+                    </tr>
+                    <tr class="row-content">
+                        <td class="hours">9</td>
+                        <td class="minutes">13</td>
+                        <td class="minutes">23</td>
+                        <td class="minutes">23</td>
+                        <td class="minutes">23</td>
+                        <td class="minutes">23</td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+
+            <div id="Delays" class="tabcontent">
+                <table class="delays-table" id="delaysTable">
+                    <tr class="headers">
+                        <th class="header">Linia</th>
+                        <th class="header">Kierunek</th>
+                        <th class="header">Odjazd</th>
+                    </tr>
+                    <tr class="row-content">
+                        <td class="delays-row">2</td>
+                        <td class="delays-row">Oliwa</td>
+                        <td class="delays-row">za 3 min</td>
+                    </tr>
+                    <tr class="row-content">
+                        <td class="delays-row">6</td>
+                        <td class="delays-row">Jelitkowo</td>
+                        <td class="delays-row">za 11 min</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div> <!--column with tabs-->
+    </div> <!--row-->
+</div> <!--main second column-->
+</div> <!--row-->
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+</script>
