@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 80px !important;
     padding-bottom: 20px;
 }
 
@@ -47,7 +47,7 @@
 
 @media (min-width: 1900px) {
     .container {
-        max-width: 1800px !important;
+        max-width: 1500px !important;
     }
 }
 
@@ -73,11 +73,14 @@
     }
 }
 
-@media (min-width: 1200px) {
+
+
+@media (min-width: 1900px) {
     .container {
-        max-width: 1140px;
+        width: 1500px !important;
     }
 }
+
 
 .btn-radio {
     color: #007b7d;
@@ -117,16 +120,22 @@
     width: 100%;
 }
 
+.btn.btn-turquoise:hover,
+.btn.btn-turquoise:focus,
+.btn.btn-turquoise.focus {
+    color: white !important;
+    background-color: #046669 !important;
+}
 
 #searchRouteBtn {
     margin-top: 10px;
     color: white;
 }
 
-#searchRouteBtn:hover {
-    color: white;
-    background-color: #046669;
-}
+    #searchRouteBtn:hover {
+        color: white !important;
+        background-color: #046669 !important;
+    }
 
 .col-border {
     border-left: 1px solid #ccc;
@@ -146,9 +155,10 @@
     color: #007b7d;
 }
 
+
 a:hover,
 a:active,
-ar:focus {
+a:focus {
     outline: none;
     text-decoration: none;
 }
@@ -166,14 +176,14 @@ ar:focus {
     background-image: none;
 }
 
-.btn-radio-timetable:hover, .btn-radio-timetable:active, .btn-radio-timetable:focus, .btn-radio-timetable.active {
-    background-color: #007b7d;
-    color: white;
-}
+    .btn-radio-timetable:hover, .btn-radio-timetable:active, .btn-radio-timetable:focus, .btn-radio-timetable.active {
+        background-color: #007b7d;
+        color: white;
+    }
 
-.btn-radio-timetable.active {
-    font-weight: bold;
-}
+    .btn-radio-timetable.active {
+        font-weight: bold;
+    }
 
 .chosen-transport-title {
     margin: 2% 5% 20px;
@@ -184,7 +194,7 @@ ar:focus {
     color: white;
     width: 100% !important;
     padding: 2px;
-    border-radius:0;
+    border-radius: 0;
 }
 
 .panel-heading-direction {
@@ -205,9 +215,9 @@ ar:focus {
     margin: 4px 10px 0;
 }
 
-.container-stops {
+/*.container-stops {
     margin-top: 5%;
-}
+}*/
 
 .container-stops-list {
     display: block;
@@ -267,18 +277,18 @@ ar:focus {
     overflow: hidden;
 }
 
-.tab input[type="button"] {
-    background-color: inherit;
-    float: left;
-    left: 0;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: 0.3s;
-    padding: 12px 15px;
-    width: 50%;
-    color: white;
-}
+    .tab input[type="button"] {
+        background-color: inherit;
+        float: left;
+        left: 0;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        padding: 12px 15px;
+        width: 50%;
+        color: white;
+    }
 
         /* Change background color of buttons on hover */
         .tab input[type="button"]:hover {
@@ -296,20 +306,20 @@ ar:focus {
 
 .panel-tabs .panel-heading {
     margin-left: 0 !important;
-    padding:0;
+    padding: 0;
 }
 
 .tabcontent {
-    display: none;
+    /*display: none;*/
     padding: 6px 12px;
     border-top: none;
 }
 
 .delays-table, .timetable-table {
-    width: 90%;
+    width: 100%;
     text-align: center;
-    margin: auto;
-    margin-top: 5%;
+    /*margin: auto;*/
+    margin-top: 5px;
 }
 
 td .delays-row {
@@ -343,14 +353,14 @@ td .delays-row {
 .minutes {
     float: left;
     display: flex;
-    margin-left: 3px;
+    margin-left: 10px;
     width: 35px;
     padding: 2px;
 }
 
 .headers .header:first-child {
     width: 15%;
-    text-align:center;
+    text-align: center;
     padding: 4px 2px 1px;
 }
 
@@ -376,4 +386,77 @@ input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #dddddd;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #dddddd;
+}
+
+.add-margin {
+    margin-right: 15px !important;
+}
+
+body i {
+    font-family: 'Font Awesome 5 Free' !important;
+}
+
+.accordion-toggle:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0d7";
+    padding-left: 5px;
+}
+
+.accordion-toggle.collapsed:after {
+    content: "\f0da";
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #005f60;
+}
+
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: #005f60;
+        border-color: #005f60;
+    }
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #005f60;
+}
+
+.week-name {
+    margin: 60px 0 25px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.btnHide {
+    display: none;
+}
+
+.btnShow {
+    display: block;
+}
+
+.mar-bottom {
+    margin-bottom: 30px;
+}
+
+.search-timetable-btn {
+    width: 50%;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.date-box {
+    width: 70%;
+    float: left;
+}
+
+.clock-box {
+    width: 30%;
 }
