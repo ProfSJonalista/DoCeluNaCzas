@@ -46,12 +46,17 @@ namespace DoCeluNaCzas.Service.ViewModel
             return trips;
         }
 
-    
+        public async Task<MinuteTimeTable> GetTimeTables(string stopId, string routeId)
+        {
+            var tables = await _publicTransportService.GetMinutesTimeTable(stopId, routeId);
+            return tables;
+        }
+
+
 
         public async Task<List<StopModel>> GetSpotsList()
         {
             var busStops = await _publicTransportService.GetBusStops();
-
             return busStops.Stops;
         }
 

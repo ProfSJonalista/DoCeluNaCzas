@@ -189,6 +189,7 @@
     <Compile Include="Models\Bussiness\BusStopDataModel.cs" />
     <Compile Include="Models\Bussiness\JoinedTripsModel.cs" />
     <Compile Include="Models\Bussiness\Shared\CommonModel.cs" />
+    <Compile Include="Models\Bussiness\TimeTable.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\Index\IndexModel.cs" />
@@ -267,6 +268,7 @@
     <Content Include="Views\Home\Partials\_IndexMap.cshtml" />
     <Content Include="Views\TimeTable\Index.cshtml" />
     <Content Include="Views\Home\Partials\_IndexForm.cshtml" />
+    <Content Include="Views\TimeTable\TimeTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

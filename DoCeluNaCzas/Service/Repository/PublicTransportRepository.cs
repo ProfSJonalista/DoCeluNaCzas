@@ -22,6 +22,13 @@ namespace DoCeluNaCzas.Service.Repository
             return json;
         }
 
+        public async Task<string> GetTimeTable(string stopId, string routeId)
+        {
+            var xml = await DownloadData(Constants.TIME_TABLES + routeId +"?stopId=" + stopId);
+
+            return xml;
+        }
+
         private async Task<string> DownloadData(string url)
         {
             var data = "";

@@ -14,6 +14,8 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         private readonly PublicTransportRepository _publicTransportRepository;
         public List<GroupedJoinedModel> joinedTripsArray = null;
         string Option = null;
+        public MinuteTimeTable minuteTimeTable = null;
+        object x = null;
 
         public TimeTableController()
         {
@@ -43,23 +45,31 @@ namespace DoCeluNaCzas.Controllers.TimeTable
                 string type = splitString[1].Trim();
                 if (type.ToString() == "Buses")
                 {
-                    comType = "Autobus";
+                    comType = "AUTOBUS";
                 }
                 else if (type.ToString() == "Trams")
                 {
-                    comType = "Tramwaj";
+                    comType = "TRAMWAJ";
                 }
                 else
                 {
-                    comType = "Trolejbus";
+                    comType = "TROLEJBUS";
                 }
 
                 ViewBag.Options = lineName;
                 ViewBag.Types = comType;
+                await Index();
 
             }
 
-            if(Request["Stop"] != null)
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> TimeTable(string Option)
+        {
+
+            if (Request["Stop"] != null)
             {
                 Option = Request["Stop"].ToString();
                 string[] splitStop = Option.Split(',');
@@ -68,15 +78,26 @@ namespace DoCeluNaCzas.Controllers.TimeTable
                 string routId = splitStop[2].Trim();
                 string destination = splitStop[3].Trim();
 
-                ViewBag.lineName = lineName;
-                ViewBag.stopId = stopId;
-                ViewBag.routId = routId;
-                ViewBag.destination = destination;
+                //ViewBag.lineName = lineName;
+                //ViewBag.stopId = stopId;
+                //ViewBag.routId = routId;
+                //ViewBag.destination = destination;
+
+                await TimeTable(stopId, routId);
+
             }
-            await Index();
+
+
 
             return View();
 
+        }
+
+        public async Task<ActionResult> TimeTable(string stopId, string routeId)
+        {
+            minuteTimeTable = await _indexService.GetTimeTables(stopId, routeId);
+
+            return View(minuteTimeTable);
         }
 
     }
