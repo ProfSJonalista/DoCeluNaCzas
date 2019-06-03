@@ -182,12 +182,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainPageFormController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TimeTable\TimeTableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bussiness\BusStopDataModel.cs" />
-    <Compile Include="Models\Bussiness\JoinedTripsViewModel.cs" />
+    <Compile Include="Models\Bussiness\JoinedTripsModel.cs" />
     <Compile Include="Models\Bussiness\Shared\CommonModel.cs" />
+    <Compile Include="Models\Bussiness\TimeTable.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\Index\IndexModel.cs" />
@@ -264,12 +266,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\MainPageForm\MainFormSearchRoute.cshtml" />
     <Content Include="Views\Home\Partials\_IndexMap.cshtml" />
-    <Content Include="Views\Home\Delays.cshtml" />
-    <Content Include="Views\Home\Timetable.cshtml" />
-    <Content Include="Views\Home\_IndexForm.cshtml" />
+    <Content Include="Views\TimeTable\Index.cshtml" />
+    <Content Include="Views\Home\Partials\_IndexForm.cshtml" />
+    <Content Include="Views\TimeTable\TimeTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\TimeTable\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

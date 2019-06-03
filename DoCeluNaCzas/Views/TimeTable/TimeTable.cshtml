@@ -1,0 +1,34 @@
+﻿@model DCNC.Bussiness.Models.MinuteTimeTable
+
+<div id="Timetable" class="tabcontent">
+
+
+
+    @foreach (var day in Model.MinuteDictionary)
+    {
+    <div class="week-name">
+        @day.Key
+    </div>
+        foreach (var list in day.Value)
+        {
+            <text>
+                <table class="timetable-table" id="timetableTable">
+                    <tr class="row-content">
+                        <td class="hours">
+                            @list.Key
+                        </td>
+
+                        @foreach (var minute in list.Value)
+                        {
+                            <td class="minutes">
+                                @minute
+                            </td>
+                        }
+                    </tr>
+                </table>
+            </text>
+        }
+    }
+
+
+</div>

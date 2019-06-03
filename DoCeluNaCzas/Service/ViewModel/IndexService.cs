@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using DCNC.Bussiness.Models;
 using DoCeluNaCzas.Models.Bussiness;
 using DoCeluNaCzas.Models.ViewModels.Index;
 using DoCeluNaCzas.Service.Bussiness.PublicTransport;
@@ -11,7 +13,7 @@ namespace DoCeluNaCzas.Service.ViewModel
     public class IndexService
     {
         private readonly CacheService _cacheService;
-        private readonly PublicTransportService _publicTransportService;
+        private readonly PublicTransportService _publicTransportService = new PublicTransportService();
 
         public IndexService()
         {
@@ -33,15 +35,28 @@ namespace DoCeluNaCzas.Service.ViewModel
 
             var markersArray = markerList.Markers.ToArray();
 
-           // _cacheService.CacheData(markersArray, CacheKeys.MARKERS_BUS_STOP_DATA);
+            _cacheService.CacheData(markersArray, CacheKeys.MARKERS_BUS_STOP_DATA);
 
             return markersArray;
         }
 
+        public async Task<List<GroupedJoinedModel>> GetJoinedTrips()
+        {
+            var trips = await _publicTransportService.GetJoinedTrips();
+            return trips;
+        }
+
+        public async Task<MinuteTimeTable> GetTimeTables(string stopId, string routeId)
+        {
+            var tables = await _publicTransportService.GetMinutesTimeTable(stopId, routeId);
+            return tables;
+        }
+
+
+
         public async Task<List<StopModel>> GetSpotsList()
         {
             var busStops = await _publicTransportService.GetBusStops();
-
             return busStops.Stops;
         }
 
