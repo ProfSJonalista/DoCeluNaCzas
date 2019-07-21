@@ -43,12 +43,31 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
         {
             var json = await _publicTransportRepository.GetTimeTable(stopId, routeId);
 
-           // XmlDocument doc = new XmlDocument();
-          //  doc.LoadXml(xml);
-           // string json = JsonConvert.SerializeXmlNode(doc);
-
             var data = JsonConvert.DeserializeObject<MinuteTimeTable>(json);
 
+            return data;
+        }
+
+        public async Task<List<Route>> GetRoute(string stopId, string descStopId, string departure, string dateTime)
+        {
+            var json = await _publicTransportRepository.GetRoute(stopId, descStopId, departure, dateTime);
+
+            var data = JsonConvert.DeserializeObject<List<Route>>(json);
+
+            return data;
+        }
+
+        public async Task<List<ChooseBusStopModel>> GetChosenBusStop()
+        {
+            var json = await _publicTransportRepository.GetChosenBusStop();
+            var data = JsonConvert.DeserializeObject<List<ChooseBusStopModel>>(json);
+            return data;
+        }
+
+        public async Task<ChooseBusStopModel> GetChosenBusStopTest()
+        {
+            var json = await _publicTransportRepository.GetChosenBusStop();
+            var data = JsonConvert.DeserializeObject<ChooseBusStopModel>(json);
             return data;
         }
 

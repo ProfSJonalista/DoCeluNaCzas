@@ -1,24 +1,66 @@
-﻿Opcja: </br>
-@ViewBag.Options</br>
-Z:</br>
-@ViewBag.SpotFrom</br>
-Do:</br>
-@ViewBag.SpotTo</br>
-Data:</br>
-@ViewBag.Date</br>
-Cza:</br>
-@ViewBag.Time</br>
+﻿@model DCNC.Bussiness.Models.Route[]
 
-<!--
+<!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
 
-model DoCeluNaCzas.Models.ViewModels.Index.SearchRouteFieldsModel
-From:
-Html.DisplayFor(model => model.StopDescFrom)
-FromId:
-Html.DisplayFor(model => model.StopIdFrom)
-To:
-Html.DisplayFor(model => model.StopDescTo)
-ToId:
-Html.DisplayFor(model => model.StopIdTo)
-DateClock:
-Html.DisplayFor(model => model.DateClock) -->
+
+@foreach (var routes in Model)
+{
+
+    <text>
+        Bus Lines: @routes.Buses
+        ArrivalTime: @routes.ArrivalTime
+    </text>
+
+    if (routes.ChangeList.Count == 0)
+    {
+        <text>
+            Brak dostepnego połaczenia
+        </text>
+    }
+
+    if (routes.ChangeList.Count == 1)
+    {
+        <text>
+            Połączenie bezpośrednie
+        </text>
+    }
+
+    if (routes.ChangeList.Count > 1)
+    {
+        <text>
+            Połączenie z przesiadką
+        </text>
+
+    }
+
+
+    foreach (var route in routes.ChangeList)
+    {
+        <text>
+            <table class="timetable-table" id="timetableTable">
+                <tr class="row-content">
+                    <td class="hours">
+                        Departure Time: @route.DepartureTime
+                        Full time of travel: @routes.FullTimeOfTravel
+                        Line name: @route.BusLineName
+
+                    </td>
+
+                    @foreach (var change in route.StopChangeList)
+                    {
+                        <text>
+                            Departure Time from certain stop: @change.DepartureTime
+                            Stop name: @change.Name
+                            Number of the stop: @change.StopSequence
+
+                        </text>
+
+                    }
+
+                </tr>
+            </table>
+        </text>
+
+    }
+
+}

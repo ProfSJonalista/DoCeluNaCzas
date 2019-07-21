@@ -24,7 +24,9 @@ namespace DoCeluNaCzas.Controllers
 
             var spotsArray = await _indexService.GetSpotsList();
 
-            List<SelectListItem> listStopsFrom = new List<SelectListItem>(from e in spotsArray select new SelectListItem { Selected = true, Text = Convert.ToString(e.StopDesc), Value = Convert.ToString(e.StopId) });
+            var chosenBusStops = await _indexService.GetChosenBusStop();
+
+            List<SelectListItem> listStopsFrom = new List<SelectListItem>(from e in chosenBusStops select new SelectListItem { Selected = true, Text = Convert.ToString(e.StopDesc + " (" + e.BusLineNames + ")" + " -> " + e.DestinationHeadsigns), Value = Convert.ToString(e.StopId) });
 
             var sortedListFrom = listStopsFrom.OrderBy(x => x.Text).ToList();
 
