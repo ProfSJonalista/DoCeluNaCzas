@@ -14,207 +14,207 @@
         @using (Html.BeginForm("Index", "TimeTable", FormMethod.Post))
         {
 
-        <div class="btn-group-toggle" data-toggle="buttons">
-            <!-- COLLAPSE TRAMWAJ-->
-            <div class="form-group">
-                <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTram">
-                    <strong class="collapse-header">Tramwaj</strong>
-                </a>
+            <div class="btn-group-toggle" data-toggle="buttons">
+                <!-- COLLAPSE TRAMWAJ-->
+                <div class="form-group">
+                    <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTram">
+                        <strong class="collapse-header">Tramwaj</strong>
+                    </a>
 
-                <div class="collapse" id="optionPanelTram">
-                    <div class="means-of-transport-collapse-container">
-
-
-                        @foreach (var item in Model.Where(t => t.Group.ToString() == "Trams").ToArray())
-                        {
-                        var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
-
-                        foreach (var el in Group)
-                        {
-                        var tramName = el.BusLineName;
-                        <text>
-                            <div class="btn btn-radio-timetable transport-pick">
+                    <div class="collapse" id="optionPanelTram">
+                        <div class="means-of-transport-collapse-container">
 
 
-                                @tramName @Html.RadioButton("Option", tramName + "," + item.Group)
+                            @foreach (var item in Model.Where(t => t.Group.ToString() == "Trams").ToArray())
+                            {
+                                var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
+
+                                foreach (var el in Group)
+                                {
+                                    var tramName = el.BusLineName;
+                                    <text>
+                                        <div class="btn btn-radio-timetable transport-pick">
 
 
-
-                            </div>
-
-                        </text>
-                        }
-                        }
+                                            @tramName @Html.RadioButton("Option", tramName + "," + item.Group)
 
 
 
+                                        </div>
+
+                                    </text>
+                                }
+                            }
+
+
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- COLLAPSE AUTOBUS-->
-            <div class="form-group">
-                <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseBus">
-                    <strong class="collapse-header">Autobus</strong>
-                </a>
+                <!-- COLLAPSE AUTOBUS-->
+                <div class="form-group">
+                    <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseBus">
+                        <strong class="collapse-header">Autobus</strong>
+                    </a>
 
-                <div class="collapse" id="optionPanelBus">
-                    <div class="means-of-transport-collapse-container">
-
-
-                        @foreach (var item in Model.Where(t => t.Group.ToString() == "Buses").ToArray())
-                        {
-                        var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
-
-                        foreach (var el in Group)
-                        {
-                        var busName = el.BusLineName;
-
-                        <text>
-                            <div class="btn btn-radio-timetable transport-pick">
-
-                                @busName @Html.RadioButton("Option", busName + "," + item.Group)
-                            </div>
-                        </text>
-                        }
-                        }
+                    <div class="collapse" id="optionPanelBus">
+                        <div class="means-of-transport-collapse-container">
 
 
+                            @foreach (var item in Model.Where(t => t.Group.ToString() == "Buses").ToArray())
+                            {
+                                var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
+                                foreach (var el in Group)
+                                {
+                                    var busName = el.BusLineName;
+
+                                    <text>
+                                        <div class="btn btn-radio-timetable transport-pick">
+
+                                            @busName @Html.RadioButton("Option", busName + "," + item.Group)
+                                        </div>
+                                    </text>
+                                }
+                            }
+
+
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
 
-            <!-- COLLAPSE TROLEYBUS -->
-            <div class="form-group">
-                <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTBus">
-                    <strong class="collapse-header">Trolejbus</strong>
-                </a>
-                <div class="collapse" id="optionPanelTroley">
-                    <div class="means-of-transport-collapse-container">
+                <!-- COLLAPSE TROLEYBUS -->
+                <div class="form-group">
+                    <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTBus">
+                        <strong class="collapse-header">Trolejbus</strong>
+                    </a>
+                    <div class="collapse" id="optionPanelTroley">
+                        <div class="means-of-transport-collapse-container">
 
 
-                        @foreach (var item in Model.Where(t => t.Group.ToString() == "Trolleys").ToArray())
-                        {
-                        var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
+                            @foreach (var item in Model.Where(t => t.Group.ToString() == "Trolleys").ToArray())
+                            {
+                                var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
-                        foreach (var el in Group)
-                        {
-                        var troysName = el.BusLineName;
-                        <text>
-                            <div class="btn btn-radio-timetable transport-pick">
+                                foreach (var el in Group)
+                                {
+                                    var troysName = el.BusLineName;
+                                    <text>
+                                        <div class="btn btn-radio-timetable transport-pick">
 
-                                @troysName @Html.RadioButton("Option", troysName + "," + item.Group)
-                            </div>
-                        </text>
-                        }
-                        }
+                                            @troysName @Html.RadioButton("Option", troysName + "," + item.Group)
+                                        </div>
+                                    </text>
+                                }
+                            }
 
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <!--<div class="buttonRoute" id="buttonPanel">-->
-        <!--<input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Ok" />-->
-        <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" onclick="showBtn(event, 'searchTimeTableButton')" />
-        <!--</div>-->
-        <!--</div>--><!-- col-md-3-->
+            </div>
+            <!--<div class="buttonRoute" id="buttonPanel">-->
+            <!--<input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Ok" />-->
+            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" onclick="showBtn(event, 'searchTimeTableButton')" />
+            <!--</div>-->
+            <!--</div>--><!-- col-md-3-->
         }
     </div>
     <!-- MAIN SECOND COLUMN -->
     @using (Html.BeginForm("TimeTable", "TimeTable", FormMethod.Post))
     {
-    <div class="col-md-9 col-lg-9 col-xl-10 col-border">
+        <div class="col-md-9 col-lg-9 col-xl-10 col-border">
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <h1 class="chosen-transport-title">@ViewBag.Options @ViewBag.Types</h1>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h1 class="chosen-transport-title">@ViewBag.Options @ViewBag.Types</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <!-- COLUMN WITH LIST OF STOPS -->
-            <div class="col-md-12 col-lg-12 col-xl-12 no-padding-col mar-bottom">
-                <!--<div class="panel panel-timetable" id="panelDirection">
-                    <div class="panel-heading panel-heading-direction">Kierunek: Oliwa</div>
-                </div>-->
-                <div class="container-stops">
+            <div class="row">
+                <!-- COLUMN WITH LIST OF STOPS -->
+                <div class="col-md-12 col-lg-12 col-xl-12 no-padding-col mar-bottom">
+                    <!--<div class="panel panel-timetable" id="panelDirection">
+                        <div class="panel-heading panel-heading-direction">Kierunek: Oliwa</div>
+                    </div>-->
+                    <div class="container-stops">
 
 
-                    <div class="row">
+                        <div class="row">
 
-                        @foreach (var item in Model)
-                        {
-                        var Group = item.JoinedTripModels.Where(t => t.BusLineName.ToString() == ViewBag.Options).ToArray();
+                            @foreach (var item in Model)
+                            {
+                                var Group = item.JoinedTripModels.Where(t => t.BusLineName.ToString() == ViewBag.Options).ToArray();
 
-                        foreach (var el in Group)
-                        {
-                        var lineName = el.BusLineName;
+                                foreach (var el in Group)
+                                {
+                                    var lineName = el.BusLineName;
 
-                        var trip = el.JoinedTrips.Where(x => x.BusLineName.ToString() == ViewBag.Options).ToArray();
+                                    var trip = el.JoinedTrips.Where(x => x.BusLineName.ToString() == ViewBag.Options).ToArray();
 
-                        foreach (var lines in trip)
-                        {
-
-                        var line = lines.Stops.ToArray();
-                        var destination = lines.DestinationStopName;
-
-                        <text>
-
-                            <div class="col-md-6">
-                                <div class="single-destination">
-
-                                    <div class="panel panel-timetable" id="panelDirection">
-                                        <div class="panel-heading panel-heading-direction">Kierunek: @destination</div>
-                                    </div>
-
-
-                                    @foreach (var stops in line)
+                                    foreach (var lines in trip)
                                     {
 
-                                    var stop = stops.Name;
-                                    var stopId = stops.StopId;
-                                    var routId = stops.RouteId;
+                                        var line = lines.Stops.ToArray();
+                                        var destination = lines.DestinationStopName;
+
+                                        <text>
+
+                                            <div class="col-md-6">
+                                                <div class="single-destination">
+
+                                                    <div class="panel panel-timetable" id="panelDirection">
+                                                        <div class="panel-heading panel-heading-direction">Kierunek: @destination</div>
+                                                    </div>
 
 
-                                    <text>
-                                        <div class="container container-stops">
-                                            <div class="btn-group-toggle" data-toggle="buttons">
-                                                <div class="btn btn-radio-stop container-stops-list">
-                                                    <span class="stop-name">@stop</span>
-                                                    @Html.RadioButton("Stop", lineName + "," + stopId + "," + routId + "," + destination)
-                                                    <span class="checkmark"></span>
+                                                    @foreach (var stops in line)
+                                                    {
+
+                                                        var stop = stops.Name;
+                                                        var stopId = stops.StopId;
+                                                        var routId = stops.RouteId;
+
+
+                                                        <text>
+                                                            <div class="container container-stops">
+                                                                <div class="btn-group-toggle" data-toggle="buttons">
+                                                                    <div class="btn btn-radio-stop container-stops-list">
+                                                                        <span class="stop-name">@stop</span>
+                                                                        @Html.RadioButton("Stop", lineName + "," + stopId + "," + routId + "," + destination)
+                                                                        <span class="checkmark"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </text>
+                                                    }
+
+
                                                 </div>
                                             </div>
-                                        </div>
-                                    </text>
+
+                                        </text>
+
+
                                     }
 
 
-                                </div>
-                            </div>
+                                }
 
-                        </text>
+                            }
 
-
-                        }
-
-
-                        }
-
-                        }
+                        </div>
 
                     </div>
+                </div> <!--list of stops column-->
 
-                </div>
-            </div> <!--list of stops column-->
-
-            <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" value="Szukaj" />
-        </div> <!--row-->
-    </div> <!--main second column-->
+                <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" value="Szukaj" />
+            </div> <!--row-->
+        </div> <!--main second column-->
     }
 
 </div><!--row-->

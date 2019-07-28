@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DCNC.Bussiness.Models;
@@ -31,7 +32,9 @@ namespace DoCeluNaCzas.Service.ViewModel
 
             var busStops = await _publicTransportService.GetBusStops();
 
-            busStops.Stops.ForEach(stop => markerList.Markers.Add(MarkerMapper(stop)));
+            var chosenStops = await _publicTransportService.GetChosenBusStop();
+
+            busStops.Stops.ForEach(stop => markerList.Markers.Add(MarkerMapper(stop, chosenStops)));
 
             var markersArray = markerList.Markers.ToArray();
 
@@ -53,6 +56,12 @@ namespace DoCeluNaCzas.Service.ViewModel
         }
 
 
+        public async Task<List<Route>> GetRoute(string stopId, string descStopId, string departure, string dateTime)
+        {
+            var routes = await _publicTransportService.GetRoute(stopId, descStopId, departure, dateTime);
+            return routes;
+        }
+
 
         public async Task<List<StopModel>> GetSpotsList()
         {
@@ -60,16 +69,23 @@ namespace DoCeluNaCzas.Service.ViewModel
             return busStops.Stops;
         }
 
+        public async Task<List<ChooseBusStopModel>> GetChosenBusStop()
+        {
+            var chosenStops = await _publicTransportService.GetChosenBusStop();
+            return chosenStops;
+        }
 
-
-        private MarkerModel MarkerMapper(StopModel stopModel)
+        private MarkerModel MarkerMapper(StopModel stopModel, List<ChooseBusStopModel> chooseBusStopModel)
         {
             return new MarkerModel()
             {
                 StopId = stopModel.StopId,
                 StopDesc = stopModel.StopDesc,
                 StopLat = stopModel.StopLat,
-                StopLon = stopModel.StopLon
+                StopLon = stopModel.StopLon,
+                StopBusLines = (chooseBusStopModel.Find(x => x.StopId == stopModel.StopId)).BusLineNames,
+                StopHeading = (chooseBusStopModel.Find(x => x.StopId == stopModel.StopId)).DestinationHeadsigns
+
             };
         }
 

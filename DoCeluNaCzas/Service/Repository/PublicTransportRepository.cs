@@ -29,6 +29,22 @@ namespace DoCeluNaCzas.Service.Repository
             return xml;
         }
 
+        public async Task<string> GetRoute(string stopId, string destStopId, string departure, string dateTime)
+        {
+            string address = (Constants.ROUTE_SEARCH + "?startStopId=" + stopId + "&destStopId=" + destStopId
+                + "&departure=" + departure + "&desiredTime=" + dateTime).ToString();
+
+            var json = await DownloadData(address);
+
+            return json;
+        } 
+
+        public async Task<string> GetChosenBusStop()
+        {
+            var json = await DownloadData(Constants.CHOOSE_BUS_STOP);
+            return json;
+        }
+
         private async Task<string> DownloadData(string url)
         {
             var data = "";
