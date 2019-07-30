@@ -37,16 +37,11 @@
 
 <body>
     <div id="map"></div>
+
+
     <script>
-
-
-
         var map, mgr;
-
-
         function initMap() {
-            // var x = 54.35202520000001;
-            // var y = 18.64663840000003;
             var myLatLng = { lat: -34.397, lng: 150.644 };
             var pos = { lat: 54.35202520000001, lng: 18.64663840000003 };
             var infowindow = new google.maps.InfoWindow;
@@ -77,7 +72,8 @@
                         });
 
                         google.maps.event.addListener(marker, 'click', function () {
-                            infoWindow.setContent("<p><b>Przystanek:  </b></p>" + "@desc" + "<br/><br/>" + "<p><b> Linie: </b></p>" + "@lines" + "<br/><br/>" + "<p><b> Kierunek: </b></p>" + "@heading.Replace("1.07","")");
+                            infoWindow.setContent("<p><b>Przystanek:  </b></p>" + "@desc" + "<br/><br/>" + "<p><b> Linie: </b></p>" +
+                                "@lines" + "<br/><br/>" + "<p><b> Kierunek: </b></p>" + " @heading.Replace("1.07","")");
                             infowindow.setPosition(event.latLng);
                             infoWindow.open(map, this);
 
@@ -86,14 +82,10 @@
                      </text>
 
                       }
-
         }
-
-
-
-
-
     </script>
+
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSLU7KJgQa4Ti9Avqoby1xAbL1KZEOyBU&callback=initMap"
             async defer></script>
 </body>

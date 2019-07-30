@@ -212,7 +212,7 @@
                     </div>
                 </div> <!--list of stops column-->
 
-                <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" value="Szukaj" />
+                <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" onclick="conn()" id="searchTimeTableButton" value="Szukaj" />
             </div> <!--row-->
         </div> <!--main second column-->
     }
@@ -236,3 +236,24 @@
     }
 
 </script>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"
+        integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
+        crossorigin="anonymous"></script>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script>
+    function conn() {
+        var connection = $.hubConnection();
+        $.connection.hub.url = 'http://docelunaczaswebapi.com';
+        var delaysProxy = connection.createHubProxy('DelaysHub ');
+        delaysProxy.on('getDelays', function (stopId) {
+            console.log(stopId);
+        });
+        connection.start()
+            .done(function () { console.log('Now connected, connection ID=' + connection.id); })
+            .fail(function () { console.log('Could not Connect!'); });
+    }
+
+</script>
+

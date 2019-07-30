@@ -75,6 +75,7 @@ namespace DoCeluNaCzas.Service.ViewModel
             return chosenStops;
         }
 
+
         private MarkerModel MarkerMapper(StopModel stopModel, List<ChooseBusStopModel> chooseBusStopModel)
         {
             return new MarkerModel()

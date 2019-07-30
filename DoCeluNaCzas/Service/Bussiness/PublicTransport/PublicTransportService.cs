@@ -5,12 +5,16 @@ using Newtonsoft.Json;
 using DCNC.Bussiness.Models;
 using System.Collections.Generic;
 using System.Xml;
+using DoCeluNaCzas.Service.Bussiness.Hub;
+using DoCeluNaCzas.Service.Bussiness.Hub.Helpers;
+using System;
 
 namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 {
     public class PublicTransportService
     {
         private readonly PublicTransportRepository _publicTransportRepository;
+        private HubService _hubService;
 
         public PublicTransportService()
         {
@@ -70,6 +74,9 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
             var data = JsonConvert.DeserializeObject<ChooseBusStopModel>(json);
             return data;
         }
+
+
+
 
 
         //DO NOT REMOVE - FOR LATER
