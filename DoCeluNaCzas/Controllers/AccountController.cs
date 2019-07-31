@@ -1,4 +1,4 @@
-﻿using DoCeluNaCzas.Models;
+﻿using DoCeluNaCzas.Controllers.Raven;
 using DoCeluNaCzas.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -11,10 +11,10 @@ using System.Web.Mvc;
 namespace DoCeluNaCzas.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : RavenController
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        ApplicationSignInManager _signInManager;
+        ApplicationUserManager _userManager;
 
         public AccountController()
         {
