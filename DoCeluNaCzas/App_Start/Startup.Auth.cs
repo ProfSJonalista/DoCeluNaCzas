@@ -5,16 +5,27 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
+using Raven.Client.Documents;
 
 namespace DoCeluNaCzas
 {
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
+        static IDocumentStore _raven;
+
         public void ConfigureAuth(IAppBuilder app)
         {
+            _raven = new DocumentStore
+            {
+                Database = "DcncDb",
+                Urls = new[] { "http://127.0.0.1:8080" }
+            };
+
+            _raven.Initialize();
+
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(() => _raven.OpenAsyncSession());
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
