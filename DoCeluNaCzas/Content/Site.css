@@ -45,43 +45,6 @@
 }
 
 
-@media (min-width: 1900px) {
-    .container {
-        max-width: 1500px !important;
-    }
-}
-
-@media (min-width: 576px) {
-    .container {
-        max-width: 540px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        max-width: 720px;
-    }
-
-    .search-route-container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 992px) {
-    .container {
-        max-width: 960px;
-    }
-}
-
-
-
-@media (min-width: 1900px) {
-    .container {
-        width: 1500px !important;
-    }
-}
-
-
 .btn-radio {
     color: #007b7d;
     background-color: white;
@@ -459,4 +422,80 @@ body i {
 
 .clock-box {
     width: 30%;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.routes-table-container table {
+    margin: 20px auto;
+}
+
+.panel-container {
+    background: rgb(247, 228, 168);
+    padding: 5px 15px;
+    margin: 10px 0;
+}
+
+.panel-container h4, .panel-container h5 {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 11px;
+}
+
+.float-left h5{
+    display:block;
+}
+
+.panel-container h4:nth-child(2) {
+    float: right;
+}
+
+.panel-title {
+    border-bottom: 1px solid rgba(0,0,0,.3);
+    margin-bottom: 30px;
+}
+
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+    .panel-container h4, .panel-container h5 {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .search-route-container {
+        width: 100%;
+    }
+    .panel-container h4 {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    .panel-container h4 {
+        font-size: 18px;
+    }
+}
+
+
+@media (min-width: 1900px) {
+    .container {
+        width: 1500px !important;
+    }
+
+    .panel-container h4 {
+        font-size: 18px;
+    }
 }
