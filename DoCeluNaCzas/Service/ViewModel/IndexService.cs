@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using DCNC.Bussiness.Models;
@@ -13,8 +14,8 @@ namespace DoCeluNaCzas.Service.ViewModel
 {
     public class IndexService
     {
-        private readonly CacheService _cacheService;
-        private readonly PublicTransportService _publicTransportService = new PublicTransportService();
+        readonly CacheService _cacheService;
+        readonly PublicTransportService _publicTransportService = new PublicTransportService();
 
         public IndexService()
         {
@@ -29,12 +30,12 @@ namespace DoCeluNaCzas.Service.ViewModel
         public async Task<MarkerModel[]> GetMarkerList()
         {
             var markerList = new MarkerListModel();
-
             var busStops = await _publicTransportService.GetBusStops();
 
-            var chosenStops = await _publicTransportService.GetChosenBusStop();
-
-            busStops.Stops.ForEach(stop => markerList.Markers.Add(MarkerMapper(stop, chosenStops)));
+            foreach (var stop in busStops.Stops)
+            {
+                markerList.Markers.Add(MarkerMapper(stop));
+            }
 
             var markersArray = markerList.Markers.ToArray();
 
@@ -63,19 +64,19 @@ namespace DoCeluNaCzas.Service.ViewModel
         }
 
 
-        public async Task<List<StopModel>> GetSpotsList()
+        public async Task<ObservableCollection<StopModel>> GetSpotsList()
         {
             var busStops = await _publicTransportService.GetBusStops();
             return busStops.Stops;
         }
 
-        public async Task<List<ChooseBusStopModel>> GetChosenBusStop()
+        public async Task<ObservableCollection<StopModel>> GetBusStopModels()
         {
-            var chosenStops = await _publicTransportService.GetChosenBusStop();
-            return chosenStops;
+            var busStopDataModel = await _publicTransportService.GetBusStops();
+            return busStopDataModel.Stops;
         }
 
-        private MarkerModel MarkerMapper(StopModel stopModel, List<ChooseBusStopModel> chooseBusStopModel)
+        static MarkerModel MarkerMapper(StopModel stopModel)
         {
             return new MarkerModel()
             {
@@ -83,12 +84,9 @@ namespace DoCeluNaCzas.Service.ViewModel
                 StopDesc = stopModel.StopDesc,
                 StopLat = stopModel.StopLat,
                 StopLon = stopModel.StopLon,
-                StopBusLines = (chooseBusStopModel.Find(x => x.StopId == stopModel.StopId)).BusLineNames,
-                StopHeading = (chooseBusStopModel.Find(x => x.StopId == stopModel.StopId)).DestinationHeadsigns
-
+                StopBusLines = stopModel.BusLineNames,
+                StopHeading = stopModel.DestinationHeadsigns
             };
         }
-
-
     }
 }
