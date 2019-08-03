@@ -6,8 +6,6 @@ namespace DoCeluNaCzas.Service.Repository
 {
     public class PublicTransportRepository
     {
-        
-
         public async Task<string> GetBusStops()
         {
             var json = await DownloadData(Constants.BUS_STOPS);
@@ -37,15 +35,9 @@ namespace DoCeluNaCzas.Service.Repository
             var json = await DownloadData(address);
 
             return json;
-        } 
-
-        public async Task<string> GetChosenBusStop()
-        {
-            var json = await DownloadData(Constants.CHOOSE_BUS_STOP);
-            return json;
         }
 
-        private async Task<string> DownloadData(string url)
+        async Task<string> DownloadData(string url)
         {
             var data = "";
 

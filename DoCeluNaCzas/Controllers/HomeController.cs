@@ -21,12 +21,17 @@ namespace DoCeluNaCzas.Controllers
         public async Task<ActionResult> Index()
         {
             var markerArray = await _indexService.GetMarkerList();
-
             var spotsArray = await _indexService.GetSpotsList();
+            var chosenBusStops = await _indexService.GetBusStopModels();
 
-            var chosenBusStops = await _indexService.GetChosenBusStop();
-
-            List<SelectListItem> listStopsFrom = new List<SelectListItem>(from e in chosenBusStops select new SelectListItem { Selected = true, Text = Convert.ToString(e.StopDesc + " (" + e.BusLineNames + ")" + " -> " + e.DestinationHeadsigns), Value = Convert.ToString(e.StopId) });
+            var listStopsFrom = new List<SelectListItem>(
+                from e in chosenBusStops
+                select new SelectListItem
+                {
+                    Selected = true,
+                    Text = Convert.ToString(e.StopDesc + " (" + e.BusLineNames + ")" + " -> " + e.DestinationHeadsigns),
+                    Value = Convert.ToString(e.StopId)
+                });
 
             var sortedListFrom = listStopsFrom.OrderBy(x => x.Text).ToList();
 
@@ -37,9 +42,7 @@ namespace DoCeluNaCzas.Controllers
             {
                 MainPageFormIndex = new MainPageForm(),
                 MarkerArrayIndex = markerArray,
-                SpotsListIndex = spotsArray,
-
-
+                SpotsListIndex = spotsArray
             };
 
             return View(indexModel);      
@@ -71,18 +74,5 @@ namespace DoCeluNaCzas.Controllers
 
             return View();
         }
-
-        /* public ActionResult BusStops()
-         {
-             BusStopData busStopData = new BusStopData();
-
-             busStopData = GetBusStops();
-
-             //BusStopData busStop = new BusStopData();
-             ViewBag.Message1 = busStopData + "Worldwide handsome";
-
-             ViewBag.Message2 = "Annyeong~";
-             return View();
-         }*/
     }
 }

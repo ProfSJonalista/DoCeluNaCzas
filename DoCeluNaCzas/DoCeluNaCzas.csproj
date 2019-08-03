@@ -208,7 +208,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bussiness\BusStopDataModel.cs" />
-    <Compile Include="Models\Bussiness\ChooseBusStop.cs" />
     <Compile Include="Models\Bussiness\JoinedTripsModel.cs" />
     <Compile Include="Models\Bussiness\RouteSearch.cs" />
     <Compile Include="Models\Bussiness\Shared\CommonModel.cs" />
@@ -297,7 +296,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\TimeTable\" />
-    <Folder Include="Views\Raven\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using DoCeluNaCzas.Models.Bussiness.Shared;
+﻿using DoCeluNaCzas.Models.Bussiness.Shared;
+using System;
+using System.Collections.ObjectModel;
 
 namespace DoCeluNaCzas.Models.Bussiness
 {
     public class BusStopDataModel : CommonModel
     {
-        public List<StopModel> Stops { get; set; }
+        public ObservableCollection<StopModel> Stops { get; set; }
     }
 
     public class StopModel
@@ -15,6 +15,8 @@ namespace DoCeluNaCzas.Models.Bussiness
         public string StopDesc { get; set; }
         public double StopLat { get; set; }
         public double StopLon { get; set; }
+        public string BusLineNames { get; set; }
+        public string DestinationHeadsigns { get; set; }
         public bool? TicketZoneBorder { get; set; }
         public bool? OnDemand { get; set; }
         public DateTime ActivationDate { get; set; }

@@ -19,10 +19,7 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 
         public async Task<BusStopDataModel> GetBusStops()
         {
-            //var message = await TestHubsAsync();
-
             var json = await _publicTransportRepository.GetBusStops();
-            
             var data = JsonConvert.DeserializeObject<BusStopDataModel>(json);
 
             return data;
@@ -30,10 +27,7 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 
         public async Task<List<GroupedJoinedModel>> GetJoinedTrips()
         {
-            //var message = await TestHubsAsync();
-
             var json = await _publicTransportRepository.GetJoinedTrips();
-
             var data = JsonConvert.DeserializeObject<List<GroupedJoinedModel>>(json);
 
             return data;
@@ -56,40 +50,6 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 
             return data;
         }
-
-        public async Task<List<ChooseBusStopModel>> GetChosenBusStop()
-        {
-            var json = await _publicTransportRepository.GetChosenBusStop();
-            var data = JsonConvert.DeserializeObject<List<ChooseBusStopModel>>(json);
-            return data;
-        }
-
-        public async Task<ChooseBusStopModel> GetChosenBusStopTest()
-        {
-            var json = await _publicTransportRepository.GetChosenBusStop();
-            var data = JsonConvert.DeserializeObject<ChooseBusStopModel>(json);
-            return data;
-        }
-
-
-        //DO NOT REMOVE - FOR LATER
-        //private static async Task<string> TestHubsAsync()
-        //{
-        //    HubConnection hubConnection = new HubConnection("http://docelunaczaswebapi.com");
-        //    IHubProxy hubDataProxy = hubConnection.CreateHubProxy("BusLineHub");
-
-        //    try
-        //    {
-        //        await hubConnection.Start();
-        //        var busLineData = await hubDataProxy.Invoke<BusLineData>("GetGeneralData");
-
-        //        return "true";
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return "Message: " + e.Message + ", source: " + e.Source + ", inner exception" + e.InnerException + ", help link: " + e.HelpLink;
-        //    }
-        //}
     }
 
 }
