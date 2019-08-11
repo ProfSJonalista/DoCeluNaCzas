@@ -54,8 +54,6 @@
 
 
 
-
-
 <!--Script references. -->
 <!--Reference the jQuery library. -->
 <!--<script src="/Scripts/jquery-1.6.4.min.js" "></script>-->
@@ -66,12 +64,18 @@
 <script type="text/javascript" src="~/Scripts/SignalR/signalr.js"></script>
 
 <body onload="Connect();">
+
+    <script>
+
+         //GetDelays('ViewBag.stopId');
+
+    </script>
+
     <div style="text-align:center;">
-        <input type="text" id="txtTemperature" />
-        <button id="btnChange" onclick="GetDelays();">GetDelays</button>
+        <button id="btnChange" onclick="GetDelays(@ViewBag.stopId);">Opóżnienia</button>
     </div>
+
+    <div id="res"></div>
+
 </body>
 
-<div style="text-align:center;">
-    Delays : <span></span>
-</div>

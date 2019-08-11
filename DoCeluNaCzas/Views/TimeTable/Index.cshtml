@@ -8,9 +8,11 @@
 <!--<h2>@ViewBag.Title.</h2>-->
 <h3>@ViewBag.Message</h3>
 
+
+
 <div class="row">
     <div class="col-md-3 col-lg-3 col-xl-2">
-        @using (Html.BeginForm("Index", "TimeTable", FormMethod.Post))
+        @using (Html.BeginForm("Index", "TimeTable", FormMethod.Post, new { id = "choose_line" }))
         {
 
             <div class="btn-group-toggle" data-toggle="buttons">
@@ -24,8 +26,11 @@
                         <div class="means-of-transport-collapse-container">
 
 
+
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Trams").ToArray())
                             {
+                                @Html.RadioButton("Option", "0", new { @checked = "checked" })
+
                                 var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
                                 foreach (var el in Group)
@@ -63,6 +68,10 @@
 
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Buses").ToArray())
                             {
+
+                                @Html.RadioButton("Option", "0", new { @checked = "checked" })
+
+
                                 var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
                                 foreach (var el in Group)
@@ -97,6 +106,8 @@
 
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Trolleys").ToArray())
                             {
+                                @Html.RadioButton("Option", "0", new { @checked = "checked" })
+
                                 var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
                                 foreach (var el in Group)
@@ -117,9 +128,11 @@
                 </div>
 
             </div>
+            
             <!--<div class="buttonRoute" id="buttonPanel">-->
             <!--<input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Ok" />-->
-            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" onclick="showBtn(event, 'searchTimeTableButton')" />
+            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" />
+            //onclick="validateLines();"
             <!--</div>-->
             <!--</div>--><!-- col-md-3-->
         }
@@ -232,6 +245,18 @@
         document.getElementById(btnName).style.display = "block";
         evt.currentTarget.className += " btnShow";
 
+    }
+
+    function validateLines() {
+        if (document.getElementById("Option").checked != true) {
+            window.location.reload();
+            alert("Wybierz numer linii");
+            //window.history.go(-1);
+            return false;
+        }
+        else {
+            //return true;
+        }
     }
 
 </script>

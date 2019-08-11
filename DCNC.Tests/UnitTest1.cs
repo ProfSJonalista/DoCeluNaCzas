@@ -13,9 +13,7 @@ namespace DCNC.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            var url = "http://localhost:3632";
-            driver.Url = url;
-            driver.Close();
+            
         }
     }
 }

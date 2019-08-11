@@ -5,6 +5,7 @@ using DoCeluNaCzas.Service.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace DoCeluNaCzas.Controllers.TimeTable
 {
@@ -36,7 +37,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         [HttpPost]
         public async Task<ActionResult> Index(string Option)
         {
-            if (Request["Option"] != null)
+            if (Request["Option"].ToString() != "0")
             {
                 Option = Request["Option"].ToString();
                 string comType = null;
@@ -61,6 +62,11 @@ namespace DoCeluNaCzas.Controllers.TimeTable
                 await Index();
 
             }
+            else
+            {
+                MessageBox.Show("Wprowadż linię");
+            }
+
 
             return View();
         }
@@ -96,6 +102,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         public async Task<ActionResult> TimeTable(string stopId, string routeId)
         {
             minuteTimeTable = await _indexService.GetTimeTables(stopId, routeId);
+            ViewBag.stopId = stopId;
 
             return View(minuteTimeTable);
         }
