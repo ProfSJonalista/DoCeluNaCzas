@@ -65,8 +65,9 @@ namespace DoCeluNaCzas.Controllers.TimeTable
             else
             {
                 MessageBox.Show("Wprowadż linię");
-            }
 
+                return RedirectToAction(nameof(Index));
+            }
 
             return View();
         }
