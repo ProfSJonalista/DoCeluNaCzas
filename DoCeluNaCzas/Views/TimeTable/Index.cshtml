@@ -17,7 +17,7 @@
                 <!-- COLLAPSE TRAMWAJ-->
                 <div class="form-group">
                     <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTram" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTram">
-                        <strong class="collapse-header">Tramwaj</strong>
+                        <strong class="collapse-header">Tramwaj</strong> <i class="fas fa-caret-down"></i>
                     </a>
 
                     <div class="collapse" id="optionPanelTram">
@@ -54,11 +54,11 @@
                 <!-- COLLAPSE AUTOBUS-->
                 <div class="form-group">
                     <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelBus" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseBus">
-                        <strong class="collapse-header">Autobus</strong>
+                        <strong class="collapse-header">Autobus</strong><i class="fas fa-caret-down"></i>
                     </a>
 
                     <div class="collapse" id="optionPanelBus">
-                        <div class="means-of-transport-collapse-container">
+                        <div class="means-of-transport-collapse-container bus-collapse">
 
 
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Buses").ToArray())
@@ -89,7 +89,7 @@
                 <!-- COLLAPSE TROLEYBUS -->
                 <div class="form-group">
                     <a class="collapse-transport accordion-toggle collapsed" role="button" data-toggle="collapse" href="#optionPanelTroley" aria-expanded="false" aria-controls="optionPanel" id="optionCollapseTBus">
-                        <strong class="collapse-header">Trolejbus</strong>
+                        <strong class="collapse-header">Trolejbus</strong><i class="fas fa-caret-down"></i>
                     </a>
                     <div class="collapse" id="optionPanelTroley">
                         <div class="means-of-transport-collapse-container">
@@ -119,7 +119,7 @@
             </div>
             <!--<div class="buttonRoute" id="buttonPanel">-->
             <!--<input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Ok" />-->
-            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" onclick="showBtn(event, 'searchTimeTableButton')" />
+            <input type="submit" class="btn btn-turquoise line-btn" id="searchRouteButton" value="OK" onclick="showBtn(event, 'searchTimeTableButton')" />
             <!--</div>-->
             <!--</div>--><!-- col-md-3-->
         }
