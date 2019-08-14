@@ -21,14 +21,21 @@ function Connect() {
     });
 }
 
-function GetDelays() {
-    var stopId = document.getElementById("txtTemperature").value;
+function GetDelays(stopId) {
+    //var stopId = document.getElementById("txtTemperature").value;
+    var res = "";
 
     delaysProxy.invoke("GetDelays", stopId).done(function (delays) {
         $.each(delays, function () {
             var delay = this;
-            console.log("RouteId = " + delay.RouteId + ", bus line name = " + delay.BusLineName);
+            
+            console.log("Numer linii: " + delay.BusLineName + " Kierunek: " + delay.Headsign + " Wiadomość: " + delay.DelayMessage);
+            res = res + "Numer linii: " + delay.BusLineName + " Kierunek: " + delay.Headsign + " Wiadomość: " + delay.DelayMessage + "</br>";
+            document.getElementById("res").innerHTML = res;
         });
+
+        
+
     }).fail(function (error) {
         console.log('Error: ' + error);
     });
