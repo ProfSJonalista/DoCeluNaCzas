@@ -623,3 +623,9 @@ body {
 .panel-container-route-info {
     margin-top: 70px;
 }
+
+
+.delays-table-container {
+    width: 70%;
+    margin: auto;
+}
