@@ -9,7 +9,7 @@
 <h3>@ViewBag.Message</h3>
 
 
-
+<body>
 <div class="row">
     <div class="col-md-3 col-lg-3 col-xl-2">
         @using (Html.BeginForm("Index", "TimeTable", FormMethod.Post, new { id = "choose_line" }))
@@ -29,7 +29,7 @@
 
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Trams").ToArray())
                             {
-                                @Html.RadioButton("Option", "0", new { @checked = "checked" })
+                                @Html.RadioButton("Option", new { @checked = "checked" })
 
                                 var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
@@ -69,7 +69,7 @@
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Buses").ToArray())
                             {
 
-                                @Html.RadioButton("Option", "0", new { @checked = "checked" })
+                                @Html.RadioButton("Option", new { @checked = "checked" })
 
 
                                 var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
@@ -106,7 +106,7 @@
 
                             @foreach (var item in Model.Where(t => t.Group.ToString() == "Trolleys").ToArray())
                             {
-                                @Html.RadioButton("Option", "0", new { @checked = "checked" })
+                                @Html.RadioButton("Option", new { @checked = "checked" })
 
                                 var Group = item.JoinedTripModels.OrderBy(i => i.BusLineName).ToArray();
 
@@ -132,7 +132,7 @@
             <!--<div class="buttonRoute" id="buttonPanel">-->
             <!--<input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="Ok" />-->
 
-            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" value="OK" />
+            <input type="submit" class="btn btn-turquoise" id="searchRouteButton" onclick="validateLines();" value="OK" />
             //onclick="validateLines();"
 
             <!--</div>-->
@@ -226,12 +226,13 @@
                     </div>
                 </div> <!--list of stops column-->
 
-                <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" value="Szukaj" />
+                <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" onclick="validateStops();" value="Szukaj" />
             </div> <!--row-->
         </div> <!--main second column-->
     }
 
 </div><!--row-->
+</body>
 <script>
     function showBtn(evt, btnName) {
         var i, btncontent, btnlinks;
@@ -250,14 +251,29 @@
     }
 
     function validateLines() {
-        if (document.getElementById("Option").checked != true) {
-            window.location.reload();
-            alert("Wybierz numer linii");
-            //window.history.go(-1);
-            return false;
+
+        var element = document.getElementsByClassName("active btn-radio-timetable")[0];
+        if (typeof(element) != 'undefined' && element != null) {
+            return true;
         }
         else {
-            //return true;
+
+            alert("Wybierz numer linii");
+
+            return false;
+        }
+    }
+
+    function validateStops() {
+        var element1 = document.getElementsByClassName("active btn-radio-stop")[0];
+        if (typeof (element1) != 'undefined' && element1 != null) {
+
+            return true;
+        }
+        else {
+            alert("Wybierz przystanek");
+
+            return false;
         }
     }
 
