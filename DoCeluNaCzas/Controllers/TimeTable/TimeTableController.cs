@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using System;
+using System.Web.Routing;
 
 namespace DoCeluNaCzas.Controllers.TimeTable
 {
@@ -15,6 +17,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         private readonly PublicTransportRepository _publicTransportRepository;
         public List<GroupedJoinedModel> joinedTripsArray = null;
         string Option = null;
+        string param = null;
         public MinuteTimeTable minuteTimeTable = null;
         object x = null;
 
@@ -37,8 +40,11 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         [HttpPost]
         public async Task<ActionResult> Index(string Option)
         {
-            if (Request["Option"].ToString() != "0")
+
+
+            if (Request["Option"] != null)
             {
+                
                 Option = Request["Option"].ToString();
                 string comType = null;
                 string[] splitString = Option.Split(',');
@@ -57,6 +63,9 @@ namespace DoCeluNaCzas.Controllers.TimeTable
                     comType = "TROLEJBUS";
                 }
 
+                TempData["TestVal"] = "";
+                TempData["TestVal"] = Request["Option"].ToString();
+                ViewBag.Param = param;
                 ViewBag.Options = lineName;
                 ViewBag.Types = comType;
                 await Index();
@@ -64,12 +73,40 @@ namespace DoCeluNaCzas.Controllers.TimeTable
             }
             else
             {
-                MessageBox.Show("Wprowadż linię");
+                if (TempData["TestVal"] != null)
+                {
+                    //MessageBox.Show(TempData["TestVal"].ToString());
+                    Option = TempData["TestVal"].ToString();
+                    string comType = null;
+                    string[] splitString = Option.Split(',');
+                    string lineName = splitString[0].Trim();
+                    string type = splitString[1].Trim();
+                    if (type.ToString() == "Buses")
+                    {
+                        comType = "AUTOBUS";
+                    }
+                    else if (type.ToString() == "Trams")
+                    {
+                        comType = "TRAMWAJ";
+                    }
+                    else
+                    {
+                        comType = "TROLEJBUS";
+                    }
 
-                return RedirectToAction(nameof(Index));
+                    
+                    ViewBag.Options = lineName;
+                    ViewBag.Types = comType;
+                    await Index();
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                
             }
 
-            return View();
+            return View("Index");
         }
 
         [HttpPost]
@@ -94,6 +131,18 @@ namespace DoCeluNaCzas.Controllers.TimeTable
 
             }
 
+            else
+            {
+                //MessageBox.Show(TempData["TestVal"].ToString());
+                return await Index(TempData["TestVal"].ToString());
+
+               // var routeValues = new RouteValueDictionary
+               // {
+                //    {"Option", TempData["TestVal"].ToString() }
+                //};
+
+                //return RedirectToAction(nameof(Index), routeValues);
+            }
 
 
             return View();
