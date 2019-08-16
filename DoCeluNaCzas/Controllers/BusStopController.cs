@@ -19,10 +19,6 @@ namespace DoCeluNaCzas.Controllers
         {
             var busStopData = await GetBusStops();
 
-            ViewBag.Message1 = busStopData + "Worldwide handsome";
-
-            ViewBag.Message2 = "Annyeong~";
-
             return View(busStopData);
         }
 

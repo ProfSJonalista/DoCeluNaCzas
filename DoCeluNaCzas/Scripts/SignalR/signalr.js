@@ -13,9 +13,9 @@ function Connect() {
             delaysProxy = signalrConnection.createHubProxy("DelaysHub");
             
             signalrConnection.start({ withCredentials: false }).done(function () {
-                alert("Connected");
+                //alert("Connected");
             }).fail(function (error) {
-                alert("Not connected. Error: " + error);
+                //alert("Not connected. Error: " + error);
             });
         });
     });
