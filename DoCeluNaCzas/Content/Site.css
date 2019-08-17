@@ -580,6 +580,8 @@ body {
     top: 100%;
     left: 0;
     right: 0;
+    height: 400px;
+    overflow: auto;
 }
 
     .autocomplete-items div {
@@ -626,6 +628,14 @@ body {
 
 
 .delays-table-container {
-    width: 70%;
+    width: 50%;
     margin: auto;
+}
+
+.btnDelays{
+    width:50%;
+}
+
+.delays-header {
+    margin: 50px 0 20px;
 }
