@@ -1,5 +1,5 @@
 ﻿var delaysProxy;
-var isInitializedDelays = false;
+var signalrConnection;
 
 function Connect(stopId) {
     $.getScript('http://docelunaczaswebapi.com/Scripts/jquery.signalR-2.4.0.min.js', function () {
@@ -7,34 +7,29 @@ function Connect(stopId) {
 
             var url = 'http://docelunaczaswebapi.com/signalr';
 
-            var signalrConnection = $.hubConnection(url, {
+            signalrConnection = $.hubConnection(url, {
                 useDefaultPath: false
             });
 
             delaysProxy = signalrConnection.createHubProxy("DelaysHub");
 
             signalrConnection.start({ withCredentials: false }).done(function () {
-                alert("Connected");
+                console.log("Connected");
+
                 GetDelays(stopId);
+                setInterval(GetDelays, 20000, stopId);
             }).fail(function (error) {
-                alert("Not connected. Error: " + error);
+                console.log("Not connected. Error: " + error);
             });
         });
     });
 }
 
 function GetDelays(stopId) {
-    //var stopId = document.getElementById("txtTemperature").value;
-    var res = "";
+
     delaysProxy.invoke("GetDelays", stopId).done(function (delays) {
-        if (isInitializedDelays) {
-            return;
-        }
-        isInitializedDelays = true;
-
-        var body = document.getElementsByClassName("routes-table-container")[0];
-
-        var table = document.createElement("table");
+        var table = document.getElementById("delaysTable");
+        table.innerHTML = "";
         table.classList = "table";
 
         var thead = document.createElement("thead");
@@ -62,14 +57,8 @@ function GetDelays(stopId) {
         thead.appendChild(headtr);
         table.appendChild(thead);
 
-
         $.each(delays, function () {
-            var numberDelays = delays.length;
-            console.log(numberDelays);
             var delay = this;
-
-            // create elements <table> and a <tbody>
-            //var table = document.getElementsByTagName("table")[0];
             var tableBody = document.createElement("tbody");
 
             // cells creation
@@ -89,24 +78,18 @@ function GetDelays(stopId) {
                     tableDataCell1.classList = "table-cell";
                     tableDataCell1.id = "column" + i;
 
+                    var cellText1;
+
                     if (tableDataCell1.id == "column0") {
-                        var cellText1 = document.createTextNode(delay.BusLineName);
+                        cellText1 = document.createTextNode(delay.BusLineName);
+                    } else if (tableDataCell1.id == "column1") {
+                        cellText1 = document.createTextNode(delay.Headsign);
+                    } else {
+                        cellText1 = document.createTextNode(delay.DelayMessage);
                     }
-                    else if (tableDataCell1.id == "column1") {
-                        var cellText1 = document.createTextNode(delay.Headsign);
-                    }
-                    else {
-                        var cellText1 = document.createTextNode(delay.DelayMessage);
-                    }
-
-                    console.log("Numer linii: " + delay.BusLineName + " Kierunek: " + delay.Headsign + " Wiadomość: " + delay.DelayMessage);
-
-
 
                     tableDataCell1.appendChild(cellText1);
-
                     tableRow.appendChild(tableDataCell1);
-
                 }
 
                 //row added to end of table body
@@ -115,11 +98,7 @@ function GetDelays(stopId) {
 
             // append the <tbody> inside the <table>
             table.appendChild(tableBody);
-            // put <table> in the <body>
-            body.appendChild(table);
         });
-
-
     }).fail(function (error) {
         console.log('Error: ' + error);
     });

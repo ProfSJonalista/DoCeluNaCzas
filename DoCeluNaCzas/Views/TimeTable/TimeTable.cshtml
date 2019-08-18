@@ -8,19 +8,15 @@
     </div>-->
 
     <div class="routes-table-container delays-table-container">
-
-        <!--<table id="delaysTable" class="table">
-            <thead>
+        <table id="delaysTable" class="table">
+            @*<thead>
                 <tr>
                     <th class="col-md-2">Numer linii</th>
                     <th class="col-md-7">Kierunek</th>
                     <th class="col-md-3">Odjazd</th>
                 </tr>
-            </thead>
-
-
-
-        </table>-->
+            </thead>*@
+        </table>
 
         <div id="res"></div>
     </div>
@@ -28,55 +24,51 @@
 
         @foreach (var day in Model.MinuteDictionary)
         {
-        <div class="week-name">
-            @if (day.Key.ToString() == "Weekday")
+            <div class="week-name">
+                @if (day.Key.ToString() == "Weekday")
+                {
+                    <text>
+                        Dni powszednie
+                    </text>
+                }
+
+                @if (day.Key.ToString() == "Saturday")
+                {
+                    <text>
+                        Soboty
+                    </text>
+                }
+
+                @if (day.Key.ToString() == "Sunday")
+                {
+                    <text>
+                        Niedziele i święta
+                    </text>
+                }
+
+
+            </div>
+            foreach (var list in day.Value)
             {
-            <text>
-                Dni powszednie
-            </text>
+                <text>
+                    <table class="timetable-table" id="timetableTable">
+                        <tr class="row-content">
+                            <td class="hours">
+                                @list.Key
+                            </td>
+
+                            @foreach (var minute in list.Value)
+                            {
+                                <td class="minutes">
+                                    @minute
+                                </td>
+                            }
+                        </tr>
+                    </table>
+                </text>
             }
-
-            @if (day.Key.ToString() == "Saturday")
-            {
-            <text>
-                Soboty
-            </text>
-            }
-
-            @if (day.Key.ToString() == "Sunday")
-            {
-            <text>
-                Niedziele i święta
-            </text>
-            }
-
-
-        </div>
-        foreach (var list in day.Value)
-        {
-        <text>
-            <table class="timetable-table" id="timetableTable">
-                <tr class="row-content">
-                    <td class="hours">
-                        @list.Key
-                    </td>
-
-                    @foreach (var minute in list.Value)
-                    {
-                    <td class="minutes">
-                        @minute
-                    </td>
-                    }
-                </tr>
-            </table>
-        </text>
         }
-        }
-
-
     </div>
-
-
 
     <!--Script references. -->
     <!--Reference the jQuery library. -->

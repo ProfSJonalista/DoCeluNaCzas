@@ -48,31 +48,5 @@ namespace DoCeluNaCzas.Controllers
             return View(indexModel);      
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page. JUST WOOOOOOOOOOOOOOOORK";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Timetable()
-        {
-            
-            return View();
-        }
-
-        public ActionResult Delays()
-        {
-            ViewBag.Message = "Your delays page.";
-
-            return View();
-        }
     }
 }
