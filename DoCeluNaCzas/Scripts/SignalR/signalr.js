@@ -1,4 +1,5 @@
 ﻿var delaysProxy;
+var signalrConnection;
 var isInitializedDelays = false;
 
 function Connect(stopId) {
@@ -7,30 +8,32 @@ function Connect(stopId) {
 
             var url = 'http://docelunaczaswebapi.com/signalr';
 
-            var signalrConnection = $.hubConnection(url, {
+            signalrConnection = $.hubConnection(url, {
                 useDefaultPath: false
             });
 
             delaysProxy = signalrConnection.createHubProxy("DelaysHub");
 
             signalrConnection.start({ withCredentials: false }).done(function () {
-                alert("Connected");
+                console.log("Connected");
+
                 GetDelays(stopId);
+                setInterval(GetDelays, 20000, stopId);
             }).fail(function (error) {
-                alert("Not connected. Error: " + error);
+                console.log("Not connected. Error: " + error);
             });
         });
     });
 }
 
 function GetDelays(stopId) {
-    //var stopId = document.getElementById("txtTemperature").value;
-    var res = "";
+
     delaysProxy.invoke("GetDelays", stopId).done(function (delays) {
-        if (isInitializedDelays) {
-            return;
-        }
-        isInitializedDelays = true;
+        //if (isInitializedDelays) {
+        //    return;
+        //}
+
+        //isInitializedDelays = true;
 
         var body = document.getElementsByClassName("routes-table-container")[0];
 
@@ -64,8 +67,6 @@ function GetDelays(stopId) {
 
 
         $.each(delays, function () {
-            var numberDelays = delays.length;
-            console.log(numberDelays);
             var delay = this;
 
             // create elements <table> and a <tbody>
@@ -99,12 +100,7 @@ function GetDelays(stopId) {
                         var cellText1 = document.createTextNode(delay.DelayMessage);
                     }
 
-                    console.log("Numer linii: " + delay.BusLineName + " Kierunek: " + delay.Headsign + " Wiadomość: " + delay.DelayMessage);
-
-
-
                     tableDataCell1.appendChild(cellText1);
-
                     tableRow.appendChild(tableDataCell1);
 
                 }
@@ -118,8 +114,6 @@ function GetDelays(stopId) {
             // put <table> in the <body>
             body.appendChild(table);
         });
-
-
     }).fail(function (error) {
         console.log('Error: ' + error);
     });
