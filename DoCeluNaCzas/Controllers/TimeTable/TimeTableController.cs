@@ -153,6 +153,9 @@ namespace DoCeluNaCzas.Controllers.TimeTable
         {
             minuteTimeTable = await _indexService.GetTimeTables(stopId, routeId);
             ViewBag.stopId = stopId;
+            ViewBag.routeIds = minuteTimeTable.RouteIds;
+            ViewBag.minDic = minuteTimeTable.MinuteDictionary;
+            ViewBag.busLine = minuteTimeTable.BusLineName;
 
             return View(minuteTimeTable);
         }

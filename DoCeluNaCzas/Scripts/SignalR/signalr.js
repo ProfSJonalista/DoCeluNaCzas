@@ -53,17 +53,17 @@ function GetDelays(stopId) {
         var headth3 = document.createElement("th");
         headth3.classList = "col-md-3";
 
-        headtr.appendChild(headth);
-        headth.innerHTML = "Numer linii";
+        //headtr.appendChild(headth);
+        //headth.innerHTML = "Numer linii";
 
-        headtr.appendChild(headth2);
-        headth2.innerHTML = "Kierunek";
+        //headtr.appendChild(headth2);
+        //headth2.innerHTML = "Kierunek";
 
-        headtr.appendChild(headth3);
-        headth3.innerHTML = "Odjazd";
+        //headtr.appendChild(headth3);
+        //headth3.innerHTML = "Odjazd";
 
-        thead.appendChild(headtr);
-        table.appendChild(thead);
+        //thead.appendChild(headtr);
+        //table.appendChild(thead);
 
 
         $.each(delays, function () {
@@ -108,7 +108,7 @@ function GetDelays(stopId) {
                 //row added to end of table body
                 tableBody.appendChild(tableRow);
             }
-
+            
             // append the <tbody> inside the <table>
             table.appendChild(tableBody);
             // put <table> in the <body>
