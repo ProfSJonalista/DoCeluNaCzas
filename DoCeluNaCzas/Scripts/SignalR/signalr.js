@@ -1,6 +1,5 @@
 ﻿var delaysProxy;
 var signalrConnection;
-var isInitializedDelays = false;
 
 function Connect(stopId) {
     $.getScript('http://docelunaczaswebapi.com/Scripts/jquery.signalR-2.4.0.min.js', function () {
@@ -29,15 +28,8 @@ function Connect(stopId) {
 function GetDelays(stopId) {
 
     delaysProxy.invoke("GetDelays", stopId).done(function (delays) {
-        //if (isInitializedDelays) {
-        //    return;
-        //}
-
-        //isInitializedDelays = true;
-
-        var body = document.getElementsByClassName("routes-table-container")[0];
-
-        var table = document.createElement("table");
+        var table = document.getElementById("delaysTable");
+        table.innerHTML = "";
         table.classList = "table";
 
         var thead = document.createElement("thead");
@@ -53,24 +45,20 @@ function GetDelays(stopId) {
         var headth3 = document.createElement("th");
         headth3.classList = "col-md-3";
 
-        //headtr.appendChild(headth);
-        //headth.innerHTML = "Numer linii";
+        headtr.appendChild(headth);
+        headth.innerHTML = "Numer linii";
 
-        //headtr.appendChild(headth2);
-        //headth2.innerHTML = "Kierunek";
+        headtr.appendChild(headth2);
+        headth2.innerHTML = "Kierunek";
 
-        //headtr.appendChild(headth3);
-        //headth3.innerHTML = "Odjazd";
+        headtr.appendChild(headth3);
+        headth3.innerHTML = "Odjazd";
 
-        //thead.appendChild(headtr);
-        //table.appendChild(thead);
-
+        thead.appendChild(headtr);
+        table.appendChild(thead);
 
         $.each(delays, function () {
             var delay = this;
-
-            // create elements <table> and a <tbody>
-            //var table = document.getElementsByTagName("table")[0];
             var tableBody = document.createElement("tbody");
 
             // cells creation
@@ -90,29 +78,26 @@ function GetDelays(stopId) {
                     tableDataCell1.classList = "table-cell";
                     tableDataCell1.id = "column" + i;
 
+                    var cellText1;
+
                     if (tableDataCell1.id == "column0") {
-                        var cellText1 = document.createTextNode(delay.BusLineName);
-                    }
-                    else if (tableDataCell1.id == "column1") {
-                        var cellText1 = document.createTextNode(delay.Headsign);
-                    }
-                    else {
-                        var cellText1 = document.createTextNode(delay.DelayMessage);
+                        cellText1 = document.createTextNode(delay.BusLineName);
+                    } else if (tableDataCell1.id == "column1") {
+                        cellText1 = document.createTextNode(delay.Headsign);
+                    } else {
+                        cellText1 = document.createTextNode(delay.DelayMessage);
                     }
 
                     tableDataCell1.appendChild(cellText1);
                     tableRow.appendChild(tableDataCell1);
-
                 }
 
                 //row added to end of table body
                 tableBody.appendChild(tableRow);
             }
-            
+
             // append the <tbody> inside the <table>
             table.appendChild(tableBody);
-            // put <table> in the <body>
-            body.appendChild(table);
         });
     }).fail(function (error) {
         console.log('Error: ' + error);
