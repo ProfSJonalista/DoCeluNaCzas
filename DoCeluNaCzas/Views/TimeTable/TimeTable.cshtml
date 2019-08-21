@@ -1,87 +1,120 @@
-﻿@model DCNC.Bussiness.Models.MinuteTimeTable
+﻿@using DCNC.Bussiness.Models
+@using PublicHoliday
+@model DCNC.Bussiness.Models.MinuteTimeTable
+
+@{
+    DayType GetCurrentDayType()
+    {
+        var polandPublicHoliday = new PolandPublicHoliday();
+
+        if (polandPublicHoliday.IsPublicHoliday(DateTime.Now) || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+        {
+            return DayType.Sunday;
+        }
+
+        return DateTime.Now.DayOfWeek == DayOfWeek.Saturday
+            ? DayType.Saturday
+            : DayType.Weekday;
+    }
+
+    TimeSpan GetNearestTime(Dictionary<int, List<int>> minuteDictionary)
+    {
+        var dtList = new List<TimeSpan>();
+
+        foreach (var item in minuteDictionary)
+        {
+            foreach (var minute in item.Value)
+            {
+                var dtToAdd = new TimeSpan(item.Key, minute, 0);
+                dtList.Add(dtToAdd);
+            }
+        }
+
+        var filteredDtList = dtList.Where(time => time >= DateTime.Now.TimeOfDay).ToList();
+
+        return filteredDtList.FirstOrDefault();
+    }
+}
 
 <body>
-    <!--<div class="delays-header"style="text-align:center;">
-        <a id="btnChange" class="btnDelays collapse-header collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="GetDelays(@ViewBag.stopId);">
-            <strong>Opóźnienia </strong><i class="fas fa-caret-down"></i>
-        </a>
-    </div>-->
-
     <div class="routes-table-container delays-table-container">
-        <table id="delaysTable" class="table">
-            @*<thead>
-                <tr>
-                    <th class="col-md-2">Numer linii</th>
-                    <th class="col-md-7">Kierunek</th>
-                    <th class="col-md-3">Odjazd</th>
-                </tr>
-            </thead>*@
-        </table>
+        <table id="delaysTable" class="table"></table>
 
         <div id="res"></div>
     </div>
     <div id="Timetable" class="tabcontent">
+        @{
+            var isMarked = false;
+            var currentDayType = GetCurrentDayType();
 
-        @foreach (var day in Model.MinuteDictionary)
-        {
-            <div class="week-name">
-                @if (day.Key.ToString() == "Weekday")
-                {
-                    <text>
-                        Dni powszednie
-                    </text>
-                }
-
-                @if (day.Key.ToString() == "Saturday")
-                {
-                    <text>
-                        Soboty
-                    </text>
-                }
-
-                @if (day.Key.ToString() == "Sunday")
-                {
-                    <text>
-                        Niedziele i święta
-                    </text>
-                }
-
-
-            </div>
-            foreach (var list in day.Value)
+            foreach (var day in Model.MinuteDictionary)
             {
-                <text>
-                    <table class="timetable-table" id="timetableTable">
-                        <tr class="row-content">
-                            <td class="hours">
-                                @list.Key
-                            </td>
+                var dayType = day.Key;
+                var nearestTime = GetNearestTime(day.Value);
 
-                            @foreach (var minute in list.Value)
-                            {
-                                <td class="minutes">
-                                    @minute
+                <div class="week-name">
+                    @if (dayType == DayType.Weekday)
+                    {
+                        <text>
+                            Dni powszednie
+                        </text>
+                    }
+
+                    @if (dayType == DayType.Saturday)
+                    {
+                        <text>
+                            Soboty
+                        </text>
+                    }
+
+                    @if (dayType == DayType.Sunday)
+                    {
+                        <text>
+                            Niedziele i święta
+                        </text>
+                    }
+                </div>
+
+                foreach (var item in day.Value)
+                {
+                    var hour = item.Key;
+
+                    <text>
+                        <table class="timetable-table" id="timetableTable">
+                            <tr class="row-content">
+                                <td class="hours">
+                                    @hour
                                 </td>
-                            }
-                        </tr>
-                    </table>
-                </text>
+
+                                @foreach (var minute in item.Value)
+                                {
+                                    if (!isMarked && currentDayType == dayType && hour == nearestTime.Hours && minute == nearestTime.Minutes)
+                                    {
+                                        <td class="minutes" style="color: red">
+                                            @minute
+                                        </td>
+
+                                        isMarked = true;
+                                    }
+                                    else
+                                    {
+                                        <td class="minutes">
+                                            @minute
+                                        </td>
+                                    }
+                                }
+                            </tr>
+                        </table>
+                    </text>
+                }
             }
         }
     </div>
 
-    <!--Script references. -->
-    <!--Reference the jQuery library. -->
-    <!--<script src="/Scripts/jquery-1.6.4.min.js" "></script>-->
-    <!--Reference the SignalR library. -->
-    <!--<!--<script src="/Scripts/jquery.signalR-2.4.1.min.js"></script>-->
-    <!--Reference the autogenerated SignalR hub script. -->
-    <!--<script src="~/signalr/hubs"></script>-->
     <script>
         $(document).ready(() => {
             Connect(@ViewBag.stopId);
-                    //GetDelays();
-                });
+        });
     </script>
 
 </body>

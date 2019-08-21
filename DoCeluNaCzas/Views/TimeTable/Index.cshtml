@@ -206,27 +206,20 @@
                                                             </div>
                                                         </text>
                                                     }
-
-
                                                 </div>
                                             </div>
-
                                         </text>
-
-
                                     }
-
-
                                 }
-
                             }
-
                         </div>
-
                     </div>
                 </div> <!--list of stops column-->
-
-                <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" onclick="validateStops();" value="Szukaj" />
+            
+                @if(@ViewBag.Options != null && @ViewBag.Types != null)
+                {
+                    <input type="submit" class="btn btn-turquoise btnShow search-timetable-btn" id="searchTimeTableButton" onclick="validateStops();" value="Szukaj" />
+                }
             </div> <!--row-->
         </div> <!--main second column-->
     }
