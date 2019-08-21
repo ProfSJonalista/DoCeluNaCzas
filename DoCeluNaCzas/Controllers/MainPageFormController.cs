@@ -32,9 +32,9 @@ namespace DoCeluNaCzas.Controllers
         {
 
 
-            Option = Request["Option"].ToString();
-            SpotFrom = Request["SpotFrom"].ToString();
-            SpotTo = Request["SpotTo"].ToString();
+            //Option = Request["Option"].ToString();
+           // SpotFrom = Request["SpotFrom"].ToString();
+            //SpotTo = Request["SpotTo"].ToString();
             DateTime DateTime = indexModel.FromDate;
             DateTime Time = indexModel.DateClock;
 
