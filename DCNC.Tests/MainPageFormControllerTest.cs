@@ -18,20 +18,18 @@ namespace DCNC.Tests
         IndexService _indexService = new IndexService(new CacheService());
         private readonly PublicTransportRepository _publicTransportRepository = new PublicTransportRepository();
 
-        
-        public MainPageFormControllerTest()
-        {
-            indygo = new IndexModel() { FromDate = DateTime.Parse("201-08-16T00:00:00"), DateClock = DateTime.Parse("201-08-16T09:00:00") };
-        }
-
 
 
         [TestMethod]
-       // [DataRow("221", "2025", "Departure", indygo)]
-        public async Task MainFormSearchRoute(string SpotFrom, string SpotTo, string Option, IndexModel indexModel)
+
+        public async Task MainFormSearchRoute()
         {
             MainPageFormController controller = new MainPageFormController();
-            var result = controller.MainFormSearchRoute("221", "2025", "Departure", indygo);
+            var result = controller.MainFormSearchRoute("221", "2025", "Departure", new IndexModel()
+            {
+                FromDate = new DateTime(2019,08,16),
+                DateClock = new DateTime(2019,08,16,9,0,0)
+            });
             Assert.IsNotNull(result);
         }
     }
