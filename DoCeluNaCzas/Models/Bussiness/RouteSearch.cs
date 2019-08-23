@@ -7,10 +7,10 @@ namespace DCNC.Bussiness.Models
 {
     public class Route
     {
-        public DateTime DepartureTime { get; set; }
-        public string Buses { get; set; }
-        public DateTime ArrivalTime { get; set; }
         public TimeSpan FullTimeOfTravel { get; set; }
+        public string Buses { get; set; }
+        public StopChange FirstStop { get; set; }
+        public StopChange LastStop { get; set; }
         public List<Change> ChangeList { get; set; }
     }
 
