@@ -25,6 +25,30 @@ function Connect(stopId) {
     });
 }
 
+function ConnectOneDelay(stopChange) {
+    $.getScript('http://docelunaczaswebapi.com/Scripts/jquery.signalR-2.4.0.min.js', function () {
+        $.getScript('http://docelunaczaswebapi.com/signalr/hubs', function () {
+
+            var url = 'http://docelunaczaswebapi.com/signalr';
+
+            signalrConnection = $.hubConnection(url, {
+                useDefaultPath: false
+            });
+
+            delaysProxy = signalrConnection.createHubProxy("DelaysHub");
+
+            signalrConnection.start({ withCredentials: false }).done(function () {
+                console.log("Connected");
+
+                GetOneDelay(stopChange);
+                setInterval(GetOneDelay, 20000, stopChange);
+            }).fail(function (error) {
+                console.log("Not connected. Error: " + error);
+            });
+        });
+    });
+}
+
 function GetDelays(stopId) {
 
     delaysProxy.invoke("GetDelays", stopId).done(function (delays) {
@@ -101,5 +125,17 @@ function GetDelays(stopId) {
         });
     }).fail(function (error) {
         console.log('Error: ' + error);
+    });
+}
+
+function GetOneDelay(stopChange) {
+
+    delaysProxy.invoke("GetOneDelay", stopChange).done(function () {
+
+        var result = this;
+        console.log('Result: ' + result.Name);
+        
+    }).fail(function (error) {
+        console.log('Error fhdfhdhdhdh: ' + error);
     });
 }

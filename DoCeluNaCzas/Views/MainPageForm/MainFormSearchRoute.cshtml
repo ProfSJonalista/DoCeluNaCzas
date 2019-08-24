@@ -2,103 +2,121 @@
 @foreach (var routes in Model)
 {
 
-<!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <text>
-                <div class="panel-container panel-container-route-info float-left">
-                    <div class="panel-title align-center">
-                        <h4>Trasa</h4>
-                    </div>
-                    <h5>Linie: @routes.Buses</h5>
-
-                    <!--@if (routes.ChangeList.Count == 0)
-                                        {
-                                        <text>
-                                            <h5>Brak dostepnego połaczenia</h5>
-                                        </text>
-                                        }
-
-                                        @if (routes.ChangeList.Count == 1)
-                                        {
-                                        <text>
-                                            <h5>Połączenie bezpośrednie</h5>
-                    </text>
-                                        }
-
-                                        @if (routes.ChangeList.Count > 1)
-                                        {
-                                        <text>
-                                            <h5> Połączenie z przesiadką</h5>
-                    </text>
-
-                                        }-->
-
-                    <h5>
-                        Godzina przyjazdu: @routes.ArrivalTime.ToShortTimeString()
-                    </h5>
-
-                </div>
-            </text>
-        </div>
-    </div>
-</div>
-
-
-        foreach (var route in routes.ChangeList)
-        {
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="route-info collapsed" data-toggle="collapse">
+    <!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
                 <text>
-                    <div class="panel-container panel-container-stop-info">
-                        <h4>Linia: @route.BusLineName</h4>
-                        <h4>Odjazd: @route.DepartureTime.ToShortTimeString() </h4>
-                        <h4><i class="fas fa-caret-down"></i></h4>
-                    </div>
-                    <!--Całkowity czas podróży: @routes.FullTimeOfTravel-->
+                    <div class="panel-container panel-container-route-info float-left">
+                        <div class="panel-title align-center">
+                            <h4>Trasa</h4>
+                        </div>
+                        <h5>Linie: @routes.Buses</h5>
 
+                        <!--@if (routes.ChangeList.Count == 0)
+                                            {
+                                            <text>
+                                                <h5>Brak dostepnego połaczenia</h5>
+                                            </text>
+                                            }
+
+                                            @if (routes.ChangeList.Count == 1)
+                                            {
+                                            <text>
+                                                <h5>Połączenie bezpośrednie</h5>
+                        </text>
+                                            }
+
+                                            @if (routes.ChangeList.Count > 1)
+                                            {
+                                            <text>
+                                                <h5> Połączenie z przesiadką</h5>
+                        </text>
+
+                                            }-->
+
+                        <h5>
+                            Godzina przyjazdu: @routes.LastStop.ArrivalTime.ToShortTimeString()
+                        </h5>
+
+                    </div>
                 </text>
             </div>
-            <div class="routes-table-container collapse">
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-md-2">#</th>
-                            <th class="col-md-7">Przystanek</th>
-                            <th class="col-md-3">Odjazd</th>
-                        </tr>
-                    </thead>
-                    @foreach (var change in route.StopChangeList)
-                    {
-                    <tr>
-                        <td><text>@change.StopSequence</text></td>
-                        <td><text>@change.Name</text></td>
-                        <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
-                    </tr>
-
-                    }
-                </table>
-
-            </div>
-
         </div>
     </div>
-</div>
-        }
 
-        }
+
+    foreach (var route in routes.ChangeList)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="route-info collapsed" data-toggle="collapse">
+                        <text>
+                            <div class="panel-container panel-container-stop-info">
+                                <h4>Linia: @route.BusLineName</h4>
+                                <h4>Odjazd: @route.FirstStop.DepartureTime.ToShortTimeString() </h4>
+                                <h4><i class="fas fa-caret-down"></i></h4>
+                            </div>
+                            <!--Całkowity czas podróży: @routes.FullTimeOfTravel-->
+
+                        </text>
+                    </div>
+                    <div class="routes-table-container collapse">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-2">#</th>
+                                    <th class="col-md-7">Przystanek</th>
+                                    <th class="col-md-3">Odjazd</th>
+                                </tr>
+                            </thead>
+                            @foreach (var change in route.StopChangeList)
+                            {
+                                <tr>
+                                    <td><text>@change.StopSequence</text></td>
+                                    <td><text>@change.Name</text></td>
+                                    <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
+                                </tr>
+
+                             
+                            }
+
+
+                        </table>
+
+                        @*@foreach (var stopChange in route.StopChangeList)
+                            {
+                                <script>
+                                    $(document).ready(() => {
+                                        ConnectOneDelay(@stopChange);
+                                    });
+                                </script>
+                            }*@
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
+}
 
 <script>
+
+
+
+
     count = $(".routes-table-container").length;
     for (var i = 0; i < count; i++) {
-    //document.getElementsByClassName("routes-table-container").setAttribute('id', 'collapseTimetable');
-        document.getElementsByClassName("routes-table-container")[i].setAttribute("id", "collapseTimetable" + i); 
-        document.getElementsByClassName("route-info")[i].setAttribute("href", "#collapseTimetable" + i); 
+        //document.getElementsByClassName("routes-table-container").setAttribute('id', 'collapseTimetable');
+        document.getElementsByClassName("routes-table-container")[i].setAttribute("id", "collapseTimetable" + i);
+        document.getElementsByClassName("route-info")[i].setAttribute("href", "#collapseTimetable" + i);
         document.getElementsByClassName("route-info")[i].setAttribute("aria-controls", "#collapseTimetable" + i);
     }
-    
+
 </script>
