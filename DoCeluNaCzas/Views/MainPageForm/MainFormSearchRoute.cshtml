@@ -13,32 +13,9 @@
                         </div>
                         <h5>Linie: @routes.Buses</h5>
 
-                        <!--@if (routes.ChangeList.Count == 0)
-                                            {
-                                            <text>
-                                                <h5>Brak dostepnego połaczenia</h5>
-                                            </text>
-                                            }
-
-                                            @if (routes.ChangeList.Count == 1)
-                                            {
-                                            <text>
-                                                <h5>Połączenie bezpośrednie</h5>
-                        </text>
-                                            }
-
-                                            @if (routes.ChangeList.Count > 1)
-                                            {
-                                            <text>
-                                                <h5> Połączenie z przesiadką</h5>
-                        </text>
-
-                                            }-->
-
                         <h5>
                             Godzina przyjazdu: @routes.LastStop.ArrivalTime.ToShortTimeString()
                         </h5>
-
                     </div>
                 </text>
             </div>
@@ -78,25 +55,14 @@
                                     <td><text>@change.StopSequence</text></td>
                                     <td><text>@change.Name</text></td>
                                     <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
+                                    <td>
+                                        <script>
+                                            ConnectOneDelay("@change");
+                                        </script>
+                                    </td>
                                 </tr>
-
-                             
                             }
-
-
                         </table>
-
-                        @*@foreach (var stopChange in route.StopChangeList)
-                            {
-                                <script>
-                                    $(document).ready(() => {
-                                        ConnectOneDelay(@stopChange);
-                                    });
-                                </script>
-                            }*@
-
-
-
                     </div>
 
                 </div>
@@ -107,10 +73,6 @@
 }
 
 <script>
-
-
-
-
     count = $(".routes-table-container").length;
     for (var i = 0; i < count; i++) {
         //document.getElementsByClassName("routes-table-container").setAttribute('id', 'collapseTimetable');
