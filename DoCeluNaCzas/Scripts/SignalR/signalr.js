@@ -1,5 +1,6 @@
 ﻿var delaysProxy;
 var signalrConnection;
+var connectionStarted = false;
 
 function Connect(stopId) {
     $.getScript('http://docelunaczaswebapi.com/Scripts/jquery.signalR-2.4.0.min.js', function () {
@@ -114,14 +115,10 @@ function ConnectOneDelay() {
                 useDefaultPath: false
             });
 
-            delaysProxy = signalrConnection.createHubProxy("DelaysHub");
-
             signalrConnection.start({ withCredentials: false }).done(function () {
                 console.log("Connected");
-
-                //console.log("Value of the stopchange: " + stopId +"_" + routeId + "_" + tripId + "_" + arrivalTimeHour + "_" + arrivalTimeMinute);
-                //GetOneDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
-                //setInterval(GetOneDelay, 20000, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+                connectionStarted = true;
+                delaysProxy = signalrConnection.createHubProxy("DelaysHub");
             }).fail(function (error) {
                 console.log("Not connected. Error: " + error);
             });
@@ -130,13 +127,21 @@ function ConnectOneDelay() {
 }
 
 function GetOneDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    GetDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+    setInterval(function () {
+        GetDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+    }, 20000);
+}
 
-    delaysProxy.invoke("GetOneDelay", stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute).done(function () {
+function GetDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    if (connectionStarted) {
+        delaysProxy.invoke("GetOneDelay", stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute).done(
+            function (estimatedTime) {
 
-        var result = this;
-        console.log('Result: ' + result.RouteId + "_" + result.TripId + "_" + result.ArrivalTime);
+                console.log('Result: ' + estimatedTime);
 
-    }).fail(function (error) {
-        console.log('Error: ' + error);
-    });
+            }).fail(function (error) {
+            console.log(error);
+        });
+    }
 }

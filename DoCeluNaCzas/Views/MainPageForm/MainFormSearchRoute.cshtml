@@ -57,7 +57,7 @@
                                     <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
                                     <td>
                                         <script>
-                                            GetOneDelay("@change.StopId,@change.RouteId,@change.TripId,@change.ArrivalTime.Hour,@change.ArrivalTime.Minute");
+                                            GetOneDelay(@change.StopId,@change.RouteId,@change.TripId,@change.ArrivalTime.Hour,@change.ArrivalTime.Minute);
                                         </script>
                                     </td>
                                 </tr>
@@ -76,7 +76,7 @@
 
     $(document).ready(() => {
         ConnectOneDelay();
-        });
+    });
 
 
     count = $(".routes-table-container").length;
