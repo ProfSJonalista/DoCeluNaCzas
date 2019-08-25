@@ -1,4 +1,4 @@
-﻿@model DCNC.Bussiness.Models.Route[]
+﻿@model DCNC.Bussiness.Model.Route[]
 @foreach (var routes in Model)
 {
 
@@ -57,7 +57,7 @@
                                     <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
                                     <td>
                                         <script>
-                                            ConnectOneDelay("@change");
+                                            GetOneDelay("@change.StopId,@change.RouteId,@change.TripId,@change.ArrivalTime.Hour,@change.ArrivalTime.Minute");
                                         </script>
                                     </td>
                                 </tr>
@@ -73,6 +73,12 @@
 }
 
 <script>
+
+    $(document).ready(() => {
+        ConnectOneDelay();
+        });
+
+
     count = $(".routes-table-container").length;
     for (var i = 0; i < count; i++) {
         //document.getElementsByClassName("routes-table-container").setAttribute('id', 'collapseTimetable');

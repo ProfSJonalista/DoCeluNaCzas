@@ -104,7 +104,7 @@ function GetDelays(stopId) {
     });
 }
 
-function ConnectOneDelay(stopChange) {
+function ConnectOneDelay() {
     $.getScript('http://docelunaczaswebapi.com/Scripts/jquery.signalR-2.4.0.min.js', function () {
         $.getScript('http://docelunaczaswebapi.com/signalr/hubs', function () {
 
@@ -119,8 +119,9 @@ function ConnectOneDelay(stopChange) {
             signalrConnection.start({ withCredentials: false }).done(function () {
                 console.log("Connected");
 
-                GetOneDelay(stopChange);
-                setInterval(GetOneDelay, 20000, stopChange);
+                //console.log("Value of the stopchange: " + stopId +"_" + routeId + "_" + tripId + "_" + arrivalTimeHour + "_" + arrivalTimeMinute);
+                //GetOneDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+                //setInterval(GetOneDelay, 20000, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
             }).fail(function (error) {
                 console.log("Not connected. Error: " + error);
             });
@@ -128,12 +129,12 @@ function ConnectOneDelay(stopChange) {
     });
 }
 
-function GetOneDelay(stopChange) {
+function GetOneDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
 
-    delaysProxy.invoke("GetOneDelay", stopChange).done(function () {
+    delaysProxy.invoke("GetOneDelay", stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute).done(function () {
 
         var result = this;
-        console.log('Result: ' + result.Name);
+        console.log('Result: ' + result.RouteId + "_" + result.TripId + "_" + result.ArrivalTime);
 
     }).fail(function (error) {
         console.log('Error: ' + error);

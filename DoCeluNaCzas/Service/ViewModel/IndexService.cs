@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using DCNC.Bussiness.Model;
 using DCNC.Bussiness.Models;
+
 using DoCeluNaCzas.Models.Bussiness;
 using DoCeluNaCzas.Models.ViewModels.Index;
 using DoCeluNaCzas.Service.Bussiness.PublicTransport;
