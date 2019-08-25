@@ -1,6 +1,11 @@
 ﻿@model DCNC.Bussiness.Model.Route[]
+
+
+@{ var number = 0; var numerHS = 0; var numerHSAr = 0;}
+
 @foreach (var routes in Model)
 {
+    var idHeadSignAr = "delayHeadSignAr" + numerHSAr;
 
     <!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
     <div class="container">
@@ -15,7 +20,14 @@
 
                         <h5>
                             Godzina przyjazdu: @routes.LastStop.ArrivalTime.ToShortTimeString()
+                            <!--Tu takie samo jak ostatni przystanek ostatniego połaczenia-->
                         </h5>
+                        <h5><text id=@idHeadSignAr></text></h5>
+
+                        <script>
+                            GetOneDelayForHeadSignArrival("@idHeadSignAr.ToString()",@routes.LastStop.StopId,@routes.LastStop.RouteId,@routes.LastStop.TripId,@routes.LastStop.ArrivalTime.Hour,@routes.LastStop.ArrivalTime.Minute);
+                        </script>
+
                     </div>
                 </text>
             </div>
@@ -23,8 +35,13 @@
     </div>
 
 
+
     foreach (var route in routes.ChangeList)
     {
+
+        var idHeadSign = "delayHeadSign" + numerHS;
+
+
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -33,6 +50,16 @@
                             <div class="panel-container panel-container-stop-info">
                                 <h4>Linia: @route.BusLineName</h4>
                                 <h4>Odjazd: @route.FirstStop.DepartureTime.ToShortTimeString() </h4>
+                                <h4><text id=@idHeadSign></text></h4>
+
+                                <script>
+                                   GetOneDelayForHeadSignDeparture("@idHeadSign.ToString()",@route.FirstStop.StopId,@route.FirstStop.RouteId,@route.FirstStop.TripId,@route.FirstStop.DepartureTime.Hour,@route.FirstStop.ArrivalTime.Minute);
+                                </script>
+
+
+
+
+
                                 <h4><i class="fas fa-caret-down"></i></h4>
                             </div>
                             <!--Całkowity czas podróży: @routes.FullTimeOfTravel-->
@@ -47,20 +74,28 @@
                                     <th class="col-md-2">#</th>
                                     <th class="col-md-7">Przystanek</th>
                                     <th class="col-md-3">Odjazd</th>
+                                    <th class="col-md-3">Estymacja</th>
                                 </tr>
                             </thead>
                             @foreach (var change in route.StopChangeList)
                             {
+
+                                var idName = "delayField" + number;
+
+
                                 <tr>
                                     <td><text>@change.StopSequence</text></td>
                                     <td><text>@change.Name</text></td>
                                     <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
-                                    <td>
-                                        <script>
-                                            GetOneDelay(@change.StopId,@change.RouteId,@change.TripId,@change.ArrivalTime.Hour,@change.ArrivalTime.Minute);
-                                        </script>
-                                    </td>
+                                    <td><text id=@idName></text></td>
+
+                                    <script>
+                                    GetOneDelay("@idName.ToString()",@change.StopId,@change.RouteId,@change.TripId,@change.ArrivalTime.Hour,@change.ArrivalTime.Minute);
+                                    </script>
+
                                 </tr>
+
+                                number = number + 1;
                             }
                         </table>
                     </div>
@@ -68,7 +103,13 @@
                 </div>
             </div>
         </div>
+
+        numerHS = numerHS + 1;
+        number = number + 10;
     }
+
+    numerHSAr = numerHSAr + 1;
+    number = number + 100;
 
 }
 

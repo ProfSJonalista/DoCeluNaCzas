@@ -43,8 +43,12 @@
         <div id="res"></div>
     </div>
     <div id="Timetable" class="tabcontent">
+
+        @ViewBag.stop  --->  @ViewBag.destination
+
         @{
             var isMarked = false;
+            var isMarkedH = false;
             var currentDayType = GetCurrentDayType();
 
             foreach (var day in Model.MinuteDictionary)
@@ -82,15 +86,28 @@
                     <text>
                         <table class="timetable-table" id="timetableTable">
                             <tr class="row-content">
-                                <td class="hours">
-                                    @hour
-                                </td>
+
+                                @if (!isMarkedH && currentDayType == dayType && hour == nearestTime.Hours)
+                                {
+                                    <td class="hours" style="color: red; font-weight: bold">
+                                        @hour
+                                    </td>
+
+                                    isMarkedH = true;
+                                }
+                                else
+                                {
+                                    <td class="hours">
+                                        @hour
+                                    </td>
+                                }
+
 
                                 @foreach (var minute in item.Value)
                                 {
                                     if (!isMarked && currentDayType == dayType && hour == nearestTime.Hours && minute == nearestTime.Minutes)
                                     {
-                                        <td class="minutes" style="color: red">
+                                        <td class="minutes" style="color: red; font-weight: bold">
                                             @minute
                                         </td>
 

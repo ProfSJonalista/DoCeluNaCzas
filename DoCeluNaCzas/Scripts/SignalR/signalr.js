@@ -126,22 +126,68 @@ function ConnectOneDelay() {
     });
 }
 
-function GetOneDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
-    GetDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+function GetOneDelay(idName, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    GetDelay(idName,stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
     setInterval(function () {
-        GetDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+        GetDelay(idName,stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
     }, 20000);
 }
 
-function GetDelay(stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+function GetOneDelayForHeadSignDeparture(idNameHS, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    GetDelayForHeadSignDeparture(idNameHS, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+    setInterval(function () {
+        GetDelayForHeadSignDeparture(idNameHS, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+    }, 20000);
+}
+
+function GetOneDelayForHeadSignArrival(idNameHSAr, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    GetDelayForHeadSignArrival(idNameHSAr, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+    setInterval(function () {
+        GetDelayForHeadSignArrival(idNameHSAr, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute);
+    }, 20000);
+}
+
+function GetDelay(idName, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
     if (connectionStarted) {
         delaysProxy.invoke("GetOneDelay", stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute).done(
             function (estimatedTime) {
 
-                console.log('Result: ' + estimatedTime);
-
+                console.log('Result: ' + estimatedTime + "_" + idName);
+                
+                document.getElementById(idName).innerHTML = estimatedTime;
+         
             }).fail(function (error) {
             console.log(error);
         });
+    }
+}
+
+function GetDelayForHeadSignDeparture(idNameHS, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    if (connectionStarted) {
+        delaysProxy.invoke("GetOneDelay", stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute).done(
+            function (estimatedTime) {
+
+                console.log('Result: ' + estimatedTime + "_" + idNameHS);
+
+                document.getElementById(idNameHS).innerHTML = "Estymacja: " + estimatedTime;
+
+            }).fail(function (error) {
+                console.log(error);
+            });
+    }
+}
+
+function GetDelayForHeadSignArrival(idNameHSAr, stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute) {
+    if (connectionStarted) {
+        delaysProxy.invoke("GetOneDelay", stopId, routeId, tripId, arrivalTimeHour, arrivalTimeMinute).done(
+            function (estimatedTime) {
+
+                console.log('Result: ' + estimatedTime + "_" + idNameHSAr);
+
+                document.getElementById(idNameHSAr).innerHTML = "Estymacja: " + estimatedTime;
+
+            }).fail(function (error) {
+                console.log(error);
+            });
     }
 }
