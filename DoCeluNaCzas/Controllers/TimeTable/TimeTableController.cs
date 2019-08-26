@@ -121,13 +121,14 @@ namespace DoCeluNaCzas.Controllers.TimeTable
                 string stopId = splitStop[1].Trim();
                 string routId = splitStop[2].Trim();
                 string destination = splitStop[3].Trim();
+                string stop = splitStop[4].Trim();
 
                 //ViewBag.lineName = lineName;
                 //ViewBag.stopId = stopId;
                 //ViewBag.routId = routId;
                 //ViewBag.destination = destination;
 
-                await TimeTable(stopId, routId);
+                await TimeTable(stopId, routId, stop, destination);
 
             }
 
@@ -149,13 +150,16 @@ namespace DoCeluNaCzas.Controllers.TimeTable
 
         }
 
-        public async Task<ActionResult> TimeTable(string stopId, string routeId)
+        public async Task<ActionResult> TimeTable(string stopId, string routeId, string stop, string destination)
         {
             minuteTimeTable = await _indexService.GetTimeTables(stopId, routeId);
             ViewBag.stopId = stopId;
             ViewBag.routeIds = minuteTimeTable.RouteIds;
             ViewBag.minDic = minuteTimeTable.MinuteDictionary;
             ViewBag.busLine = minuteTimeTable.BusLineName;
+            ViewBag.stop = stop;
+            ViewBag.destination = destination;
+            
 
             return View(minuteTimeTable);
         }

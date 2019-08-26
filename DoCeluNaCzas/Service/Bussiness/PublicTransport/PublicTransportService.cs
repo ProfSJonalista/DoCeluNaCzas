@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using DCNC.Bussiness.Models;
 using System.Collections.Generic;
 using System.Xml;
+using DCNC.Bussiness.Model;
 
 namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
 {
