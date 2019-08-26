@@ -17,10 +17,11 @@
                             <h4>Trasa</h4>
                         </div>
                         <h5>Linie: @routes.Buses</h5>
-
+                        <h5>
+                            Godzina odjazdu: @routes.FirstStop.DepartureTime.ToShortTimeString()
+                        </h5>
                         <h5>
                             Godzina przyjazdu: @routes.LastStop.ArrivalTime.ToShortTimeString()
-                            <!--Tu takie samo jak ostatni przystanek ostatniego połaczenia-->
                         </h5>
                         <h5><text id=@idHeadSignAr></text></h5>
 
