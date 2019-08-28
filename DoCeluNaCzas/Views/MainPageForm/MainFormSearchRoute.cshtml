@@ -6,61 +6,71 @@
         <div class="no-routes-txt">
         </div>
     </div>
-    @{ var number = 0; var numerHS = 0; var numerHSAr = 0;}
+    @{ var number = 0; var numerHS = 0; var numerHSAr = 0; var numerHDep = 0;}
 
     @foreach (var routes in Model)
     {
-    var idHeadSignAr = "delayHeadSignAr" + numerHSAr;
+        var idHeadSignAr = "delayHeadSignAr" + numerHSAr;
+        var idHeadSignDep = "delayHeadSignDep" + numerHDep; ;
 
-    <!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
+        <!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
 
-    <div class="row">
-        <div class="col-sm-12">
-            <text>
-                <div class="panel-container panel-container-route-info float-left">
-                    <div class="panel-title align-center">
-                        @*<h4>Trasa</h4>*@
-                    </div>
-                    <h5>Linie: @routes.Buses</h5>
-                    <div class="route-green">
-                        <div class="timetable-time">
-                            <h5>Rozkładowy czas:</h5>
+        <div class="row">
+            <div class="col-sm-12">
+                <text>
+                    <div class="panel-container panel-container-route-info float-left">
+                        <div class="panel-title align-center">
+                            @*<h4>Trasa</h4>*@
                         </div>
-                        <div class="green-box">
-                            <h5>
-                                @routes.FirstStop.DepartureTime.ToShortTimeString()
-                            </h5>
+                        <h5>Linie: @routes.Buses</h5>
+                        <div class="route-green">
+                            <div class="timetable-time">
+                                <h5>Rozkładowy czas:</h5>
+                            </div>
+                            <div class="green-box">
+                                <h5>
+                                    @routes.FirstStop.DepartureTime.ToShortTimeString()
+                                </h5>
+                            </div>
+                            <div class="arrow-img">
+                                <img src="~/Content/Images/arrow4.png" width="50" />
+                            </div>
+                            <div class="green-box">
+                                <h5>
+                                    @routes.LastStop.ArrivalTime.ToShortTimeString()
+                                </h5>
+                            </div>
                         </div>
-                        <div class="arrow-img">
-                            <img src="~/Content/Images/arrow4.png" width="50" />
-                        </div>
-                        <div class="green-box">
-                            <h5>
-                                @routes.LastStop.ArrivalTime.ToShortTimeString()
-                            </h5>
-                        </div>
-                    </div>
 
-                    <div class="route-blue">
-                        <div class="timetable-time">
-                            <h5>Rzeczywisty czas:</h5>
+                        <div class="route-blue">
+                            <div class="timetable-time">
+                                <h5>Rzeczywisty czas:</h5>
+                            </div>
+                            <div class="blue-box">
+                                <h5>
+                                    <text id="@idHeadSignDep">00:00</text>
+                                </h5>
+                            </div>
+                            <div class="arrow-img">
+                                <img src="~/Content/Images/arrowblue.png" width="50" />
+                            </div>
+                            <div class="blue-box">
+                                <h5>
+                                    <text id=@idHeadSignAr>00:00</text>
+                                </h5>
+                            </div>
                         </div>
-                        <div class="blue-box">
-                            <h5>
-                                <text>00:00</text>
-                            </h5>
-                        </div>
-                        <div class="arrow-img">
-                            <img src="~/Content/Images/arrowblue.png" width="50" />
-                        </div>
-                        <div class="blue-box">
-                            <h5>
-                                <text id=@idHeadSignAr>00:00</text>
-                            </h5>
-                        </div>
-                    </div>
 
-                    <script>
+                        <script>
+
+                        GetOneDelay("@idHeadSignDep",
+                                                                                                                                                @routes.LastStop.StopId,
+                        @routes.FirstStop.RouteId,
+                        @routes.FirstStop.TripId,
+                        @routes.FirstStop.DepartureTime.Hour,
+                        @routes.FirstStop.DepartureTime.Minute,
+                                "");
+
                         GetOneDelay("@idHeadSignAr",
                                                                                                                                                 @routes.LastStop.StopId,
                         @routes.LastStop.RouteId,
@@ -69,27 +79,27 @@
                         @routes.LastStop.ArrivalTime.Minute,
                         "");
 
-                    </script>
-                </div>
-            </text>
+                        </script>
+                    </div>
+                </text>
+            </div>
         </div>
-    </div>
 
-    foreach (var route in routes.ChangeList)
-    {
-    var idHeadSign = "delayHeadSign" + numerHS;
+        foreach (var route in routes.ChangeList)
+        {
+            var idHeadSign = "delayHeadSign" + numerHS;
 
-    <div class="">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="route-info collapsed" data-toggle="collapse">
-                    <text>
-                        <div class="panel-container panel-container-stop-info">
-                            <h4>Linia: @route.BusLineName</h4>
-                            <h4>Odjazd: @route.FirstStop.DepartureTime.ToShortTimeString() </h4>
-                            <h4 class="departure-lbl">Czas rzeczywisty odjazdu: <text id=@idHeadSign>00:00</text></h4>
+            <div class="">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="route-info collapsed" data-toggle="collapse">
+                            <text>
+                                <div class="panel-container panel-container-stop-info">
+                                    <h4>Linia: @route.BusLineName</h4>
+                                    <h4>Odjazd: @route.FirstStop.DepartureTime.ToShortTimeString() </h4>
+                                    <h4 class="departure-lbl">Czas rzeczywisty odjazdu: <text id=@idHeadSign>00:00</text></h4>
 
-                            <script>
+                                    <script>
                                 GetOneDelay("@idHeadSign",
                                                                                     @route.FirstStop.StopId,
                                 @route.FirstStop.RouteId,
@@ -97,34 +107,34 @@
                                 @route.FirstStop.DepartureTime.Hour,
                                 @route.FirstStop.ArrivalTime.Minute,
                                 "");
-                            </script>
+                                    </script>
 
-                            <h4 class="float-right"><span class="collapse-label"></span><i class="fas fa-caret-down"></i></h4>
+                                    <h4 class="float-right"><span class="collapse-label"></span><i class="fas fa-caret-down"></i></h4>
+                                </div>
+                            </text>
                         </div>
-                    </text>
-                </div>
-                <div id="collapseRoute" class="routes-table-container collapse">
+                        <div id="collapseRoute" class="routes-table-container collapse">
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="col-md-2">#</th>
-                                <th class="col-md-4">Przystanek</th>
-                                <th class="col-md-3">Odjazd</th>
-                                <th class="col-md-3">Czas rzeczywisty</th>
-                            </tr>
-                        </thead>
-                        @foreach (var change in route.StopChangeList)
-                        {
-                        var idName = "delayField" + number;
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-2">#</th>
+                                        <th class="col-md-4">Przystanek</th>
+                                        <th class="col-md-3">Odjazd</th>
+                                        <th class="col-md-3">Czas rzeczywisty</th>
+                                    </tr>
+                                </thead>
+                                @foreach (var change in route.StopChangeList)
+                                {
+                                    var idName = "delayField" + number;
 
-                        <tr>
-                            <td><text>@change.StopSequence</text></td>
-                            <td><text>@change.Name</text></td>
-                            <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
-                            <td><text id=@idName></text></td>
+                                    <tr>
+                                        <td><text>@change.StopSequence</text></td>
+                                        <td><text>@change.Name</text></td>
+                                        <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
+                                        <td><text id=@idName></text></td>
 
-                            <script>
+                                        <script>
                                 GetOneDelay("@idName",
                                                                                                                                                                                                             @change.StopId,
                                 @change.RouteId,
@@ -132,23 +142,25 @@
                                 @change.ArrivalTime.Hour,
                                 @change.ArrivalTime.Minute,
                                 "");
-                            </script>
-                        </tr>
+                                        </script>
+                                    </tr>
 
-                        number = number + 1;
-                        }
-                    </table>
+                                    number = number + 1;
+                                }
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    numerHS = numerHS + 1;
-    number = number + 10;
-    }
+            numerHS = numerHS + 1;
+            number = number + 10;
+        }
 
-    numerHSAr = numerHSAr + 1;
-    number = number + 100;
+        numerHSAr = numerHSAr + 1;
+        numerHDep = numerHDep + 1;
+
+        number = number + 100;
     }
 </div>
 <script>
