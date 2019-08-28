@@ -99,6 +99,7 @@ function GetDelays(stopId) {
 
             // append the <tbody> inside the <table>
             table.appendChild(tableBody);
+
         });
     }).fail(function (error) {
         console.log('Error: ' + error);
