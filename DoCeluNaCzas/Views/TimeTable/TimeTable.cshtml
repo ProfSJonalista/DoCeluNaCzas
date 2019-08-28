@@ -3,6 +3,17 @@
 @model DCNC.Bussiness.Models.MinuteTimeTable
 
 @{
+<div class="direction-label">
+    <div class="label-wrapper">
+        <span class="timetable-label">Przystanek: </span><span>@ViewBag.stop</span>
+    </div>
+    <div class="label-wrapper">
+        <span class="timetable-label">Kierunek: </span><span>@ViewBag.destination</span>
+    </div>
+    <!--<img src="~/Content/Images/arrow4.png" width="50" class="arrow-img" />-->
+    
+
+</div>
     DayType GetCurrentDayType()
     {
         var polandPublicHoliday = new PolandPublicHoliday();
@@ -44,87 +55,89 @@
     </div>
     <div id="Timetable" class="tabcontent">
 
-        @ViewBag.stop  --->  @ViewBag.destination
 
         @{
-            var isMarked = false;
-            var isMarkedH = false;
-            var currentDayType = GetCurrentDayType();
+        var isMarked = false;
+        var isMarkedH = false;
+        var currentDayType = GetCurrentDayType();
 
-            foreach (var day in Model.MinuteDictionary)
-            {
-                var dayType = day.Key;
-                var nearestTime = GetNearestTime(day.Value);
-
-                <div class="week-name">
-                    @if (dayType == DayType.Weekday)
-                    {
-                        <text>
-                            Dni powszednie
-                        </text>
-                    }
-
-                    @if (dayType == DayType.Saturday)
-                    {
-                        <text>
-                            Soboty
-                        </text>
-                    }
-
-                    @if (dayType == DayType.Sunday)
-                    {
-                        <text>
-                            Niedziele i święta
-                        </text>
-                    }
-                </div>
-
-                foreach (var item in day.Value)
+        foreach (var day in Model.MinuteDictionary)
+        {
+        var dayType = day.Key;
+        var nearestTime = GetNearestTime(day.Value);
+        @:<div class="col-sm-12 col-lg-4 timetable-wrapper">
+            <div class="week-name">
+                @if (dayType == DayType.Weekday)
                 {
-                    var hour = item.Key;
-
-                    <text>
-                        <table class="timetable-table" id="timetableTable">
-                            <tr class="row-content">
-
-                                @if (!isMarkedH && currentDayType == dayType && hour == nearestTime.Hours)
-                                {
-                                    <td class="hours" style="color: red; font-weight: bold">
-                                        @hour
-                                    </td>
-
-                                    isMarkedH = true;
-                                }
-                                else
-                                {
-                                    <td class="hours">
-                                        @hour
-                                    </td>
-                                }
-
-
-                                @foreach (var minute in item.Value)
-                                {
-                                    if (!isMarked && currentDayType == dayType && hour == nearestTime.Hours && minute == nearestTime.Minutes)
-                                    {
-                                        <td class="minutes" style="color: red; font-weight: bold">
-                                            @minute
-                                        </td>
-
-                                        isMarked = true;
-                                    }
-                                    else
-                                    {
-                                        <td class="minutes">
-                                            @minute
-                                        </td>
-                                    }
-                                }
-                            </tr>
-                        </table>
-                    </text>
+                <text>
+                    Dni powszednie
+                </text>
                 }
+
+                @if (dayType == DayType.Saturday)
+                {
+                <text>
+                    Soboty
+                </text>
+                }
+
+                @if (dayType == DayType.Sunday)
+                {
+                <text>
+                    Niedziele i święta
+                </text>
+                }
+            </div>
+
+            foreach (var item in day.Value)
+            {
+            var hour = item.Key;
+
+            <text>
+                <table class="timetable-table" id="timetableTable">
+                    <tr class="row-content">
+
+                        @if (!isMarkedH && currentDayType == dayType && hour == nearestTime.Hours)
+                        {
+                        <td class="hours" style="color: red; font-weight: bold">
+                            @hour
+                        </td>
+
+                        isMarkedH = true;
+                        }
+                        else
+                        {
+                        <td class="hours">
+                            @hour
+                        </td>
+                        }
+
+
+                        @foreach (var minute in item.Value)
+                        {
+                        if (!isMarked && currentDayType == dayType && hour == nearestTime.Hours && minute == nearestTime.Minutes)
+                        {
+                        <td class="minutes" style="color: red; font-weight: bold">
+                            @minute
+                        </td>
+
+                        isMarked = true;
+                        }
+                        else
+                        {
+                        <td class="minutes">
+                            @minute
+                        </td>
+                        }
+                        }
+                    </tr>
+                </table>
+            </text>
             }
+
+        @:</div>
+        }
+
         }
     </div>
 

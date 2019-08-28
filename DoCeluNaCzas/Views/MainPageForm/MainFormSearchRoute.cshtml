@@ -1,120 +1,156 @@
 ﻿@model DCNC.Bussiness.Model.Route[]
+<div class="search-route-wrapper">
+    <div class="no-routes-wrapper">
+        <div class="no-routes-img">
+        </div>
+        <div class="no-routes-txt">
+        </div>
+    </div>
+    @{ var number = 0; var numerHS = 0; var numerHSAr = 0;}
 
-@{ var number = 0; var numerHS = 0; var numerHSAr = 0;}
-
-@foreach (var routes in Model)
-{
+    @foreach (var routes in Model)
+    {
     var idHeadSignAr = "delayHeadSignAr" + numerHSAr;
 
     <!--Połączenie: ViewBag.SpotFrom  ---  ViewBag.SpotTo-->
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <text>
-                    <div class="panel-container panel-container-route-info float-left">
-                        <div class="panel-title align-center">
-                            <h4>Trasa</h4>
-                        </div>
-                        <h5>Linie: @routes.Buses</h5>
-                        <h5>
-                            Godzina odjazdu: @routes.FirstStop.DepartureTime.ToShortTimeString()
-                        </h5>
-                        <h5>
-                            Godzina przyjazdu: @routes.LastStop.ArrivalTime.ToShortTimeString()
-                        </h5>
-                        <h5><text id=@idHeadSignAr></text></h5>
 
-                        <script>
-                            GetOneDelay("@idHeadSignAr",
-                                         @routes.LastStop.StopId,
-                                         @routes.LastStop.RouteId,
-                                         @routes.LastStop.TripId,
-                                         @routes.LastStop.ArrivalTime.Hour,
-                                         @routes.LastStop.ArrivalTime.Minute,
-                                         "Czas rzeczywisty przyjazdu: ");
-                        </script>
+    <div class="row">
+        <div class="col-sm-12">
+            <text>
+                <div class="panel-container panel-container-route-info float-left">
+                    <div class="panel-title align-center">
+                        @*<h4>Trasa</h4>*@
                     </div>
-                </text>
-            </div>
+                    <h5>Linie: @routes.Buses</h5>
+                    <div class="route-green">
+                        <div class="timetable-time">
+                            <h5>Rozkładowy czas:</h5>
+                        </div>
+                        <div class="green-box">
+                            <h5>
+                                @routes.FirstStop.DepartureTime.ToShortTimeString()
+                            </h5>
+                        </div>
+                        <div class="arrow-img">
+                            <img src="~/Content/Images/arrow4.png" width="50" />
+                        </div>
+                        <div class="green-box">
+                            <h5>
+                                @routes.LastStop.ArrivalTime.ToShortTimeString()
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="route-blue">
+                        <div class="timetable-time">
+                            <h5>Rzeczywisty czas:</h5>
+                        </div>
+                        <div class="blue-box">
+                            <h5>
+                                <text>00:00</text>
+                            </h5>
+                        </div>
+                        <div class="arrow-img">
+                            <img src="~/Content/Images/arrowblue.png" width="50" />
+                        </div>
+                        <div class="blue-box">
+                            <h5>
+                                <text id=@idHeadSignAr>00:00</text>
+                            </h5>
+                        </div>
+                    </div>
+
+                    <script>
+                        GetOneDelay("@idHeadSignAr",
+                                                                                                                                                @routes.LastStop.StopId,
+                        @routes.LastStop.RouteId,
+                        @routes.LastStop.TripId,
+                        @routes.LastStop.ArrivalTime.Hour,
+                        @routes.LastStop.ArrivalTime.Minute,
+                        "");
+
+                    </script>
+                </div>
+            </text>
         </div>
     </div>
 
     foreach (var route in routes.ChangeList)
     {
-        var idHeadSign = "delayHeadSign" + numerHS;
+    var idHeadSign = "delayHeadSign" + numerHS;
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="route-info collapsed" data-toggle="collapse">
-                        <text>
-                            <div class="panel-container panel-container-stop-info">
-                                <h4>Linia: @route.BusLineName</h4>
-                                <h4>Odjazd: @route.FirstStop.DepartureTime.ToShortTimeString() </h4>
-                                <h4 id=@idHeadSign></h4>
+    <div class="">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="route-info collapsed" data-toggle="collapse">
+                    <text>
+                        <div class="panel-container panel-container-stop-info">
+                            <h4>Linia: @route.BusLineName</h4>
+                            <h4>Odjazd: @route.FirstStop.DepartureTime.ToShortTimeString() </h4>
+                            <h4 class="departure-lbl">Czas rzeczywisty odjazdu: <text id=@idHeadSign>00:00</text></h4>
 
-                                <script>
-                                    GetOneDelay("@idHeadSign",
-                                                 @route.FirstStop.StopId,
-                                                 @route.FirstStop.RouteId,
-                                                 @route.FirstStop.TripId,
-                                                 @route.FirstStop.DepartureTime.Hour,
-                                                 @route.FirstStop.ArrivalTime.Minute,
-                                                 "Czas rzeczywisty przyjazdu: ");
-                                </script>
+                            <script>
+                                GetOneDelay("@idHeadSign",
+                                                                                    @route.FirstStop.StopId,
+                                @route.FirstStop.RouteId,
+                                @route.FirstStop.TripId,
+                                @route.FirstStop.DepartureTime.Hour,
+                                @route.FirstStop.ArrivalTime.Minute,
+                                "");
+                            </script>
 
-                                <h4><i class="fas fa-caret-down"></i></h4>
-                            </div>
-                        </text>
-                    </div>
-                    <div class="routes-table-container collapse">
+                            <h4 class="float-right"><span class="collapse-label"></span><i class="fas fa-caret-down"></i></h4>
+                        </div>
+                    </text>
+                </div>
+                <div id="collapseRoute" class="routes-table-container collapse">
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-2">#</th>
-                                    <th class="col-md-7">Przystanek</th>
-                                    <th class="col-md-3">Odjazd</th>
-                                    <th class="col-md-3">Czas rzeczywisty przyjazdu</th>
-                                </tr>
-                            </thead>
-                            @foreach (var change in route.StopChangeList)
-                            {
-                                var idName = "delayField" + number;
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="col-md-2">#</th>
+                                <th class="col-md-4">Przystanek</th>
+                                <th class="col-md-3">Odjazd</th>
+                                <th class="col-md-3">Czas rzeczywisty</th>
+                            </tr>
+                        </thead>
+                        @foreach (var change in route.StopChangeList)
+                        {
+                        var idName = "delayField" + number;
 
-                                <tr>
-                                    <td><text>@change.StopSequence</text></td>
-                                    <td><text>@change.Name</text></td>
-                                    <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
-                                    <td><text id=@idName></text></td>
+                        <tr>
+                            <td><text>@change.StopSequence</text></td>
+                            <td><text>@change.Name</text></td>
+                            <td><text>@change.DepartureTime.ToShortTimeString()</text></td>
+                            <td><text id=@idName></text></td>
 
-                                    <script>
-                                        GetOneDelay("@idName",
-                                                    @change.StopId,
-                                                    @change.RouteId,
-                                                    @change.TripId,
-                                                    @change.ArrivalTime.Hour,
-                                                    @change.ArrivalTime.Minute,
-                                                    "");
-                                    </script>
-                                </tr>
+                            <script>
+                                GetOneDelay("@idName",
+                                                                                                                                                                                                            @change.StopId,
+                                @change.RouteId,
+                                @change.TripId,
+                                @change.ArrivalTime.Hour,
+                                @change.ArrivalTime.Minute,
+                                "");
+                            </script>
+                        </tr>
 
-                                number = number + 1;
-                            }
-                        </table>
-                    </div>
+                        number = number + 1;
+                        }
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
-        numerHS = numerHS + 1;
-        number = number + 10;
+    numerHS = numerHS + 1;
+    number = number + 10;
     }
 
     numerHSAr = numerHSAr + 1;
     number = number + 100;
-}
-
+    }
+</div>
 <script>
     $(document).ready(() => {
         ConnectOneDelay();
@@ -126,5 +162,17 @@
         document.getElementsByClassName("routes-table-container")[i].setAttribute("id", "collapseTimetable" + i);
         document.getElementsByClassName("route-info")[i].setAttribute("href", "#collapseTimetable" + i);
         document.getElementsByClassName("route-info")[i].setAttribute("aria-controls", "#collapseTimetable" + i);
+    }
+    if (count == 0) {
+        var wrapper = document.getElementsByClassName("search-route-wrapper")[0];
+        var divImg = document.getElementsByClassName("no-routes-img")[0];
+        var divTxt = document.getElementsByClassName("no-routes-txt")[0];
+        wrapper.classList.add("center-elements");
+        divImg.innerHTML = '<i class="fas fa-ban"></i>';
+        divTxt.innerHTML = '<h3>Brak dostępnych tras</h3>';
+    }
+    else {
+        var routesWrapper = document.getElementsByClassName("no-routes-wrapper")[0];
+        routesWrapper.classList.add("opacity0");
     }
 </script>
