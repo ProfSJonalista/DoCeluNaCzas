@@ -128,7 +128,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
                 //ViewBag.routId = routId;
                 //ViewBag.destination = destination;
 
-                await TimeTable(stopId, routId, stop, destination);
+                await TimeTable(stopId, routId, stop, destination, lineName);
 
             }
 
@@ -150,7 +150,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
 
         }
 
-        public async Task<ActionResult> TimeTable(string stopId, string routeId, string stop, string destination)
+        public async Task<ActionResult> TimeTable(string stopId, string routeId, string stop, string destination, string lineName)
         {
             minuteTimeTable = await _indexService.GetTimeTables(stopId, routeId);
             ViewBag.stopId = stopId;
@@ -159,6 +159,7 @@ namespace DoCeluNaCzas.Controllers.TimeTable
             ViewBag.busLine = minuteTimeTable.BusLineName;
             ViewBag.stop = stop;
             ViewBag.destination = destination;
+            ViewBag.lineName = lineName;
             
 
             return View(minuteTimeTable);
