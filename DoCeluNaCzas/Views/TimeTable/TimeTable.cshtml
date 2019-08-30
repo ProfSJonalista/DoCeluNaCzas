@@ -4,17 +4,26 @@
 
 @{
 <div class="direction-label">
-    <div class="label-wrapper">
-        <span class="timetable-label">Przystanek: </span><span>@ViewBag.stop</span>
-    </div>
-    <div class="label-wrapper">
-        <span class="timetable-label">Kierunek: </span><span>@ViewBag.destination</span>
-    </div>
-    <div class="label-wrapper">
-        <span class="timetable-label">Linia: </span><span>@ViewBag.lineName</span>
-    </div>
+    <table>
+        <tr>
+            <td rowspan="2" class="td-width">
+                <div class="label-wrapper">
+                    <span class="timetable-label line-timetable-label">@ViewBag.lineName</span>
+                </div>
+            </td>
+            <td>
+                <div class="label-wrapper">
+                    <span class="timetable-label">Przystanek: </span><span>@ViewBag.stop</span>
+                </div>
+                <div class="label-wrapper">
+                    <span class="timetable-label">Kierunek: </span><span>@ViewBag.destination</span>
+                </div>
+            </td>
+            
+        </tr>
+    </table>
     <!--<img src="~/Content/Images/arrow4.png" width="50" class="arrow-img" />-->
-    
+
 
 </div>
     DayType GetCurrentDayType()
@@ -56,7 +65,7 @@
 
         <div id="res"></div>
     </div>
-    <div id="Timetable" class="tabcontent">
+    <div id="Timetable" class="row tabcontent">
 
 
         @{
@@ -68,7 +77,7 @@
         {
         var dayType = day.Key;
         var nearestTime = GetNearestTime(day.Value);
-        @:<div class="col-sm-12 col-lg-4 timetable-wrapper">
+        @:<div class="col-sm-12 col-md-12 col-lg-4 timetable-wrapper">
             <div class="week-name">
                 @if (dayType == DayType.Weekday)
                 {

@@ -32,8 +32,11 @@ function GetDelays(stopId) {
         var table = document.getElementById("delaysTable");
         table.innerHTML = "";
         table.classList = "table";
+        table.style.display = "none";
+        //table.style.textAlign = "center";
 
         var thead = document.createElement("thead");
+
         var headtr = document.createElement("tr");
 
         var headth = document.createElement("th");
@@ -99,8 +102,9 @@ function GetDelays(stopId) {
 
             // append the <tbody> inside the <table>
             table.appendChild(tableBody);
-
+            table.style.display = "table";
         });
+
     }).fail(function (error) {
         console.log('Error: ' + error);
     });
