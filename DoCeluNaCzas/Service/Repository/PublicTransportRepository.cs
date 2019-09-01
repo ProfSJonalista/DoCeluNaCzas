@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DoCeluNaCzas.Service.Repository.Helpers;
 
@@ -27,10 +28,10 @@ namespace DoCeluNaCzas.Service.Repository
             return xml;
         }
 
-        public async Task<string> GetRoute(string stopId, string destStopId, string departure, string dateTime)
+        public async Task<string> GetRoute(string stopId, string destStopId, bool departure, string dateTime)
         {
-            string address = (Constants.ROUTE_SEARCH + "?startStopId=" + stopId + "&destStopId=" + destStopId
-                + "&departure=" + departure + "&desiredTime=" + dateTime).ToString();
+            var address = (Constants.ROUTE_SEARCH + "?startStopId=" + stopId + "&destStopId=" + destStopId
+                              + "&departure=" + departure + "&desiredTime=" + dateTime);
 
             var json = await DownloadData(address);
 
@@ -39,9 +40,16 @@ namespace DoCeluNaCzas.Service.Repository
 
         async Task<string> DownloadData(string url)
         {
-            using (var client = new HttpClient())
+            try
             {
-                return await client.GetStringAsync(url);
+                using (var client = new HttpClient())
+                {
+                    return await client.GetStringAsync(url);
+                }
+            }
+            catch (Exception e)
+            {
+                return string.Empty;
             }
         }
     }

@@ -1,68 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿using DCNC.Bussiness.Model;
 using DoCeluNaCzas.Models.ViewModels.Index;
 using DoCeluNaCzas.Service.Cashing;
-using DoCeluNaCzas.Service.Repository;
 using DoCeluNaCzas.Service.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DoCeluNaCzas.Controllers
 {
     public class MainPageFormController : Controller
     {
-
-        IndexService _indexService = new IndexService(new CacheService());
-        private readonly PublicTransportRepository _publicTransportRepository = new PublicTransportRepository();
-
+        readonly IndexService _indexService;
 
 
         public MainPageFormController()
         {
-            _publicTransportRepository = new PublicTransportRepository();
             _indexService = new IndexService(new CacheService());
         }
 
-
         // GET: MainPageFormSpots
         [HttpPost]
-        public async Task<ViewResult> MainFormSearchRoute(string SpotFrom, string SpotTo, string Option, IndexModel indexModel)
+        public async Task<ViewResult> MainFormSearchRoute(string spotFrom, string spotTo, string option, IndexModel indexModel)
         {
+            var indexModelFromDate = indexModel.FromDate;
+            var indexModelDateClock = indexModel.DateClock;
 
+            var dateFirst = indexModelFromDate.ToString("yyyy-MM-dd").Substring(0, 10);
+            var timeFirst = indexModelDateClock.ToString().Substring(11, 8);
+            var dateTime = dateFirst + "T" + timeFirst;
+            var departure = option == "Departure";
 
-            //Option = Request["Option"].ToString();
-           // SpotFrom = Request["SpotFrom"].ToString();
-            //SpotTo = Request["SpotTo"].ToString();
-            DateTime DateTime = indexModel.FromDate;
-            DateTime Time = indexModel.DateClock;
+            var routes = await _indexService.GetRoute(spotFrom, spotTo, departure, dateTime) ?? new List<Route>();
 
-            string dateFirst = DateTime.ToString("yyyy-MM-dd").Substring(0, 10);
-            string timeFirst = Time.ToString().Substring(11, 8);
-
-            string dateTime = dateFirst + "T" + timeFirst;
-
-            string departure = null;
-
-            if (Option == "Departure")
-            {
-                departure = "true";
-            }
-            else
-            {
-                departure = "false";
-            }
-
-
-            var routes = await _indexService.GetRoute(SpotFrom, SpotTo, departure, dateTime);
-
-
-            var routesArray = routes.ToArray();
-           // ViewBag.SpotFrom = SpotFrom;
-            //ViewBag.SpotTo = SpotTo;
-
-            return View(routesArray);
+            return View(routes);
         }
     }
 }

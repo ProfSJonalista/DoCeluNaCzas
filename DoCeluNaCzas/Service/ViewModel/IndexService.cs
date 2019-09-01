@@ -59,7 +59,7 @@ namespace DoCeluNaCzas.Service.ViewModel
         }
 
 
-        public async Task<List<Route>> GetRoute(string stopId, string descStopId, string departure, string dateTime)
+        public async Task<List<Route>> GetRoute(string stopId, string descStopId, bool departure, string dateTime)
         {
             var routes = await _publicTransportService.GetRoute(stopId, descStopId, departure, dateTime);
             return routes;

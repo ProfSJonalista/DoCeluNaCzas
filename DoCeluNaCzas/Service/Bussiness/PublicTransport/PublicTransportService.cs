@@ -43,7 +43,7 @@ namespace DoCeluNaCzas.Service.Bussiness.PublicTransport
             return data;
         }
 
-        public async Task<List<Route>> GetRoute(string stopId, string descStopId, string departure, string dateTime)
+        public async Task<List<Route>> GetRoute(string stopId, string descStopId, bool departure, string dateTime)
         {
             var json = await _publicTransportRepository.GetRoute(stopId, descStopId, departure, dateTime);
 
